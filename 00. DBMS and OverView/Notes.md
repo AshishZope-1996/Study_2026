@@ -11,141 +11,141 @@
 
 <b class="line" style="color:#1C4980;font-weight:bold;">1. Introduction to DBMS</b>
 
-* What is DBMS
-* Purpose of DBMS
-* Advantages over File System
-* Types of DBMS (Hierarchical, Network, Relational, NoSQL)
+- What is DBMS
+- Purpose of DBMS
+- Advantages over File System
+- Types of DBMS (Hierarchical, Network, Relational, NoSQL)
 
 <hr style="border:1px solid #2E86C1;">
 
-<b class="line" style="color:#1C4980;font-weight:bold;">🏗️ 2. DBMS Architecture</b>
+<b class="line" style="color:#1C4980;font-weight:bold;">2. DBMS Architecture</b>
 
-* 1-Tier, 2-Tier, 3-Tier Architecture
-* DBMS Components
-* Schema vs Instance
-* Data Independence (Logical & Physical)
-
-<hr style="border:1px solid #2E86C1;">
-
-<b class="line" style="color:#1C4980;font-weight:bold;">📊 3. Data Models</b>
-
-* Hierarchical Model
-* Network Model
-* Relational Model
-* ER Model
+- 1-Tier, 2-Tier, 3-Tier Architecture
+- DBMS Components
+- Schema vs Instance
+- Data Independence (Logical & Physical)
 
 <hr style="border:1px solid #2E86C1;">
 
-<b class="line" style="color:#1C4980;font-weight:bold;">📐 4. ER Diagram (ERD)</b>
+<b class="line" style="color:#1C4980;font-weight:bold;">3. Data Models</b>
 
-* Entity, Attribute, Relationship
-* Types of Attributes (Simple, Composite, Derived)
-* Cardinality (1:1, 1:M, M:N)
-* Participation (Total/Partial)
-* Weak Entity
-
-<hr style="border:1px solid #2E86C1;">
-
-<b class="line" style="color:#1C4980;font-weight:bold;">🗂️ 5. Relational Model Concepts</b>
-
-* Relation (Table)
-* Tuple (Row)
-* Attribute (Column)
-* Domain
+- Hierarchical Model
+- Network Model
+- Relational Model
+- ER Model
 
 <hr style="border:1px solid #2E86C1;">
 
-<b class="line" style="color:#1C4980;font-weight:bold;">🔑 6. Keys in DBMS</b>
+<b class="line" style="color:#1C4980;font-weight:bold;">4. ER Diagram (ERD)</b>
 
-* Super Key
-* Candidate Key
-* Primary Key
-* Alternate Key
-* Foreign Key
-* Composite Key
-
-<hr style="border:1px solid #2E86C1;">
-
-<b class="line" style="color:#1C4980;font-weight:bold;">🔄 7. Normalization</b>
-
-* Functional Dependency
-* 1NF
-* 2NF
-* 3NF
-* BCNF
-* Denormalization
+- Entity, Attribute, Relationship
+- Types of Attributes (Simple, Composite, Derived)
+- Cardinality (1:1, 1:M, M:N)
+- Participation (Total/Partial)
+- Weak Entity
 
 <hr style="border:1px solid #2E86C1;">
 
-<b class="line" style="color:#1C4980;font-weight:bold;">⚙️ 8. Transactions & ACID</b>
+<b class="line" style="color:#1C4980;font-weight:bold;">5. Relational Model Concepts</b>
 
-* Transaction Concept
-* ACID Properties
-
-  * Atomicity
-  * Consistency
-  * Isolation
-  * Durability
+- Relation (Table)
+- Tuple (Row)
+- Attribute (Column)
+- Domain
 
 <hr style="border:1px solid #2E86C1;">
 
-<b class="line" style="color:#1C4980;font-weight:bold;">🔐 9. Concurrency Control</b>
+<b class="line" style="color:#1C4980;font-weight:bold;">6. Keys in DBMS</b>
 
-* Problems (Dirty Read, Lost Update, Phantom Read)
-* Locking (Shared, Exclusive)
-* Deadlock
-* Deadlock Prevention & Detection
-* Isolation Levels
-
-<hr style="border:1px solid #2E86C1;">
-
-<b class="line" style="color:#1C4980;font-weight:bold;">📦 10. Indexing & File Organization</b>
-
-* What is Index
-* Types of Index
-* File Organization Methods (Heap, Sequential, Hashing)
+- Super Key
+- Candidate Key
+- Primary Key
+- Alternate Key
+- Foreign Key
+- Composite Key
 
 <hr style="border:1px solid #2E86C1;">
 
-<b class="line" style="color:#1C4980;font-weight:bold;">🔁 11. Database Design</b>
+<b class="line" style="color:#1C4980;font-weight:bold;">7. Normalization</b>
 
-* ER to Relational Mapping
-* Design Process
-* Anomalies (Insert, Update, Delete)
-
-<hr style="border:1px solid #2E86C1;">
-
-<b class="line" style="color:#1C4980;font-weight:bold;">🛡️ 12. Database Security</b>
-
-* Authentication
-* Authorization
-* Roles & Privileges
+- Functional Dependency
+- 1NF
+- 2NF
+- 3NF
+- BCNF
+- Denormalization
 
 <hr style="border:1px solid #2E86C1;">
 
-<b class="line" style="color:#1C4980;font-weight:bold;">💾 13. Backup & Recovery</b>
+<b class="line" style="color:#1C4980;font-weight:bold;">8. Transactions & ACID</b>
 
-* Failure Types
-* Recovery Techniques
-* Log-based Recovery
-* Checkpoints
+- Transaction Concept
+- ACID Properties
+
+  - Atomicity
+  - Consistency
+  - Isolation
+  - Durability
 
 <hr style="border:1px solid #2E86C1;">
 
-<b class="line" style="color:#1C4980;font-weight:bold;">🚀 14. Advanced DBMS Topics</b>
+<b class="line" style="color:#1C4980;font-weight:bold;">9. Concurrency Control</b>
 
-* Triggers (Concept only, not SQL)
-* Views (Concept only)
-* Distributed DBMS
-* Data Warehousing Basics
+- Problems (Dirty Read, Lost Update, Phantom Read)
+- Locking (Shared, Exclusive)
+- Deadlock
+- Deadlock Prevention & Detection
+- Isolation Levels
+
+<hr style="border:1px solid #2E86C1;">
+
+<b class="line" style="color:#1C4980;font-weight:bold;">10. Indexing & File Organization</b>
+
+- What is Index
+- Types of Index
+- File Organization Methods (Heap, Sequential, Hashing)
+
+<hr style="border:1px solid #2E86C1;">
+
+<b class="line" style="color:#1C4980;font-weight:bold;">11. Database Design</b>
+
+- ER to Relational Mapping
+- Design Process
+- Anomalies (Insert, Update, Delete)
+
+<hr style="border:1px solid #2E86C1;">
+
+<b class="line" style="color:#1C4980;font-weight:bold;">12. Database Security</b>
+
+- Authentication
+- Authorization
+- Roles & Privileges
+
+<hr style="border:1px solid #2E86C1;">
+
+<b class="line" style="color:#1C4980;font-weight:bold;">13. Backup & Recovery</b>
+
+- Failure Types
+- Recovery Techniques
+- Log-based Recovery
+- Checkpoints
+
+<hr style="border:1px solid #2E86C1;">
+
+<b class="line" style="color:#1C4980;font-weight:bold;">14. Advanced DBMS Topics</b>
+
+- Triggers (Concept only, not SQL)
+- Views (Concept only)
+- Distributed DBMS
+- Data Warehousing Basics
 
 
 Inside SQL:
 
-* DDL, DML, DQL, DCL, TCL
-* Joins
-* Subqueries
-* Window Functions
-* etc.
+- DDL, DML, DQL, DCL, TCL
+- Joins
+- Subqueries
+- Window Functions
+- etc.
 
 <hr style="border:1px solid #2E86C1;">
