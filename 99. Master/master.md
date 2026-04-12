@@ -15,7 +15,7 @@
 
 This roadmap is designed to build strong foundations in Data Engineering, covering core concepts, tools, and real-world project implementation.
 
-### Focus Areas
+#### Focus Areas
 
 - Core Concepts
 - Programming and Data Processing
@@ -28,7 +28,7 @@ This roadmap is designed to build strong foundations in Data Engineering, coveri
 
 <b class="line" style="color:#1C4980;font-weight:bold;">Phase 1: Foundations of Data Engineering</b>
 
-### 2.1 Data Engineering Fundamentals
+#### 2.1 Data Engineering Fundamentals
 
 - What is Data Engineering
 - Roles and responsibilities of a Data Engineer
@@ -45,7 +45,7 @@ This roadmap is designed to build strong foundations in Data Engineering, coveri
   - Semi-structured
   - Unstructured
 
-### 2.2 Data Pipeline Concepts
+#### 2.2 Data Pipeline Concepts
 
 - ETL vs ELT
 - Batch processing vs Real-time processing
@@ -58,7 +58,7 @@ This roadmap is designed to build strong foundations in Data Engineering, coveri
   - Apache Airflow
 - Data Lake vs Data Warehouse
 
-### 2.3 Databases
+#### 2.3 Databases
 
 #### SQL Databases
 
@@ -77,7 +77,7 @@ This roadmap is designed to build strong foundations in Data Engineering, coveri
   - Graph
 - Use cases of SQL vs NoSQL
 
-### 2.4 Linux Fundamentals
+#### 2.4 Linux Fundamentals
 
 - File system structure:
 
@@ -102,7 +102,7 @@ This roadmap is designed to build strong foundations in Data Engineering, coveri
 
   - variables, loops, conditions
 
-### 2.5 SQL Fundamentals
+#### 2.5 SQL Fundamentals
 
 - SQL execution order
 - Basic queries:
@@ -129,7 +129,7 @@ This roadmap is designed to build strong foundations in Data Engineering, coveri
 
 <b class="line" style="color:#1C4980;font-weight:bold;">Phase 2: Programming and Data Processing</b>
 
-### 3.1 Python Fundamentals
+#### 3.1 Python Fundamentals
 
 - Syntax and structure
 - Data types:
@@ -144,7 +144,7 @@ This roadmap is designed to build strong foundations in Data Engineering, coveri
 - Functions and modules
 - Exception handling
 
-### 3.2 Python for Data Engineering
+#### 3.2 Python for Data Engineering
 
 - File handling:
 
@@ -154,7 +154,7 @@ This roadmap is designed to build strong foundations in Data Engineering, coveri
 - Logging and error handling
 - Virtual environments
 
-### 3.3 Python Libraries
+#### 3.3 Python Libraries
 
 #### pandas
 
@@ -168,7 +168,7 @@ This roadmap is designed to build strong foundations in Data Engineering, coveri
 - Arrays
 - Numerical operations
 
-### 3.4 PySpark Fundamentals
+#### 3.4 PySpark Fundamentals
 
 - Spark architecture
 - RDD vs DataFrame vs Dataset
@@ -183,7 +183,7 @@ This roadmap is designed to build strong foundations in Data Engineering, coveri
 
   - CSV, JSON, Parquet
 
-### 3.5 Advanced PySpark
+#### 3.5 Advanced PySpark
 
 - Joins and aggregations
 - Window functions
@@ -198,14 +198,14 @@ This roadmap is designed to build strong foundations in Data Engineering, coveri
 
 <b class="line" style="color:#1C4980;font-weight:bold;">Phase 3: Cloud and Data Engineering Tools</b>
 
-### 4.1 Cloud Fundamentals
+#### 4.1 Cloud Fundamentals
 
 - Cloud computing concepts:
 
   - IaaS, PaaS, SaaS
 - Benefits of cloud computing
 
-### 4.2 Microsoft Azure
+#### 4.2 Microsoft Azure
 
 - Azure Blob Storage
 - Azure Data Lake
@@ -221,7 +221,7 @@ This roadmap is designed to build strong foundations in Data Engineering, coveri
 
 <b class="line" style="color:#1C4980;font-weight:bold;">Phase 4: Advanced Data Engineering</b>
 
-### 5.1 Advanced SQL
+#### 5.1 Advanced SQL
 
 - Subqueries (correlated and non-correlated)
 - Common Table Expressions (CTEs)
@@ -234,7 +234,7 @@ This roadmap is designed to build strong foundations in Data Engineering, coveri
 - Indexing strategies
 - Partitioning
 
-### 5.2 Data Warehousing
+#### 5.2 Data Warehousing
 
 - OLTP vs OLAP
 - Star schema
@@ -243,7 +243,7 @@ This roadmap is designed to build strong foundations in Data Engineering, coveri
 - Slowly Changing Dimensions (SCD)
 - Data marts
 
-### 5.3 Data Pipelines
+#### 5.3 Data Pipelines
 
 - ETL pipeline design
 - Data ingestion:
@@ -254,7 +254,7 @@ This roadmap is designed to build strong foundations in Data Engineering, coveri
 - Data transformation
 - Data validation
 
-### 5.4 Workflow Orchestration
+#### 5.4 Workflow Orchestration
 
 - Apache Airflow:
 
@@ -265,7 +265,7 @@ This roadmap is designed to build strong foundations in Data Engineering, coveri
   - Pipelines
   - Linked services
 
-### 5.5 Best Practices
+#### 5.5 Best Practices
 
 - Data quality checks
 - Handling missing data
@@ -280,7 +280,7 @@ This roadmap is designed to build strong foundations in Data Engineering, coveri
 
 <b class="line" style="color:#1C4980;font-weight:bold;">Phase 5: Real-Time Project</b>
 
-### 6.1 Project Scope
+#### 6.1 Project Scope
 
 - Data ingestion:
 
@@ -299,25 +299,25 @@ This roadmap is designed to build strong foundations in Data Engineering, coveri
   - Azure Blob
   - Data Lake
 
-### 6.2 Advanced Components
+#### 6.2 Advanced Components
 
 - Streaming (optional):
 
   - Apache Kafka
   - Spark Streaming
 
-### 6.3 Automation
+#### 6.3 Automation
 
 - Apache Airflow
 - Azure Data Factory
 
-### 6.4 Deployment
+#### 6.4 Deployment
 
 - Cloud deployment
 - Monitoring and logging
 - Performance optimization
 
-### 6.5 Deliverables
+#### 6.5 Deliverables
 
 - Source code (Git repository)
 - Documentation
