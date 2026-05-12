@@ -1,9 +1,9 @@
 <!------------------------------------------------------------------------------------------------------------------------->
-<div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; font-size: 50px; color: rgba(0,0,0,0.05); transform: rotate(-33deg); display: flex; font-weight: bold;flex-wrap: wrap; align-content: center; justify-content: center; pointer-events: none;">💼 LinkedIn · @AshishZope</div>
+<div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; font-size: 50px; color: rgba(0,0,0,0.05); transform: rotate(-33deg); display: flex; font-weight: bold;flex-wrap: wrap; align-content: center; justify-content: center; pointer-events: none;">LinkedIn · @AshishZope</div>
 <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; display: flex; align-items: center; justify-content: center; transform: rotate(0deg);"><img src="../99. Master/profile-photo.png" alt="Watermark" style="width: 400px; opacity: 0.09;"></div>
 <div style="position: fixed; inset: 0; background-image: url('watermark.png'); background-repeat: repeat; background-size: 280px; opacity: 0.02; transform: rotate(-33deg); pointer-events: none;"></div>
 
-<style>.line { display: block; position: relative; padding-right: 160px; line-height: 1.6;}.line::after { content: " 💼 LinkedIn · @AshishZope"; position: absolute; right: 0; bottom: 0; font-size: 9px; font-weight: 500; letter-spacing: 1.1px; color: rgba(0, 0, 0, 0.5); white-space: nowrap; user-select: none; pointer-events: none; }</style>
+<style>.line { display: block; position: relative; padding-right: 160px; line-height: 1.6;}.line::after { content: "LinkedIn · @AshishZope"; position: absolute; right: 0; bottom: 0; font-size: 9px; font-weight: 500; letter-spacing: 1.1px; color: rgba(0, 0, 0, 0.5); white-space: nowrap; user-select: none; pointer-events: none; }</style>
 
 <!------------------------------------------------------------------------------------------------------------------------->
 
@@ -63,31 +63,54 @@
 50. Important Terminologies
 51. Common Errors and Fixes
 52. Certification Guidance
-53. Learning Resources
-54. Conclusion
+53. Troubleshooting and Common Issues
+54. Advanced Topics and Future Trends
+55. Learning Resources
+56. Conclusion
 
 ---
 
 # 1. Introduction to Azure Data Factory
 
-Azure Data Factory (ADF) is Microsoft’s cloud-based data integration service used for:
+Azure Data Factory (ADF) is Microsoft's fully managed, cloud-based data integration service that enables you to create, schedule, and orchestrate data pipelines for ETL (Extract, Transform, Load) and ELT (Extract, Load, Transform) workflows.
 
-* Data movement
-* Data transformation
-* Data orchestration
-* ETL and ELT processing
-* Scheduling and automation
-* Building data pipelines
+## Key Capabilities
 
-ADF helps organizations move data from multiple sources into data warehouses, data lakes, databases, APIs, and analytics platforms.
+- **Data Movement**: Copy data between 100+ data stores at scale
+- **Data Transformation**: Transform data using visual data flows or compute services
+- **Orchestration**: Schedule and monitor complex data workflows
+- **Hybrid Integration**: Connect to on-premises and cloud data sources
+- **Code-Free Development**: Low-code/no-code interface with visual authoring
 
-ADF is mainly used by:
+## Real-World Use Cases
 
-* Data Engineers
-* BI Engineers
-* Cloud Engineers
-* Analytics Teams
-* Data Architects
+- **Data Warehousing**: Loading operational data into Azure Synapse Analytics
+- **Data Lake Ingestion**: Processing streaming data into Azure Data Lake Storage
+- **API Integration**: Ingesting data from REST APIs into databases
+- **Cross-Cloud Analytics**: Moving data between AWS, GCP, and Azure
+- **Real-Time Processing**: Event-driven data pipelines with Azure Event Grid
+
+## Example Architecture
+
+```
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   Source        │───▶│   ADF Pipeline  │───▶│   Destination   │
+│   Systems       │    │   Activities    │    │   Systems       │
+│                 │    │                 │    │                 │
+│ • SQL Server    │    │ • Copy Data     │    │ • Azure SQL DB  │
+│ • REST APIs     │    │ • Data Flow     │    │ • Data Lake     │
+│ • Blob Storage  │    │ • Stored Proc   │    │ • Synapse       │
+│ • On-Premises   │    │ • Web Activity  │    │ • Snowflake     │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+```
+
+## Target Audience
+
+- **Data Engineers**: Design and implement data pipelines
+- **BI Developers**: Build data transformation workflows
+- **Cloud Architects**: Design enterprise data architectures
+- **Analytics Teams**: Prepare data for reporting and ML
+- **DevOps Engineers**: Implement CI/CD for data pipelines
 
 ---
 
@@ -95,27 +118,71 @@ ADF is mainly used by:
 
 ## Advantages of ADF
 
-* Fully cloud-based
-* Scalable architecture
-* Supports 100+ connectors
-* Low-code/no-code environment
-* Easy scheduling
-* Supports ETL and ELT
-* Cost-effective
-* Enterprise-grade security
-* Supports hybrid integration
-* Easy monitoring
+### Scalability & Performance
+- **Elastic Compute**: Auto-scale based on workload demands
+- **Parallel Processing**: Execute multiple activities simultaneously
+- **Data Integration Units (DIU)**: Scale compute power from 2 to 256 DIUs
+- **Global Distribution**: Deploy factories in 40+ Azure regions
 
-## Real-Time Uses
+### Cost Optimization
+- **Pay-per-Use**: Only pay for actual data movement and execution time
+- **Serverless**: No infrastructure management costs
+- **Reserved Instances**: Up to 65% savings with 1-year reservations
+- **Auto-Pause**: Automatically pause pipelines to reduce costs
 
-* Daily sales data loading
-* Banking transaction processing
-* API ingestion
-* Data warehouse loading
-* Data lake ingestion
-* CRM data synchronization
-* ERP integration
-* Log processing
+### Security & Compliance
+- **Enterprise Security**: SOC 2, HIPAA, GDPR compliant
+- **Encryption**: Data encrypted at rest and in transit
+- **Managed Identity**: Passwordless authentication
+- **Private Endpoints**: Secure connectivity without public IPs
+
+### Developer Experience
+- **Visual Authoring**: Drag-and-drop pipeline design
+- **Code Integration**: ARM templates, PowerShell, .NET SDK
+- **Git Integration**: Source control with Azure DevOps/GitHub
+- **CI/CD Support**: Automated deployment pipelines
+
+## Real-Time Use Cases with Examples
+
+### E-Commerce Data Pipeline
+```
+Daily Sales Data Flow:
+Shopify API → ADF Pipeline → Azure SQL DB → Power BI Reports
+- Extract orders via REST API
+- Transform currency and dates
+- Load into dimensional model
+- Trigger Power BI dataset refresh
+```
+
+### Financial Services
+```
+Banking Transaction Processing:
+On-prem Oracle DB → Self-Hosted IR → Azure Synapse → Compliance Reports
+- Incremental load of transactions
+- Data validation and cleansing
+- Load into data warehouse
+- Generate regulatory reports
+```
+
+### IoT Analytics
+```
+Sensor Data Ingestion:
+IoT Hub → Event Grid → ADF Pipeline → Data Lake → Databricks
+- Real-time event triggers
+- Batch processing of sensor data
+- Store in Parquet format
+- ML model scoring pipeline
+```
+
+### Healthcare Data Integration
+```
+Patient Records Pipeline:
+EHR Systems → ADF → Azure SQL DB → Azure Analysis Services
+- HIPAA-compliant data movement
+- Patient data de-identification
+- Load into analytics database
+- Power BI embedded reports
+```
 
 ---
 
@@ -123,52 +190,182 @@ ADF is mainly used by:
 
 ## Main Building Blocks
 
-| Component           | Description                     |
-| ------------------- | ------------------------------- |
-| Pipeline            | Group of activities             |
-| Activity            | Single task inside pipeline     |
-| Dataset             | Data structure reference        |
-| Linked Service      | Connection string/configuration |
-| Trigger             | Executes pipeline automatically |
-| Integration Runtime | Compute infrastructure          |
-| Data Flow           | Visual transformation engine    |
+| Component | Description | Example |
+|-----------|-------------|---------|
+| **Pipeline** | Logical grouping of activities that perform a unit of work | `PL_Daily_Sales_Load` - Orchestrates data extraction, transformation, and loading |
+| **Activity** | Single processing step within a pipeline | `Copy_Orders_From_API` - Copies data from REST API to Azure SQL |
+| **Dataset** | Named reference to data structure | `DS_Orders_JSON` - Points to JSON files in Blob Storage |
+| **Linked Service** | Connection definition with authentication | `LS_SQLDW_Prod` - Connection string to Azure Synapse Analytics |
+| **Trigger** | Mechanism to execute pipelines | `TR_Hourly_Data_Load` - Runs pipeline every hour |
+| **Integration Runtime** | Compute infrastructure for data movement | `IR_Azure_AutoResolve` - Serverless compute for cloud data |
+| **Data Flow** | Visual data transformation engine | `DF_Cleanse_Customer_Data` - Transforms raw customer data |
+
+## Pipeline Execution Flow
+
+```mermaid
+graph TD
+    A[Trigger Fires] --> B[Pipeline Starts]
+    B --> C[Activities Execute in Sequence/Parallel]
+    C --> D[Success: Next Activity]
+    C --> E[Failure: Error Handling]
+    D --> F[Pipeline Completes]
+    E --> G[Retry Logic / Notifications]
+```
+
+## Example: Complete Pipeline Structure
+
+```json
+{
+  "name": "PL_Process_Sales_Data",
+  "properties": {
+    "activities": [
+      {
+        "name": "Copy_Raw_Sales",
+        "type": "Copy",
+        "inputs": [{"referenceName": "DS_Sales_CSV"}],
+        "outputs": [{"referenceName": "DS_Staging_SQL"}]
+      },
+      {
+        "name": "Validate_Data",
+        "type": "SqlServerStoredProcedure",
+        "linkedServiceName": {"referenceName": "LS_SQL_Server"}
+      },
+      {
+        "name": "Send_Notification",
+        "type": "WebActivity",
+        "dependsOn": [
+          {"activity": "Validate_Data", "dependencyConditions": ["Succeeded"]}
+        ]
+      }
+    ]
+  }
+}
+```
 
 ---
 
 # 4. ADF Architecture
 
+## ADF Architecture Overview
+
+Azure Data Factory follows a layered architecture that separates concerns and enables scalable data integration.
+
+### Architecture Diagram
+
+```mermaid
+graph TB
+    subgraph "User Interface Layer"
+        A[Azure Portal]
+        B[Visual Studio Code]
+        C[REST API]
+        D[PowerShell/Azure CLI]
+    end
+    
+    subgraph "Control Plane"
+        E[ADF Factory]
+        F[Pipeline Orchestrator]
+        G[Trigger Manager]
+        H[Monitoring Service]
+    end
+    
+    subgraph "Data Plane"
+        I[Integration Runtime]
+        J[Data Movement Service]
+        K[Data Transformation Service]
+    end
+    
+    subgraph "Data Sources"
+        L[(Azure SQL DB)]
+        M[(Blob Storage)]
+        N[(On-prem SQL)]
+        O[APIs]
+        P[Files]
+    end
+    
+    A --> E
+    B --> E
+    C --> E
+    D --> E
+    E --> F
+    F --> G
+    F --> H
+    F --> I
+    I --> J
+    I --> K
+    J --> L
+    J --> M
+    J --> N
+    K --> O
+    K --> P
+```
+
 ## ADF Architecture Flow
 
-Source System → Linked Service → Dataset → Pipeline → Activity → Destination
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    Azure Data Factory                           │
+├─────────────────────────────────────────────────────────────────┤
+│  Source System → Linked Service → Dataset → Pipeline → Activity │
+│                                                                 │
+│  • SQL Server     • Connection     • Structure    • Workflow    │
+│  • Oracle         • Auth Config    • Schema       • Activities  │
+│  • SAP           • Credentials    • Metadata     • Scheduling  │
+│  • REST API      • Endpoints      • Parameters   • Monitoring  │
+│  • Blob Storage  • Keys           • Dynamic      • Triggers    │
+│  • AWS S3        • Certificates   • Validation   • Alerts      │
+└─────────────────────────────────────────────────────────────────┘
+```
 
-## Layers
+## Layers Breakdown
 
-### Source Layer
+### Source Layer (Data Ingestion)
+- **Relational Databases**: SQL Server, Oracle, MySQL, PostgreSQL
+- **NoSQL Databases**: Cosmos DB, MongoDB, Cassandra
+- **Cloud Storage**: Azure Blob, AWS S3, Google Cloud Storage
+- **File Systems**: FTP, SFTP, HDFS
+- **APIs**: REST, GraphQL, SOAP
+- **Big Data**: HBase, Hive, Spark
+- **ERP/CRM**: SAP, Salesforce, Dynamics 365
 
-* SQL Server
-* Oracle
-* SAP
-* REST API
-* Blob Storage
-* AWS S3
-* FTP
-* Excel
-* CSV
+### Processing Layer (Data Transformation)
+- **Copy Activity**: High-performance data movement
+- **Data Flow**: Visual ETL transformations
+- **Databricks**: Apache Spark processing
+- **Stored Procedures**: SQL-based transformations
+- **HDInsight**: Hadoop ecosystem processing
+- **Azure Functions**: Serverless compute
+- **Machine Learning**: Azure ML model scoring
 
-### Processing Layer
+### Destination Layer (Data Storage)
+- **Data Warehouses**: Azure Synapse, Snowflake, Redshift
+- **Data Lakes**: Azure Data Lake Storage, S3
+- **Databases**: Azure SQL DB, SQL MI, PostgreSQL
+- **Analytics**: Azure Analysis Services, Power BI
+- **Search**: Azure Cognitive Search
+- **Archive**: Azure Archive Storage
 
-* Copy Activity
-* Data Flow
-* Databricks
-* Stored Procedures
+## Integration Runtime Types
 
-### Destination Layer
+### Azure Integration Runtime (AutoResolve)
+- **Location**: Cloud-based, globally distributed
+- **Use Case**: Cloud-to-cloud data movement
+- **Scaling**: Auto-scales based on workload
+- **Security**: Managed by Microsoft
+- **Cost**: Pay-per-use, no infrastructure management
 
-* Azure SQL
-* Synapse
-* Data Lake
-* Snowflake
-* Cosmos DB
+### Self-Hosted Integration Runtime (SHIR)
+- **Location**: Customer-managed VMs or containers
+- **Use Case**: Hybrid data integration, on-premises access
+- **Connectivity**: Behind firewalls, private networks
+- **Security**: Customer-controlled security
+- **Cost**: VM/container costs + data movement fees
+
+### Azure-SSIS Integration Runtime
+- **Location**: Azure VMs running SSIS
+- **Use Case**: Lift-and-shift SSIS packages
+- **Compatibility**: Full SSIS feature support
+- **Scaling**: Scale-out with multiple nodes
+- **Cost**: VM costs + SSIS licensing
 
 ---
 
@@ -176,62 +373,259 @@ Source System → Linked Service → Dataset → Pipeline → Activity → Desti
 
 ## 5.1 Pipelines
 
-Pipeline is a logical grouping of activities.
+A pipeline is a logical grouping of activities that together perform a task. Pipelines can be executed independently or chained together.
 
-Example:
+### Pipeline Characteristics
+- **Modular Design**: Reusable across different scenarios
+- **Parameterization**: Accept runtime parameters
+- **Error Handling**: Built-in retry and failure handling
+- **Monitoring**: Detailed execution logs and metrics
+- **Scheduling**: Trigger-based or manual execution
 
-* Extract customer data
-* Transform data
-* Load into SQL database
-* Send notification email
+### Example Pipeline Structure
+
+```json
+{
+  "name": "PL_Load_Customer_Data",
+  "properties": {
+    "description": "Daily customer data loading pipeline",
+    "activities": [
+      {
+        "name": "Extract_Customers",
+        "type": "Copy",
+        "description": "Copy customer data from source to staging"
+      },
+      {
+        "name": "Validate_Data_Quality",
+        "type": "SqlServerStoredProcedure",
+        "description": "Execute data validation stored procedure"
+      },
+      {
+        "name": "Load_Dim_Customers",
+        "type": "Copy",
+        "description": "Load validated data to dimension table"
+      }
+    ],
+    "parameters": {
+      "SourceSystem": {
+        "type": "string",
+        "defaultValue": "CRM"
+      },
+      "LoadDate": {
+        "type": "string",
+        "defaultValue": "@utcnow()"
+      }
+    }
+  }
+}
+```
+
+### Pipeline Execution Patterns
+
+#### Sequential Execution
+```mermaid
+graph LR
+    A[Activity 1] --> B[Activity 2]
+    B --> C[Activity 3]
+```
+
+#### Parallel Execution
+```mermaid
+graph TD
+    A[Activity 1] --> D[Join]
+    B[Activity 2] --> D
+    C[Activity 3] --> D
+```
+
+#### Conditional Execution
+```mermaid
+graph TD
+    A[Validate Data] --> B{Is Valid?}
+    B -->|Yes| C[Load Data]
+    B -->|No| D[Send Alert]
+```
 
 ## 5.2 Activities
 
-Activities perform actual work.
+Activities are the processing steps within a pipeline. Each activity performs a specific operation on data.
 
 ### Types of Activities
 
-| Activity Type    | Purpose               |
-| ---------------- | --------------------- |
-| Copy Activity    | Move data             |
-| Data Flow        | Transform data        |
-| Lookup           | Read small data       |
-| ForEach          | Loop processing       |
-| If Condition     | Conditional execution |
-| Stored Procedure | Execute SQL procedure |
-| Web Activity     | Call APIs             |
-| Execute Pipeline | Call another pipeline |
+| Activity Type | Purpose | Example Use Case |
+|---------------|---------|------------------|
+| **Copy Activity** | Move data between stores | Copy CSV files to Azure SQL DB |
+| **Data Flow** | Visual data transformation | Cleanse and transform customer data |
+| **Lookup** | Read small reference data | Get configuration parameters |
+| **ForEach** | Iterate over collections | Process multiple files in a folder |
+| **If Condition** | Conditional logic | Branch based on data validation results |
+| **Execute Pipeline** | Call another pipeline | Modular pipeline design |
+| **Stored Procedure** | Execute SQL procedures | Data validation or audit logging |
+| **Web Activity** | Call REST APIs | Send notifications or trigger external processes |
+| **Wait** | Add delays | Rate limiting or scheduling dependencies |
+| **Fail** | Intentionally fail pipeline | Custom error handling scenarios |
+
+### Activity Dependencies
+
+Activities can be chained with dependency conditions:
+- **Succeeded**: Execute only if previous activity succeeds
+- **Failed**: Execute only if previous activity fails
+- **Completed**: Execute regardless of previous activity status
+- **Skipped**: Execute if previous activity is skipped
+
+### Example: Complex Activity Flow
+
+```json
+{
+  "name": "Process_Sales_Data",
+  "type": "Copy",
+  "dependsOn": [
+    {
+      "activity": "Validate_Source_Data",
+      "dependencyConditions": ["Succeeded"]
+    }
+  ],
+  "policy": {
+    "timeout": "01:00:00",
+    "retry": 3,
+    "retryIntervalInSeconds": 30
+  }
+}
+```
 
 ## 5.3 Datasets
 
-Datasets represent the structure of data.
+Datasets represent the structure of data in linked data stores. They define the schema, location, and access patterns for data.
 
-Examples:
+### Dataset Types
 
-* CSV file
-* SQL table
-* JSON file
-* Parquet file
+| Dataset Type | Description | Example |
+|--------------|-------------|---------|
+| **DelimitedText** | CSV, TSV files | `sales_data.csv` |
+| **JSON** | JSON files/documents | `api_response.json` |
+| **Parquet** | Columnar storage format | `analytics_data.parquet` |
+| **SQL Table** | Database tables | `dbo.Customers` |
+| **Binary** | Binary files | `images.zip` |
+| **REST** | REST API endpoints | `https://api.example.com/data` |
+
+### Dataset Parameters
+
+Datasets support parameterization for dynamic behavior:
+
+```json
+{
+  "name": "DS_Dynamic_SQL_Table",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "LS_SQL_Server",
+      "type": "LinkedServiceReference"
+    },
+    "parameters": {
+      "TableName": {
+        "type": "string"
+      },
+      "SchemaName": {
+        "type": "string",
+        "defaultValue": "dbo"
+      }
+    },
+    "type": "SqlServerTable",
+    "typeProperties": {
+      "tableName": {
+        "value": "@concat(dataset().SchemaName, '.', dataset().TableName)",
+        "type": "Expression"
+      }
+    }
+  }
+}
+```
 
 ## 5.4 Linked Services
 
-Linked services define connection information.
+Linked services define the connection information to external data stores and compute services.
 
-Examples:
+### Authentication Methods
 
-* SQL connection
-* Blob storage connection
-* REST API connection
+| Method | Description | Use Case |
+|--------|-------------|----------|
+| **Connection String** | Embedded credentials | Development environments |
+| **Key Vault** | Secure credential storage | Production environments |
+| **Managed Identity** | Azure AD authentication | Secure, passwordless access |
+| **Service Principal** | App registration auth | Automated deployments |
+| **Basic Auth** | Username/password | Legacy system integration |
+| **OAuth2** | Token-based auth | API integrations |
+
+### Example: Azure SQL Database Linked Service
+
+```json
+{
+  "name": "LS_Azure_SQL_DB",
+  "properties": {
+    "type": "AzureSqlDatabase",
+    "typeProperties": {
+      "connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=myserver.database.windows.net;Initial Catalog=mydatabase",
+      "password": {
+        "type": "AzureKeyVaultSecret",
+        "store": {
+          "referenceName": "LS_KeyVault",
+          "type": "LinkedServiceReference"
+        },
+        "secretName": "sql-password"
+      },
+      "userName": {
+        "type": "AzureKeyVaultSecret",
+        "store": {
+          "referenceName": "LS_KeyVault",
+          "type": "LinkedServiceReference"
+        },
+        "secretName": "sql-username"
+      }
+    }
+  }
+}
+```
 
 ## 5.5 Triggers
 
-Triggers automate pipeline execution.
+Triggers define how and when pipelines should be executed.
 
-Types:
+### Trigger Types
 
-* Schedule Trigger
-* Tumbling Window Trigger
-* Event Trigger
+| Trigger Type | Description | Example |
+|--------------|-------------|---------|
+| **Schedule** | Time-based execution | Daily at 6 AM |
+| **Tumbling Window** | Process data in time windows | Hourly batches |
+| **Event** | Event-driven execution | File arrival in Blob Storage |
+| **Manual** | On-demand execution | User-initiated runs |
+
+### Example: Schedule Trigger
+
+```json
+{
+  "name": "TR_Daily_Load",
+  "properties": {
+    "type": "ScheduleTrigger",
+    "typeProperties": {
+      "recurrence": {
+        "frequency": "Day",
+        "interval": 1,
+        "startTime": "2024-01-01T06:00:00Z",
+        "timeZone": "UTC"
+      }
+    },
+    "pipelines": [
+      {
+        "pipelineReference": {
+          "referenceName": "PL_Daily_Data_Load",
+          "type": "PipelineReference"
+        },
+        "parameters": {
+          "LoadDate": "@trigger().scheduledTime"
+        }
+      }
+    ]
+  }
+}
+```
 
 ---
 
@@ -427,58 +821,476 @@ Validates file existence.
 
 # 14. Copy Data Activity
 
-Copy activity is the most used activity.
+Copy Activity is the most fundamental and widely used activity in ADF, designed for high-performance data movement between various data stores.
 
 ## Working Flow
 
-Source → Staging → Destination
+The copy activity follows a three-stage process:
 
-## Features
+```
+┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+│   Source    │───▶│   Staging   │───▶│  Destination│
+│   System    │    │   (Optional)│    │   System    │
+└─────────────┘    └─────────────┘    └─────────────┘
+```
 
-* Parallel copy
-* Schema mapping
-* Fault tolerance
-* Compression support
-* Incremental copy
+### Stage 1: Read from Source
+- Connect to source data store
+- Apply source filters and partitioning
+- Read data in parallel using multiple threads
+
+### Stage 2: Staging (Optional)
+- Temporary storage for data transformation
+- Useful for cross-region data movement
+- Enables data format conversion
+
+### Stage 3: Write to Destination
+- Connect to destination data store
+- Apply data mapping and transformations
+- Write data with error handling
+
+## Supported Sources and Destinations
+
+### Source Systems
+- **Databases**: SQL Server, Oracle, MySQL, PostgreSQL, DB2
+- **Data Warehouses**: Azure Synapse, Snowflake, Redshift
+- **Cloud Storage**: Azure Blob, AWS S3, Google Cloud Storage
+- **File Systems**: FTP, SFTP, HDFS
+- **APIs**: REST, GraphQL endpoints
+- **Big Data**: Hive, Spark, Cosmos DB
+
+### Destination Systems
+- **Databases**: Azure SQL DB, SQL MI, PostgreSQL
+- **Data Warehouses**: Azure Synapse, Snowflake
+- **Data Lakes**: Azure Data Lake Storage Gen2
+- **Analytics**: Azure Analysis Services
+- **Search**: Azure Cognitive Search
 
 ## Copy Activity Settings
 
-| Setting         | Purpose           |
-| --------------- | ----------------- |
-| Source          | Input data        |
-| Sink            | Destination       |
-| Mapping         | Column mapping    |
-| Fault tolerance | Skip errors       |
-| Staging         | Temporary storage |
+### Source Configuration
+
+```json
+{
+  "source": {
+    "type": "DelimitedTextSource",
+    "storeSettings": {
+      "type": "AzureBlobStorageReadSettings",
+      "recursive": true,
+      "wildcardFolderPath": "data/year=*/month=*",
+      "wildcardFileName": "*.csv"
+    },
+    "formatSettings": {
+      "type": "DelimitedTextReadSettings",
+      "skipLineCount": 1
+    }
+  }
+}
+```
+
+### Sink Configuration
+
+```json
+{
+  "sink": {
+    "type": "SqlSink",
+    "writeBehavior": "insert",
+    "sqlWriterUseTableLock": false,
+    "tableOption": "autoCreate",
+    "storeSettings": {
+      "type": "SqlServerStoreWriteSettings"
+    }
+  }
+}
+```
+
+### Mapping Configuration
+
+```json
+{
+  "mappings": [
+    {
+      "source": {
+        "name": "customer_id",
+        "type": "String"
+      },
+      "sink": {
+        "name": "CustomerID",
+        "type": "Int32"
+      }
+    },
+    {
+      "source": {
+        "name": "full_name",
+        "type": "String"
+      },
+      "sink": {
+        "name": "CustomerName",
+        "type": "String"
+      }
+    }
+  ]
+}
+```
+
+## Performance Optimization
+
+### Parallel Copy Settings
+- **Degree of Copy Parallelism**: Number of parallel threads (default: 1)
+- **Data Integration Units (DIU)**: Compute power allocation (2-256)
+- **Parallel Copies**: Maximum parallel copies per activity
+
+### Partitioning Options
+- **Physical Partitioning**: Split data by physical partitions
+- **Dynamic Range Partitioning**: Split by column values
+- **Hash Partitioning**: Distribute data evenly across partitions
+
+### Example: Optimized Copy Activity
+
+```json
+{
+  "name": "Copy_Large_Dataset",
+  "type": "Copy",
+  "typeProperties": {
+    "source": {
+      "type": "ParquetSource",
+      "storeSettings": {
+        "type": "AzureBlobStorageReadSettings",
+        "enablePartitionDiscovery": true
+      }
+    },
+    "sink": {
+      "type": "SqlSink",
+      "writeBehavior": "upsert",
+      "upsertSettings": {
+        "useTempDB": true,
+        "keys": ["CustomerID"]
+      }
+    },
+    "translator": {
+      "type": "TabularTranslator",
+      "mappings": [
+        {
+          "source": {"name": "customer_id"},
+          "sink": {"name": "CustomerID"}
+        }
+      ]
+    }
+  },
+  "policy": {
+    "timeout": "02:00:00",
+    "retry": 3,
+    "retryIntervalInSeconds": 30
+  }
+}
+```
+
+## Fault Tolerance Features
+
+### Error Handling
+- **Fault Tolerance**: Skip incompatible rows
+- **Redirect Incompatible Rows**: Store bad data separately
+- **Logging Level**: Control error logging verbosity
+
+### Retry Logic
+- **Retry Count**: Number of retry attempts
+- **Retry Interval**: Time between retries
+- **Retryable Errors**: Network timeouts, temporary failures
+
+## Copy Activity Best Practices
+
+### Performance Tips
+1. **Use Staging**: For cross-region transfers
+2. **Enable Compression**: Reduce network bandwidth
+3. **Optimize DIUs**: Scale compute based on data volume
+4. **Use Partitioning**: Parallelize large dataset copies
+5. **Monitor Throughput**: Track performance metrics
+
+### Data Quality Tips
+1. **Validate Schemas**: Ensure source/destination compatibility
+2. **Handle Data Types**: Proper type mapping and conversion
+3. **Manage Null Values**: Define null handling strategies
+4. **Set Row Limits**: Prevent runaway processing
+
+### Example: Complete Copy Pipeline
+
+```json
+{
+  "name": "PL_Copy_With_Error_Handling",
+  "properties": {
+    "activities": [
+      {
+        "name": "Copy_Sales_Data",
+        "type": "Copy",
+        "inputs": [
+          {"referenceName": "DS_Sales_CSV", "type": "DatasetReference"}
+        ],
+        "outputs": [
+          {"referenceName": "DS_Sales_SQL", "type": "DatasetReference"}
+        ],
+        "typeProperties": {
+          "source": {
+            "type": "DelimitedTextSource",
+            "storeSettings": {
+              "type": "AzureBlobStorageReadSettings"
+            },
+            "formatSettings": {
+              "type": "DelimitedTextReadSettings",
+              "skipLineCount": 1
+            }
+          },
+          "sink": {
+            "type": "SqlSink",
+            "writeBehavior": "insert",
+            "sqlWriterStoredProcedureName": "usp_InsertSalesData",
+            "sqlWriterTableType": "SalesDataType",
+            "storeSettings": {
+              "type": "SqlServerStoreWriteSettings"
+            }
+          },
+          "enableStaging": false,
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {"name": "OrderID", "type": "String"},
+                "sink": {"name": "OrderID", "type": "Int32"}
+              },
+              {
+                "source": {"name": "OrderDate", "type": "String"},
+                "sink": {"name": "OrderDate", "type": "DateTime"}
+              }
+            ]
+          }
+        },
+        "policy": {
+          "timeout": "01:00:00",
+          "retry": 3,
+          "retryIntervalInSeconds": 30
+        }
+      }
+    ]
+  }
+}
+```
 
 ---
 
 # 15. Data Flow
 
-Data Flow is used for visual data transformation.
+Data Flow is ADF's visual data transformation engine that enables code-free ETL/ELT operations using a drag-and-drop interface.
 
-## Types
+## Types of Data Flows
 
-| Type                | Purpose           |
-| ------------------- | ----------------- |
-| Mapping Data Flow   | Transformation    |
-| Wrangling Data Flow | Power Query-based |
+### Mapping Data Flow
+- **Purpose**: Visual ETL transformations
+- **Execution**: Spark-based processing
+- **Use Case**: Complex data transformations
+- **Target**: Data warehouses, data lakes
 
-## Common Transformations
-
-* Filter
-* Derived Column
-* Join
-* Aggregate
-* Sort
-* Union
-* Conditional Split
-* Lookup
-* Window
+### Wrangling Data Flow
+- **Purpose**: Power Query-style transformations
+- **Execution**: Spark-based processing
+- **Use Case**: Data preparation and cleansing
+- **Target**: Self-service data prep
 
 ## Data Flow Architecture
 
-Source → Transformation → Sink
+```mermaid
+graph TD
+    A[Source] --> B[Transformations]
+    B --> C[Sink]
+    
+    subgraph "Transformations"
+        D[Filter]
+        E[Derived Column]
+        F[Join]
+        G[Aggregate]
+        H[Sort]
+        I[Union]
+    end
+    
+    subgraph "Execution Engine"
+        J[Azure IR]
+        K[Databricks IR]
+        L[Synapse IR]
+    end
+```
+
+## Common Transformations
+
+### Data Cleansing Transformations
+
+| Transformation | Purpose | Example |
+|----------------|---------|---------|
+| **Filter** | Remove unwanted rows | `WHERE status != 'inactive'` |
+| **Derived Column** | Create calculated columns | `FullName = concat(FirstName, ' ', LastName)` |
+| **Select** | Choose specific columns | Keep only relevant fields |
+| **Sort** | Order data | Sort by date descending |
+| **Distinct** | Remove duplicates | Unique customer records |
+
+### Data Integration Transformations
+
+| Transformation | Purpose | Example |
+|----------------|---------|---------|
+| **Join** | Combine datasets | Customer + Orders = Sales data |
+| **Union** | Stack datasets | Combine monthly sales files |
+| **Lookup** | Enrich with reference data | Add product categories |
+| **Exists** | Check for matches | Validate against master data |
+| **Conditional Split** | Route data conditionally | Valid vs invalid records |
+
+### Data Aggregation Transformations
+
+| Transformation | Purpose | Example |
+|----------------|---------|---------|
+| **Aggregate** | Group and summarize | Sales by region and month |
+| **Window** | Rolling calculations | Moving averages, rankings |
+| **Pivot** | Crosstab data | Months as columns |
+| **Unpivot** | Normalize data | Columns to rows |
+
+## Data Flow Execution Modes
+
+### Debug Mode
+- **Purpose**: Test and validate transformations
+- **Data Sampling**: Process subset of data
+- **Interactive**: Real-time preview of results
+- **Cost**: Minimal compute usage
+
+### Pipeline Execution
+- **Purpose**: Production data processing
+- **Full Dataset**: Process all data
+- **Performance**: Optimized for large volumes
+- **Integration**: Part of pipeline workflows
+
+## Example: Complete Data Flow
+
+```json
+{
+  "name": "DF_Transform_Sales_Data",
+  "properties": {
+    "type": "MappingDataFlow",
+    "typeProperties": {
+      "sources": [
+        {
+          "name": "SalesSource",
+          "dataset": {
+            "referenceName": "DS_Sales_CSV",
+            "type": "DatasetReference"
+          }
+        }
+      ],
+      "sinks": [
+        {
+          "name": "SalesSink",
+          "dataset": {
+            "referenceName": "DS_Sales_Parquet",
+            "type": "DatasetReference"
+          }
+        }
+      ],
+      "transformations": [
+        {
+          "name": "FilterValidRecords",
+          "type": "Filter",
+          "typeProperties": {
+            "condition": "status == 'active' && amount > 0"
+          }
+        },
+        {
+          "name": "AddCalculatedColumns",
+          "type": "DerivedColumn",
+          "typeProperties": {
+            "columns": [
+              {
+                "name": "TotalAmount",
+                "expression": "amount * quantity"
+              },
+              {
+                "name": "OrderDateFormatted",
+                "expression": "toDate(order_date, 'yyyy-MM-dd')"
+              }
+            ]
+          }
+        },
+        {
+          "name": "JoinWithCustomers",
+          "type": "Join",
+          "typeProperties": {
+            "left": "FilterValidRecords",
+            "right": "CustomerLookup",
+            "joinType": "inner",
+            "leftKeys": ["customer_id"],
+            "rightKeys": ["id"]
+          }
+        }
+      ],
+      "script": "source(output(..."
+    }
+  }
+}
+```
+
+## Data Flow Performance Optimization
+
+### Cluster Configuration
+- **Compute Type**: General Purpose vs Memory Optimized
+- **Core Count**: Number of Spark cores
+- **Time to Live**: Cluster idle timeout
+
+### Partitioning Strategy
+- **Current Partitioning**: Maintain existing partitions
+- **Hash Partitioning**: Distribute evenly across partitions
+- **Key Partitioning**: Partition by specific columns
+- **Round Robin**: Random distribution
+
+### Caching Strategy
+- **Output Caching**: Cache transformation results
+- **Input Caching**: Cache source data
+- **Memory Management**: Optimize for large datasets
+
+## Data Flow Best Practices
+
+### Development Best Practices
+1. **Modular Design**: Break complex flows into smaller flows
+2. **Naming Conventions**: Use descriptive transformation names
+3. **Data Preview**: Regularly preview data at each step
+4. **Error Handling**: Implement proper error handling patterns
+
+### Performance Best Practices
+1. **Optimize Sources**: Use appropriate source partitioning
+2. **Minimize Shuffles**: Reduce data movement between partitions
+3. **Use Caching**: Cache intermediate results when beneficial
+4. **Monitor Metrics**: Track transformation performance
+
+### Example: Optimized Data Flow Pattern
+
+```mermaid
+graph TD
+    A[Source: Large CSV] --> B[Filter: Remove invalid rows]
+    B --> C[Derived Column: Add business logic]
+    C --> D[Aggregate: Summarize by category]
+    D --> E[Partition: Hash by category]
+    E --> F[Cache: Store intermediate results]
+    F --> G[Join: Enrich with reference data]
+    G --> H[Sink: Write to Parquet]
+```
+
+## Integration with Other Services
+
+### Synapse Integration
+- **Serverless SQL Pools**: Query data flow outputs
+- **Dedicated SQL Pools**: Load transformed data
+- **Spark Pools**: Execute complex transformations
+
+### Databricks Integration
+- **Delta Lake**: ACID transactions on data lakes
+- **MLflow**: Model training and deployment
+- **Structured Streaming**: Real-time data processing
+
+### Power BI Integration
+- **Direct Query**: Query data flow outputs
+- **Import Mode**: Scheduled data refreshes
+- **Composite Models**: Combine multiple data sources
 
 ---
 
@@ -499,26 +1311,277 @@ Source → Transformation → Sink
 
 # 17. Parameters and Variables
 
+Parameters and variables enable dynamic behavior in ADF pipelines, allowing for reusable and configurable data workflows.
+
 ## Parameters
 
-Used to pass values dynamically.
+Parameters are external values passed to pipelines at runtime. They enable pipeline reusability across different environments and scenarios.
 
-### Example
+### Parameter Types
 
-* File name
-* Table name
-* Date value
+| Type | Description | Example |
+|------|-------------|---------|
+| **String** | Text values | `"prod"`, `"@pipeline().Pipeline"` |
+| **Int** | Integer numbers | `100`, `0` |
+| **Float** | Decimal numbers | `1.5`, `99.99` |
+| **Bool** | True/false values | `true`, `false` |
+| **Array** | List of values | `["item1", "item2"]` |
+| **Object** | Key-value pairs | `{"key": "value"}` |
+
+### Parameter Usage Examples
+
+#### Pipeline Parameters
+
+```json
+{
+  "name": "PL_Load_Data",
+  "properties": {
+    "parameters": {
+      "SourceContainer": {
+        "type": "string",
+        "defaultValue": "raw-data"
+      },
+      "TargetTable": {
+        "type": "string",
+        "defaultValue": "staging.Sales"
+      },
+      "LoadDate": {
+        "type": "string",
+        "defaultValue": "@utcnow()"
+      },
+      "IsIncremental": {
+        "type": "bool",
+        "defaultValue": false
+      }
+    }
+  }
+}
+```
+
+#### Dataset Parameters
+
+```json
+{
+  "name": "DS_Dynamic_SQL_Table",
+  "properties": {
+    "parameters": {
+      "SchemaName": {
+        "type": "string",
+        "defaultValue": "dbo"
+      },
+      "TableName": {
+        "type": "string"
+      }
+    },
+    "type": "SqlServerTable",
+    "typeProperties": {
+      "tableName": {
+        "value": "@concat(dataset().SchemaName, '.', dataset().TableName)",
+        "type": "Expression"
+      }
+    }
+  }
+}
+```
+
+#### Linked Service Parameters
+
+```json
+{
+  "name": "LS_Parameterised_SQL",
+  "properties": {
+    "parameters": {
+      "ServerName": {
+        "type": "string"
+      },
+      "DatabaseName": {
+        "type": "string"
+      }
+    },
+    "type": "SqlServer",
+    "typeProperties": {
+      "connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=@{linkedService().ServerName};Initial Catalog=@{linkedService().DatabaseName}"
+    }
+  }
+}
+```
 
 ## Variables
 
-Used to store values temporarily.
+Variables are internal pipeline values that can be set and modified during pipeline execution. They are useful for storing intermediate results or configuration values.
 
 ### Variable Types
 
-* String
-* Boolean
-* Array
-* Integer
+| Type | Description | Example |
+|------|-------------|---------|
+| **String** | Text values | `"processing"` |
+| **Boolean** | True/false | `true` |
+| **Array** | List of items | `["file1.csv", "file2.csv"]` |
+| **Object** | Complex objects | `{"status": "success"}` |
+
+### Variable Scope
+
+- **Pipeline Scope**: Available throughout the pipeline
+- **Activity Scope**: Limited to specific activities (Set Variable activity)
+
+### Variable Activities
+
+#### Set Variable Activity
+
+```json
+{
+  "name": "Set_Processing_Status",
+  "type": "SetVariable",
+  "typeProperties": {
+    "variableName": "ProcessingStatus",
+    "value": "InProgress"
+  }
+}
+```
+
+#### Append Variable Activity
+
+```json
+{
+  "name": "Append_File_List",
+  "type": "AppendVariable",
+  "typeProperties": {
+    "variableName": "ProcessedFiles",
+    "value": "@item().name"
+  }
+}
+```
+
+## Expressions and Dynamic Content
+
+ADF uses expressions to create dynamic values using functions, operators, and references.
+
+### Expression Syntax
+
+```
+@{<expression>}
+```
+
+### Common Expression Functions
+
+#### String Functions
+
+| Function | Description | Example |
+|----------|-------------|---------|
+| `concat()` | Join strings | `concat('Table_', pipeline().parameters.TableSuffix)` |
+| `substring()` | Extract substring | `substring('HelloWorld', 0, 5)` → `"Hello"` |
+| `replace()` | Replace text | `replace('Hello World', 'World', 'ADF')` |
+| `split()` | Split string | `split('a,b,c', ',')` → `['a','b','c']` |
+| `toLower()` | Convert to lowercase | `toLower('HELLO')` → `"hello"` |
+| `toUpper()` | Convert to uppercase | `toUpper('hello')` → `"HELLO"` |
+
+#### Date/Time Functions
+
+| Function | Description | Example |
+|----------|-------------|---------|
+| `utcnow()` | Current UTC time | `2024-01-15T10:30:00Z` |
+| `adddays()` | Add days to date | `adddays(utcnow(), -1)` |
+| `formatDateTime()` | Format date | `formatDateTime(utcnow(), 'yyyy-MM-dd')` |
+| `startOfDay()` | Start of day | `startOfDay(utcnow())` |
+| `dayOfWeek()` | Day of week | `dayOfWeek(utcnow())` |
+
+#### Mathematical Functions
+
+| Function | Description | Example |
+|----------|-------------|---------|
+| `add()` | Addition | `add(10, 5)` → `15` |
+| `sub()` | Subtraction | `sub(10, 5)` → `5` |
+| `mul()` | Multiplication | `mul(10, 5)` → `50` |
+| `div()` | Division | `div(10, 5)` → `2` |
+| `mod()` | Modulo | `mod(10, 3)` → `1` |
+
+#### Collection Functions
+
+| Function | Description | Example |
+|----------|-------------|---------|
+| `length()` | Array length | `length(['a','b','c'])` → `3` |
+| `contains()` | Check membership | `contains(['a','b','c'], 'b')` → `true` |
+| `union()` | Combine arrays | `union(['a','b'], ['c','d'])` → `['a','b','c','d']` |
+| `intersection()` | Common elements | `intersection(['a','b'], ['b','c'])` → `['b']` |
+| `first()` | First element | `first(['a','b','c'])` → `"a"` |
+| `last()` | Last element | `last(['a','b','c'])` → `"c"` |
+
+#### Logical Functions
+
+| Function | Description | Example |
+|----------|-------------|---------|
+| `if()` | Conditional logic | `if(equals(1, 1), 'Equal', 'Not Equal')` |
+| `equals()` | Equality check | `equals('a', 'a')` → `true` |
+| `and()` | Logical AND | `and(true, false)` → `false` |
+| `or()` | Logical OR | `or(true, false)` → `true` |
+| `not()` | Logical NOT | `not(true)` → `false` |
+
+### Context References
+
+| Reference | Description | Example |
+|-----------|-------------|---------|
+| `pipeline()` | Pipeline metadata | `pipeline().Pipeline` |
+| `pipeline().parameters` | Pipeline parameters | `pipeline().parameters.SourceTable` |
+| `pipeline().globalParameters` | Global parameters | `pipeline().globalParameters.Environment` |
+| `variables()` | Pipeline variables | `variables('Counter')` |
+| `activity()` | Activity output | `activity('LookupConfig').output` |
+| `item()` | ForEach item | `item().name` |
+| `trigger()` | Trigger metadata | `trigger().scheduledTime` |
+
+### Advanced Expression Examples
+
+#### Dynamic File Paths
+
+```json
+{
+  "folderPath": "@concat('data/', formatDateTime(utcnow(), 'yyyy'), '/', formatDateTime(utcnow(), 'MM'), '/')"
+}
+```
+
+#### Conditional Logic
+
+```json
+{
+  "tableName": "@if(equals(pipeline().parameters.Environment, 'prod'), 'dbo.Prod_Sales', 'dbo.Dev_Sales')"
+}
+```
+
+#### Array Processing
+
+```json
+{
+  "fileList": "@split(activity('Get_File_List').output.value, ',')"
+}
+```
+
+#### Date Calculations
+
+```json
+{
+  "startDate": "@formatDateTime(adddays(utcnow(), -30), 'yyyy-MM-dd')",
+  "endDate": "@formatDateTime(utcnow(), 'yyyy-MM-dd')"
+}
+```
+
+## Best Practices for Parameters and Variables
+
+### Parameter Best Practices
+1. **Use Descriptive Names**: `SourceContainer` vs `param1`
+2. **Provide Default Values**: Enable testing without all parameters
+3. **Validate Input**: Use appropriate data types
+4. **Document Usage**: Comment complex expressions
+
+### Variable Best Practices
+1. **Initialize Early**: Set variables at pipeline start
+2. **Use Appropriate Scope**: Pipeline vs activity level
+3. **Avoid Overuse**: Don't replace parameters with variables
+4. **Monitor Values**: Log variable values for debugging
+
+### Expression Best Practices
+1. **Test Expressions**: Use debug mode to validate
+2. **Handle Nulls**: Use `coalesce()` for null handling
+3. **Performance**: Cache expensive expressions in variables
+4. **Readability**: Break complex expressions into steps
 
 ---
 
@@ -1016,33 +2079,587 @@ ADF supports SAP connectors.
 
 # 45. End-to-End Projects
 
-# Project 1: CSV to SQL Pipeline
+## Project 1: CSV to SQL Database Pipeline
 
-## Flow
+### Business Scenario
+A retail company receives daily sales data in CSV format from multiple stores. The data needs to be validated, transformed, and loaded into a central SQL database for reporting.
 
-1. Read CSV from Blob
-2. Validate file
-3. Copy data to SQL
-4. Archive file
-5. Send notification
+### Architecture Diagram
 
-# Project 2: Incremental Load Pipeline
+```mermaid
+graph TD
+    A[Store Systems] --> B[CSV Files in Blob Storage]
+    B --> C[ADF Pipeline]
+    C --> D[Data Validation]
+    D --> E[Data Transformation]
+    E --> F[Load to SQL DB]
+    F --> G[Send Success Email]
+    D --> H[Error Handling]
+    H --> I[Send Alert Email]
+```
 
-## Flow
+### Pipeline Components
 
-1. Read watermark value
-2. Extract changed data
-3. Load target table
-4. Update watermark
+#### 1. Linked Services
+```json
+{
+  "LS_Blob_Storage": {
+    "type": "AzureBlobStorage",
+    "typeProperties": {
+      "connectionString": "@linkedService().StorageConnectionString"
+    }
+  },
+  "LS_SQL_Database": {
+    "type": "AzureSqlDatabase",
+    "typeProperties": {
+      "connectionString": "@linkedService().SqlConnectionString"
+    }
+  }
+}
+```
 
-# Project 3: API to Data Lake
+#### 2. Datasets
+```json
+{
+  "DS_Sales_CSV": {
+    "type": "DelimitedText",
+    "linkedServiceName": {"referenceName": "LS_Blob_Storage"},
+    "typeProperties": {
+      "location": {
+        "type": "AzureBlobStorageLocation",
+        "fileName": "*.csv",
+        "folderPath": "sales-data"
+      },
+      "columnDelimiter": ",",
+      "firstRowAsHeader": true
+    }
+  },
+  "DS_Sales_SQL": {
+    "type": "AzureSqlTable",
+    "linkedServiceName": {"referenceName": "LS_SQL_Database"},
+    "typeProperties": {
+      "tableName": "dbo.Sales"
+    }
+  }
+}
+```
 
-## Flow
+#### 3. Pipeline Activities
+```json
+{
+  "name": "PL_Load_Sales_Data",
+  "properties": {
+    "activities": [
+      {
+        "name": "Validate_File_Existence",
+        "type": "GetMetadata",
+        "typeProperties": {
+          "dataset": {"referenceName": "DS_Sales_CSV"},
+          "fieldList": ["exists", "itemName", "lastModified"]
+        }
+      },
+      {
+        "name": "Copy_Sales_Data",
+        "type": "Copy",
+        "dependsOn": [
+          {
+            "activity": "Validate_File_Existence",
+            "dependencyConditions": ["Succeeded"]
+          }
+        ],
+        "typeProperties": {
+          "source": {
+            "type": "DelimitedTextSource",
+            "storeSettings": {"type": "AzureBlobStorageReadSettings"}
+          },
+          "sink": {
+            "type": "SqlSink",
+            "writeBehavior": "insert",
+            "tableOption": "autoCreate"
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {"source": {"name": "store_id"}, "sink": {"name": "StoreID"}},
+              {"source": {"name": "product_id"}, "sink": {"name": "ProductID"}},
+              {"source": {"name": "sales_amount"}, "sink": {"name": "SalesAmount"}},
+              {"source": {"name": "sales_date"}, "sink": {"name": "SalesDate"}}
+            ]
+          }
+        }
+      },
+      {
+        "name": "Execute_Data_Quality_Check",
+        "type": "SqlServerStoredProcedure",
+        "dependsOn": [
+          {
+            "activity": "Copy_Sales_Data",
+            "dependencyConditions": ["Succeeded"]
+          }
+        ],
+        "typeProperties": {
+          "storedProcedureName": "usp_ValidateSalesData"
+        }
+      },
+      {
+        "name": "Send_Success_Notification",
+        "type": "WebActivity",
+        "dependsOn": [
+          {
+            "activity": "Execute_Data_Quality_Check",
+            "dependencyConditions": ["Succeeded"]
+          }
+        ],
+        "typeProperties": {
+          "method": "POST",
+          "url": "https://api.sendgrid.com/v3/mail/send",
+          "headers": {
+            "Authorization": "@linkedService().SendGridApiKey",
+            "Content-Type": "application/json"
+          },
+          "body": {
+            "personalizations": [
+              {
+                "to": [{"email": "data-team@company.com"}],
+                "subject": "Sales Data Load Completed Successfully"
+              }
+            ],
+            "from": {"email": "adf@company.com"},
+            "content": [
+              {
+                "type": "text/plain",
+                "value": "Sales data has been successfully loaded and validated."
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}
+```
 
-1. Call API
-2. Store JSON
-3. Convert to Parquet
-4. Load analytics layer
+#### 4. Error Handling
+```json
+{
+  "name": "Send_Failure_Notification",
+  "type": "WebActivity",
+  "dependsOn": [
+    {
+      "activity": "Copy_Sales_Data",
+      "dependencyConditions": ["Failed"]
+    }
+  ],
+  "typeProperties": {
+    "method": "POST",
+    "url": "https://hooks.slack.com/services/...",
+    "body": {
+      "text": "ALERT: Sales data load failed. Please check ADF monitoring."
+    }
+  }
+}
+```
+
+## Project 2: Incremental Data Load with Watermarking
+
+### Business Scenario
+A healthcare provider needs to incrementally load patient records from an on-premises SQL Server to Azure Synapse Analytics, processing only new or changed records since the last load.
+
+### Solution Architecture
+
+```mermaid
+graph TD
+    A[On-prem SQL Server] --> B[Self-Hosted IR]
+    B --> C[ADF Pipeline]
+    C --> D[Read Watermark]
+    D --> E[Extract Changed Data]
+    E --> F[Load to Synapse Staging]
+    F --> G[Execute Merge Stored Proc]
+    G --> H[Update Watermark]
+    H --> I[Send Notification]
+```
+
+### Implementation Steps
+
+#### 1. Watermark Table Creation
+```sql
+CREATE TABLE dbo.WatermarkTable (
+    TableName VARCHAR(100) PRIMARY KEY,
+    LastLoadDate DATETIME2
+);
+
+INSERT INTO dbo.WatermarkTable VALUES
+('Patients', '2024-01-01 00:00:00');
+```
+
+#### 2. Pipeline Parameters
+```json
+{
+  "parameters": {
+    "SourceTable": {"type": "string", "defaultValue": "Patients"},
+    "WatermarkColumn": {"type": "string", "defaultValue": "LastModifiedDate"},
+    "BatchSize": {"type": "int", "defaultValue": 10000}
+  }
+}
+```
+
+#### 3. Lookup Watermark Activity
+```json
+{
+  "name": "Lookup_Last_Watermark",
+  "type": "Lookup",
+  "typeProperties": {
+    "source": {
+      "type": "SqlServerSource",
+      "sqlReaderQuery": "SELECT LastLoadDate FROM dbo.WatermarkTable WHERE TableName = '@{pipeline().parameters.SourceTable}'"
+    },
+    "dataset": {"referenceName": "DS_Watermark_SQL"}
+  }
+}
+```
+
+#### 4. Copy Changed Data Activity
+```json
+{
+  "name": "Copy_Incremental_Data",
+  "type": "Copy",
+  "typeProperties": {
+    "source": {
+      "type": "SqlServerSource",
+      "sqlReaderQuery": "@concat('SELECT * FROM ', pipeline().parameters.SourceTable, ' WHERE ', pipeline().parameters.WatermarkColumn, ' > ''', activity('Lookup_Last_Watermark').output.firstRow.LastLoadDate, ''' ORDER BY ', pipeline().parameters.WatermarkColumn)"
+    },
+    "sink": {
+      "type": "SqlDWSink",
+      "writeBehavior": "insert",
+      "preCopyScript": "TRUNCATE TABLE Staging.Patients"
+    }
+  }
+}
+```
+
+#### 5. Update Watermark Activity
+```json
+{
+  "name": "Update_Watermark",
+  "type": "SqlServerStoredProcedure",
+  "typeProperties": {
+    "storedProcedureName": "usp_UpdateWatermark",
+    "storedProcedureParameters": {
+      "TableName": {"value": "@pipeline().parameters.SourceTable", "type": "String"},
+      "NewWatermark": {"value": "@utcnow()", "type": "DateTime"}
+    }
+  }
+}
+```
+
+## Project 3: Real-Time API Data Ingestion
+
+### Business Scenario
+An e-commerce platform needs to ingest real-time order data from a REST API, transform it, and load it into both a data lake for analytics and a SQL database for operational reporting.
+
+### Architecture Overview
+
+```mermaid
+graph TD
+    A[Order API] --> B[ADF Pipeline]
+    B --> C[Web Activity - Call API]
+    C --> D[Parse JSON Response]
+    D --> E[Data Flow - Transform]
+    E --> F[Copy to Data Lake]
+    E --> G[Copy to SQL DB]
+    F --> H[Trigger Databricks Job]
+    G --> I[Send Real-time Alert]
+```
+
+### Implementation Details
+
+#### 1. REST API Linked Service
+```json
+{
+  "name": "LS_Order_API",
+  "type": "RestService",
+  "typeProperties": {
+    "url": "https://api.ecommerce.com/orders",
+    "authenticationType": "Basic",
+    "userName": "@linkedService().ApiUsername",
+    "password": "@linkedService().ApiPassword"
+  }
+}
+```
+
+#### 2. Web Activity for API Call
+```json
+{
+  "name": "Call_Order_API",
+  "type": "WebActivity",
+  "typeProperties": {
+    "method": "GET",
+    "url": "https://api.ecommerce.com/orders",
+    "headers": {
+      "Authorization": "@concat('Bearer ', linkedService().ApiToken)",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "startDate": "@formatDateTime(addhours(utcnow(), -1), 'yyyy-MM-ddTHH:mm:ssZ')",
+      "endDate": "@formatDateTime(utcnow(), 'yyyy-MM-ddTHH:mm:ssZ')"
+    }
+  }
+}
+```
+
+#### 3. Data Flow for Transformation
+```json
+{
+  "name": "DF_Transform_Order_Data",
+  "type": "MappingDataFlow",
+  "typeProperties": {
+    "sources": [
+      {
+        "name": "OrderSource",
+        "dataset": {"referenceName": "DS_Order_JSON"}
+      }
+    ],
+    "transformations": [
+      {
+        "name": "Flatten_Order_Items",
+        "type": "Flatten",
+        "typeProperties": {
+          "unrollBy": "orderItems",
+          "unrollRoot": "orders"
+        }
+      },
+      {
+        "name": "Add_Calculated_Fields",
+        "type": "DerivedColumn",
+        "typeProperties": {
+          "columns": [
+            {
+              "name": "OrderTotal",
+              "expression": "orderItems.price * orderItems.quantity"
+            },
+            {
+              "name": "ProcessingTimestamp",
+              "expression": "currentTimestamp()"
+            }
+          ]
+        }
+      }
+    ],
+    "sinks": [
+      {
+        "name": "DataLakeSink",
+        "dataset": {"referenceName": "DS_Order_Parquet"}
+      },
+      {
+        "name": "SqlSink",
+        "dataset": {"referenceName": "DS_Order_SQL"}
+      }
+    ]
+  }
+}
+```
+
+## Project 4: Multi-Source Data Consolidation
+
+### Business Scenario
+A financial institution needs to consolidate customer data from multiple sources (CRM, ERP, Transaction Systems) into a unified customer view in Azure Synapse.
+
+### Solution Approach
+
+```mermaid
+graph TD
+    A[CRM System] --> C[Extract & Transform]
+    B[ERP System] --> C
+    D[Transaction DB] --> C
+    C --> E[Data Flow - Master Data]
+    E --> F[Load to Synapse]
+    F --> G[Data Quality Validation]
+    G --> H[Create Customer 360 View]
+```
+
+### Key Implementation Aspects
+
+#### 1. Multiple Source Handling
+- Different data formats (JSON, XML, CSV)
+- Various connection types (API, Database, Files)
+- Incremental vs full load strategies
+
+#### 2. Data Quality Framework
+- Duplicate detection and merging
+- Data validation rules
+- Audit trail maintenance
+
+#### 3. Master Data Management
+- Customer matching algorithms
+- Golden record creation
+- Change data capture
+
+## Project 5: CI/CD Pipeline for ADF
+
+### Business Scenario
+Implement automated deployment of ADF pipelines across development, staging, and production environments with proper testing and approval workflows.
+
+### CI/CD Architecture
+
+```mermaid
+graph TD
+    A[Developer] --> B[Git Push]
+    B --> C[Azure DevOps Pipeline]
+    C --> D[Build ADF Artifacts]
+    D --> E[Deploy to Dev]
+    E --> F[Automated Tests]
+    F --> G[Deploy to Staging]
+    G --> H[Manual Approval]
+    H --> I[Deploy to Production]
+```
+
+### Implementation Components
+
+#### 1. ARM Template Generation
+```powershell
+# PowerShell script to export ARM templates
+$resourceGroupName = "adf-dev-rg"
+$dataFactoryName = "adf-dev-factory"
+$armTemplateFolder = "./arm-templates"
+
+Export-AzResourceGroup `
+    -ResourceGroupName $resourceGroupName `
+    -Resource "/subscriptions/.../resourceGroups/$resourceGroupName/providers/Microsoft.DataFactory/factories/$dataFactoryName" `
+    -Path $armTemplateFolder `
+    -Force
+```
+
+#### 2. Azure DevOps Pipeline
+```yaml
+# azure-pipelines.yml
+trigger:
+  branches:
+    include:
+    - main
+    - develop
+
+stages:
+- stage: Build
+  jobs:
+  - job: BuildADF
+    steps:
+    - task: AzureResourceManagerTemplateDeployment@3
+      inputs:
+        deploymentScope: 'Resource Group'
+        azureResourceManagerConnection: 'Azure-DevOps-Service-Connection'
+        subscriptionId: '$(subscriptionId)'
+        action: 'Create Or Update Resource Group'
+        resourceGroupName: '$(resourceGroupName)'
+        location: '$(location)'
+        templateLocation: 'Linked artifact'
+        csmFile: '$(System.DefaultWorkingDirectory)/arm-templates/template.json'
+        csmParametersFile: '$(System.DefaultWorkingDirectory)/arm-templates/parameters.json'
+        overrideParameters: >
+          -factoryName "$(factoryName)"
+          -environment "$(environment)"
+
+- stage: Test
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
+  jobs:
+  - job: IntegrationTests
+    steps:
+    - task: AzureCLI@2
+      inputs:
+        azureSubscription: 'Azure-DevOps-Service-Connection'
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: |
+          # Run integration tests
+          echo "Running ADF integration tests..."
+
+- stage: DeployStaging
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+  jobs:
+  - deployment: DeployStaging
+    environment: 'staging'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: AzureResourceManagerTemplateDeployment@3
+            inputs:
+              deploymentScope: 'Resource Group'
+              azureResourceManagerConnection: 'Azure-Staging-Service-Connection'
+              subscriptionId: '$(stagingSubscriptionId)'
+              action: 'Create Or Update Resource Group'
+              resourceGroupName: '$(stagingResourceGroupName)'
+              location: '$(location)'
+              templateLocation: 'Linked artifact'
+              csmFile: '$(System.DefaultWorkingDirectory)/arm-templates/template.json'
+              csmParametersFile: '$(System.DefaultWorkingDirectory)/arm-templates/parameters-staging.json'
+
+- stage: DeployProduction
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+  jobs:
+  - deployment: DeployProduction
+    environment: 'production'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: AzureResourceManagerTemplateDeployment@3
+            inputs:
+              deploymentScope: 'Resource Group'
+              azureResourceManagerConnection: 'Azure-Prod-Service-Connection'
+              subscriptionId: '$(prodSubscriptionId)'
+              action: 'Create Or Update Resource Group'
+              resourceGroupName: '$(prodResourceGroupName)'
+              location: '$(location)'
+              templateLocation: 'Linked artifact'
+              csmFile: '$(System.DefaultWorkingDirectory)/arm-templates/template.json'
+              csmParametersFile: '$(System.DefaultWorkingDirectory)/arm-templates/parameters-prod.json'
+```
+
+#### 3. Parameter Files for Different Environments
+```json
+// parameters-dev.json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "factoryName": {
+      "value": "adf-dev-datafactory"
+    },
+    "LS_SQL_connectionString": {
+      "value": "Server=tcp:dev-sql-server.database.windows.net,1433;Database=dev-db;"
+    },
+    "LS_Blob_connectionString": {
+      "value": "DefaultEndpointsProtocol=https;AccountName=devstorage;AccountKey=...;"
+    }
+  }
+}
+```
+
+## Best Practices for End-to-End Projects
+
+### Project Planning
+1. **Requirements Gathering**: Understand business needs and technical constraints
+2. **Architecture Design**: Design scalable and maintainable solutions
+3. **Data Modeling**: Plan data structures and relationships
+4. **Security Planning**: Implement appropriate security measures
+
+### Development Best Practices
+1. **Modular Design**: Break complex pipelines into reusable components
+2. **Error Handling**: Implement comprehensive error handling and logging
+3. **Testing Strategy**: Unit tests, integration tests, and performance tests
+4. **Documentation**: Maintain detailed documentation for maintenance
+
+### Deployment Best Practices
+1. **Environment Strategy**: Dev → Staging → Production progression
+2. **CI/CD Pipeline**: Automated testing and deployment
+3. **Configuration Management**: Environment-specific configurations
+4. **Rollback Strategy**: Ability to quickly rollback changes
+
+### Monitoring and Maintenance
+1. **Monitoring Setup**: Comprehensive monitoring and alerting
+2. **Performance Tuning**: Regular performance optimization
+3. **Security Updates**: Keep components up to date
+4. **Documentation Updates**: Maintain current documentation
 
 ---
 
@@ -1164,31 +2781,360 @@ ADF supports SAP connectors.
 
 ---
 
-# 51. Common Errors and Fixes
+# 53. Troubleshooting and Common Issues
 
-## Error: Authentication Failed
+## Pipeline Execution Issues
 
-### Fix
+### Issue: Pipeline Runs But Activities Fail
 
-* Check credentials
-* Check firewall access
-* Verify linked service
+**Symptoms:**
+- Pipeline status shows "Succeeded" but activities fail
+- Inconsistent execution results
+- Activities show "Skipped" status
 
-## Error: File Not Found
+**Possible Causes:**
+1. **Dependency Conditions**: Incorrect dependency configuration
+2. **Error Handling**: Activities set to continue on failure
+3. **Trigger Configuration**: Trigger not properly configured
 
-### Fix
+**Solutions:**
+```json
+// Check dependency conditions
+"dependsOn": [
+  {
+    "activity": "CopyData",
+    "dependencyConditions": ["Succeeded"]  // Change to ["Completed"] if needed
+  }
+]
 
-* Verify path
-* Verify folder structure
-* Check trigger timing
+// Enable proper error propagation
+"policy": {
+  "timeout": "01:00:00",
+  "retry": 3,
+  "retryIntervalInSeconds": 30
+}
+```
 
-## Error: IR Offline
+### Issue: Copy Activity Performance Degradation
 
-### Fix
+**Symptoms:**
+- Copy jobs taking longer than expected
+- High DIU usage but slow throughput
+- Pipeline timeouts
 
-* Restart IR service
-* Check connectivity
-* Verify gateway
+**Troubleshooting Steps:**
+1. **Check DIU Usage**: Monitor Data Integration Unit consumption
+2. **Review Source/Target**: Check if source or target is bottleneck
+3. **Examine Data Skew**: Look for uneven data distribution
+4. **Verify Network**: Check network bandwidth and latency
+
+**Optimization Solutions:**
+```json
+// Increase parallel copies
+"typeProperties": {
+  "parallelCopies": 8,
+  "dataIntegrationUnits": 32
+}
+
+// Use staging for cross-region transfers
+"enableStaging": true,
+"stagingSettings": {
+  "linkedServiceName": {
+    "referenceName": "LS_StagingStorage"
+  }
+}
+```
+
+## Connection and Authentication Issues
+
+### Issue: Linked Service Connection Failures
+
+**Common Error Messages:**
+- "Login failed for user"
+- "Cannot open server connection"
+- "Access denied"
+
+**Troubleshooting Checklist:**
+1. **Credentials Validation**: Verify username/password or keys
+2. **Firewall Rules**: Check if ADF IP ranges are whitelisted
+3. **Network Connectivity**: Test connection from ADF region
+4. **Permissions**: Ensure proper database/object permissions
+
+**Resolution Examples:**
+```json
+// For Azure SQL Database
+{
+  "type": "AzureSqlDatabase",
+  "typeProperties": {
+    "connectionString": "Server=tcp:server.database.windows.net,1433;Database=db;Authentication=Active Directory Password;Encrypt=True;",
+    "password": {
+      "type": "AzureKeyVaultSecret",
+      "store": {
+        "referenceName": "LS_KeyVault"
+      },
+      "secretName": "sql-password"
+    }
+  }
+}
+```
+
+### Issue: Self-Hosted IR Connectivity Problems
+
+**Symptoms:**
+- IR shows "Offline" status
+- Pipeline fails with connectivity errors
+- Intermittent connection issues
+
+**Diagnostic Steps:**
+1. **IR Service Status**: Check if SHIR service is running
+2. **Network Configuration**: Verify firewall and proxy settings
+3. **DNS Resolution**: Test DNS resolution from SHIR machine
+4. **Port Availability**: Ensure required ports are open
+
+**Configuration Fixes:**
+```json
+// SHIR configuration
+{
+  "name": "SHIR_OnPrem",
+  "type": "SelfHosted",
+  "typeProperties": {
+    "linkedInfos": [
+      {
+        "name": "OnPremSqlServer",
+        "type": "SqlServer",
+        "typeProperties": {
+          "connectionString": "Server=sqlserver.company.com;Database=ProdDB;",
+          "userName": "adf_user",
+          "password": {
+            "type": "SecureString",
+            "value": "***"
+          }
+        }
+      }
+    ]
+  }
+}
+```
+
+## Data Flow Issues
+
+### Issue: Data Flow Cluster Startup Failures
+
+**Symptoms:**
+- Data flow fails with cluster creation errors
+- Long startup times
+- Out of memory errors
+
+**Solutions:**
+```json
+// Optimize cluster configuration
+{
+  "typeProperties": {
+    "compute": {
+      "coreCount": 8,
+      "computeType": "General"
+    },
+    "timeToLive": 10
+  }
+}
+```
+
+### Issue: Data Skew and Performance Issues
+
+**Symptoms:**
+- Uneven data distribution across partitions
+- Some partitions processing much slower
+- Memory pressure on certain nodes
+
+**Optimization Techniques:**
+```json
+// Implement proper partitioning
+{
+  "partitioning": {
+    "type": "Hash",
+    "partitionColumnName": "customer_id"
+  }
+}
+
+// Use broadcast join for small tables
+{
+  "join": {
+    "type": "Broadcast"
+  }
+}
+```
+
+## Trigger and Scheduling Issues
+
+### Issue: Triggers Not Firing
+
+**Symptoms:**
+- Scheduled pipelines not executing
+- Event-based triggers not responding
+- Tumbling window triggers missing data
+
+**Diagnostic Queries:**
+```sql
+-- Check trigger runs in ADF monitoring
+SELECT * FROM dbo.TriggerRuns
+WHERE TriggerName = 'MyTrigger'
+ORDER BY RunStart DESC
+
+-- Check for trigger failures
+SELECT * FROM dbo.ActivityRuns
+WHERE PipelineName = 'MyPipeline'
+AND Status = 'Failed'
+```
+
+**Common Fixes:**
+```json
+// Fix schedule trigger timezone issues
+{
+  "type": "ScheduleTrigger",
+  "typeProperties": {
+    "recurrence": {
+      "frequency": "Day",
+      "interval": 1,
+      "startTime": "2024-01-01T06:00:00Z",
+      "timeZone": "UTC"
+    }
+  }
+}
+```
+
+## Memory and Resource Issues
+
+### Issue: Out of Memory Errors
+
+**Symptoms:**
+- Pipeline fails with OOM errors
+- Data flow cluster crashes
+- Activities timeout unexpectedly
+
+**Memory Optimization:**
+```json
+// Increase cluster size for data flows
+{
+  "compute": {
+    "coreCount": 16,
+    "computeType": "MemoryOptimized"
+  }
+}
+
+// Implement paging for large datasets
+{
+  "source": {
+    "type": "SqlServerSource",
+    "isolationLevel": "ReadUncommitted",
+    "partitionOption": "DynamicRange",
+    "partitionSettings": {
+      "partitionColumnName": "id",
+      "partitionUpperBound": "1000000",
+      "partitionLowerBound": "1"
+    }
+  }
+}
+```
+
+## Debugging Techniques
+
+### Using Debug Mode
+
+```json
+// Enable debug mode for pipelines
+{
+  "debug": true,
+  "parameters": {
+    "debugDataset": {
+      "value": "DS_Debug_Output"
+    }
+  }
+}
+```
+
+### Logging Best Practices
+
+```json
+// Implement comprehensive logging
+{
+  "activities": [
+    {
+      "name": "Log_Start",
+      "type": "SetVariable",
+      "typeProperties": {
+        "variableName": "ExecutionLog",
+        "value": "@concat('Pipeline started at: ', utcnow())"
+      }
+    },
+    {
+      "name": "Log_Activity_Result",
+      "type": "AppendVariable",
+      "typeProperties": {
+        "variableName": "ExecutionLog",
+        "value": "@concat(activity('CopyData').output.rowsCopied, ' rows copied')"
+      }
+    }
+  ]
+}
+```
+
+### Monitoring Queries
+
+```sql
+-- Pipeline performance monitoring
+SELECT
+    PipelineName,
+    AVG(DurationInMs) as AvgDuration,
+    MAX(DurationInMs) as MaxDuration,
+    COUNT(*) as TotalRuns,
+    SUM(CASE WHEN Status = 'Failed' THEN 1 ELSE 0 END) as FailedRuns
+FROM dbo.PipelineRuns
+WHERE RunStart > DATEADD(day, -30, GETDATE())
+GROUP BY PipelineName
+ORDER BY AvgDuration DESC
+
+-- Activity error analysis
+SELECT
+    ActivityName,
+    ErrorMessage,
+    COUNT(*) as ErrorCount,
+    MAX(RunStart) as LastError
+FROM dbo.ActivityRuns
+WHERE Status = 'Failed'
+AND RunStart > DATEADD(day, -7, GETDATE())
+GROUP BY ActivityName, ErrorMessage
+ORDER BY ErrorCount DESC
+```
+
+## Performance Tuning Checklist
+
+### Data Movement Optimization
+- [ ] Use appropriate DIU settings
+- [ ] Enable parallel copying
+- [ ] Implement data partitioning
+- [ ] Use staging for large transfers
+- [ ] Compress data when possible
+
+### Data Flow Optimization
+- [ ] Choose correct compute type
+- [ ] Implement proper partitioning
+- [ ] Use caching strategically
+- [ ] Optimize join types
+- [ ] Monitor cluster utilization
+
+### Pipeline Optimization
+- [ ] Minimize activity count
+- [ ] Use parallel execution
+- [ ] Implement incremental loads
+- [ ] Optimize trigger schedules
+- [ ] Monitor resource usage
+
+### Infrastructure Optimization
+- [ ] Choose correct IR type
+- [ ] Optimize network configuration
+- [ ] Implement proper security
+- [ ] Monitor costs and usage
+- [ ] Plan for scaling needs
 
 ---
 
@@ -1212,30 +3158,395 @@ ADF supports SAP connectors.
 
 ---
 
-# 53. Learning Resources
+# 54. Advanced Topics and Future Trends
 
-# Official Resources
+## Advanced ADF Features
 
-* Microsoft Learn
-* Azure Documentation
-* Azure YouTube Channel
+### 1. Change Data Capture (CDC) Patterns
 
-# Practice Platforms
+#### Native CDC with Azure SQL DB
+```json
+{
+  "name": "PL_CDC_Load",
+  "properties": {
+    "activities": [
+      {
+        "name": "Get_Change_Data",
+        "type": "Lookup",
+        "typeProperties": {
+          "source": {
+            "type": "AzureSqlSource",
+            "sqlReaderQuery": "
+              SELECT * FROM cdc.dbo_Customers_CT
+              WHERE __$start_lsn > @last_lsn
+              AND __$operation IN (1, 2, 4) -- Insert, Update, Delete
+              ORDER BY __$start_lsn"
+          },
+          "dataset": {"referenceName": "DS_SQL_Customers"}
+        }
+      },
+      {
+        "name": "Process_Changes",
+        "type": "ForEach",
+        "typeProperties": {
+          "items": "@activity('Get_Change_Data').output.value",
+          "activities": [
+            {
+              "name": "Route_By_Operation",
+              "type": "Switch",
+              "typeProperties": {
+                "on": "@item().__$operation",
+                "cases": {
+                  "1": [{"name": "Insert_Record", "type": "Copy"}],
+                  "2": [{"name": "Update_Record", "type": "Copy"}],
+                  "4": [{"name": "Delete_Record", "type": "SqlServerStoredProcedure"}]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+```
 
-* GitHub projects
-* Hands-on labs
-* SQL practice websites
+#### Custom CDC Implementation
+```sql
+-- Watermark table for custom CDC
+CREATE TABLE dbo.CDC_Watermark (
+    TableName VARCHAR(100) PRIMARY KEY,
+    LastLSN BINARY(10),
+    LastProcessedDate DATETIME2
+);
 
-# Important Skills Along with ADF
+-- Incremental load with custom logic
+SELECT *
+FROM Customers
+WHERE LastModifiedDate > (
+    SELECT LastProcessedDate
+    FROM dbo.CDC_Watermark
+    WHERE TableName = 'Customers'
+)
+AND LastModifiedDate <= GETDATE();
+```
 
-* SQL
-* Python
-* PySpark
-* Azure Synapse
-* Databricks
-* Data Warehousing
+### 2. Event-Driven Architectures
 
----
+#### Event Grid Integration
+```json
+{
+  "name": "TR_Event_Trigger",
+  "properties": {
+    "type": "BlobEventsTrigger",
+    "typeProperties": {
+      "blobPathBeginsWith": "/data/input/",
+      "blobPathEndsWith": ".csv",
+      "ignoreEmptyBlobs": true,
+      "scope": "/subscriptions/.../resourceGroups/.../providers/Microsoft.Storage/storageAccounts/...",
+      "events": ["Microsoft.Storage.BlobCreated"]
+    },
+    "pipelines": [
+      {
+        "pipelineReference": {
+          "referenceName": "PL_Process_File",
+          "type": "PipelineReference"
+        },
+        "parameters": {
+          "fileName": "@triggerBody().fileName",
+          "folderPath": "@triggerBody().folderPath"
+        }
+      }
+    ]
+  }
+}
+```
+
+#### Real-Time Data Processing
+```json
+{
+  "name": "PL_RealTime_Processing",
+  "properties": {
+    "activities": [
+      {
+        "name": "Ingest_Stream_Data",
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "EventHubSource",
+            "consumerGroupName": "$Default"
+          },
+          "sink": {
+            "type": "SqlSink",
+            "writeBehavior": "upsert"
+          }
+        }
+      },
+      {
+        "name": "Trigger_Stream_Analytics",
+        "type": "WebActivity",
+        "typeProperties": {
+          "method": "POST",
+          "url": "https://management.azure.com/.../start?api-version=2016-03-01",
+          "authentication": {
+            "type": "MSI",
+            "resource": "https://management.azure.com/"
+          }
+        }
+      }
+    ]
+  }
+}
+```
+
+### 3. Machine Learning Integration
+
+#### ML Model Scoring in Data Flows
+```json
+{
+  "name": "DF_ML_Scoring",
+  "type": "MappingDataFlow",
+  "typeProperties": {
+    "sources": [
+      {
+        "name": "InputData",
+        "dataset": {"referenceName": "DS_Input_Data"}
+      }
+    ],
+    "transformations": [
+      {
+        "name": "Call_ML_Model",
+        "type": "DerivedColumn",
+        "typeProperties": {
+          "columns": [
+            {
+              "name": "Prediction",
+              "expression": "amlPredict('workspace/model', input_data)"
+            }
+          ]
+        }
+      }
+    ],
+    "sinks": [
+      {
+        "name": "ScoredData",
+        "dataset": {"referenceName": "DS_Scored_Output"}
+      }
+    ]
+  }
+}
+```
+
+#### Automated ML Pipeline
+```json
+{
+  "name": "PL_AutoML_Training",
+  "properties": {
+    "activities": [
+      {
+        "name": "Prepare_Training_Data",
+        "type": "DataFlow",
+        "typeProperties": {
+          "dataFlow": {"referenceName": "DF_Data_Preparation"}
+        }
+      },
+      {
+        "name": "Train_ML_Model",
+        "type": "AzureMLExecutePipeline",
+        "typeProperties": {
+          "experimentName": "Customer_Churn_Prediction",
+          "mlPipelineId": "pipeline_id",
+          "mlPipelineParameters": {
+            "training_data": "@activity('Prepare_Training_Data').output"
+          }
+        }
+      },
+      {
+        "name": "Register_Model",
+        "type": "AzureMLExecutePipeline",
+        "dependsOn": [
+          {
+            "activity": "Train_ML_Model",
+            "dependencyConditions": ["Succeeded"]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+## Future Trends in ADF
+
+### 1. AI-Powered Data Integration
+
+#### Intelligent Mapping
+- **Auto-mapping**: AI suggests column mappings based on data patterns
+- **Schema Evolution**: Automatic handling of schema changes
+- **Data Quality Scoring**: ML-based data quality assessment
+
+#### Predictive Optimization
+- **Auto-tuning**: AI recommends performance optimizations
+- **Cost Optimization**: Intelligent resource allocation
+- **Anomaly Detection**: ML-based pipeline failure prediction
+
+### 2. Low-Code/No-Code Evolution
+
+#### Visual Pipeline Builder
+- **Drag-and-drop Enhancements**: More intuitive interface
+- **Template Library**: Pre-built pipeline templates
+- **Copilot Integration**: AI-assisted pipeline development
+
+#### Citizen Integrator Features
+- **Natural Language Processing**: Describe pipelines in plain English
+- **Auto-generated Documentation**: Automatic pipeline documentation
+- **Business User Tools**: Simplified interface for business users
+
+### 3. Multi-Cloud and Hybrid Evolution
+
+#### Cross-Cloud Data Movement
+```json
+// Future cross-cloud linked service
+{
+  "name": "LS_AWS_S3_CrossCloud",
+  "type": "AmazonS3",
+  "typeProperties": {
+    "cloudType": "AWS",
+    "region": "us-east-1",
+    "crossCloudEnabled": true
+  }
+}
+```
+
+#### Unified Control Plane
+- **Single Pane of Glass**: Manage all cloud resources from one interface
+- **Unified Security**: Consistent security policies across clouds
+- **Global Optimization**: Intelligent data placement and movement
+
+### 4. Real-Time and Streaming Integration
+
+#### Native Streaming Support
+- **Event-Driven Pipelines**: React to events in real-time
+- **Stream Processing**: Built-in stream processing capabilities
+- **Change Streams**: Direct integration with database change streams
+
+#### Advanced Analytics Integration
+- **Real-Time ML Scoring**: Stream data through ML models
+- **Complex Event Processing**: Pattern detection and alerting
+- **Time-Series Analytics**: Built-in time-series processing
+
+### 5. Serverless and Event-Driven Architecture
+
+#### Serverless Execution
+- **Pay-per-execution**: Only pay for actual pipeline runs
+- **Auto-scaling**: Instant scaling based on workload
+- **Event-driven**: Trigger pipelines based on any event
+
+#### Microservices Integration
+- **Container Support**: Run pipelines in containers
+- **Kubernetes Integration**: Native K8s support
+- **Service Mesh**: Advanced service-to-service communication
+
+### 6. Advanced Security and Compliance
+
+#### Zero-Trust Architecture
+- **Continuous Verification**: Always-on security validation
+- **Fine-grained Access**: Row-level and column-level security
+- **Data Masking**: Automatic PII detection and masking
+
+#### Compliance Automation
+- **Audit Automation**: Automated compliance reporting
+- **Data Lineage**: End-to-end data tracking
+- **Retention Policies**: Automated data lifecycle management
+
+### 7. Industry-Specific Solutions
+
+#### Healthcare Data Integration
+- **FHIR Integration**: Native Fast Healthcare Interoperability Resources support
+- **HIPAA Compliance**: Built-in healthcare compliance features
+- **Patient Data Lakes**: Specialized healthcare data architectures
+
+#### Financial Services
+- **Regulatory Reporting**: Automated regulatory compliance
+- **Risk Analytics**: Real-time risk assessment pipelines
+- **Trade Surveillance**: Automated trade monitoring and alerting
+
+### 8. Sustainability and Green Computing
+
+#### Carbon-Aware Computing
+- **Green Scheduling**: Schedule jobs during low-carbon periods
+- **Energy Optimization**: Optimize resource usage for energy efficiency
+- **Carbon Tracking**: Monitor and report carbon footprint
+
+#### Sustainable Architecture
+- **Edge Computing**: Process data closer to source to reduce network traffic
+- **Efficient Storage**: Optimize storage patterns for energy efficiency
+- **Workload Consolidation**: Intelligent workload placement
+
+## Preparing for Future ADF
+
+### Skills Development Roadmap
+
+#### Phase 1: Current Skills (2024-2025)
+- Master current ADF features
+- Learn advanced data flow patterns
+- Understand security and compliance
+
+#### Phase 2: Emerging Skills (2025-2026)
+- AI/ML integration patterns
+- Multi-cloud architectures
+- Real-time data processing
+
+#### Phase 3: Future Skills (2026-2027)
+- Event-driven architectures
+- Serverless data integration
+- Sustainable data practices
+
+### Technology Adoption Strategy
+
+#### Pilot Programs
+- Start with small, low-risk projects
+- Test new features in development environments
+- Gather feedback and metrics
+
+#### Gradual Migration
+- Migrate existing pipelines incrementally
+- Use feature flags for new capabilities
+- Maintain backward compatibility
+
+#### Continuous Learning
+- Follow ADF release notes and blogs
+- Participate in preview programs
+- Join ADF user communities
+
+### Organizational Readiness
+
+#### Team Skills Assessment
+- Evaluate current team capabilities
+- Identify skill gaps
+- Plan training and certification programs
+
+#### Process Adaptation
+- Update development processes
+- Modify testing strategies
+- Enhance monitoring and alerting
+
+#### Governance Framework
+- Update data governance policies
+- Enhance security frameworks
+- Modify compliance procedures
+
+## Conclusion
+
+Azure Data Factory continues to evolve rapidly, incorporating the latest trends in data integration, AI/ML, and cloud computing. By staying current with these trends and preparing for future developments, organizations can maximize their investment in ADF and maintain a competitive edge in data integration.
+
+Key takeaways for future readiness:
+1. **Embrace AI/ML Integration**: Learn to incorporate machine learning into data pipelines
+2. **Adopt Event-Driven Patterns**: Move from batch to real-time processing
+3. **Plan for Multi-Cloud**: Design architectures that span multiple cloud providers
+4. **Focus on Sustainability**: Consider environmental impact in data architecture decisions
+5. **Invest in Skills**: Continuously update team skills and knowledge
+6. **Stay Current**: Follow ADF developments and adopt new features strategically
 
 # 54. Conclusion
 
