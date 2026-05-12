@@ -7,7 +7,175 @@
 
 <!------------------------------------------------------------------------------------------------------------------------->
 
-<h1 style="color:#154360; text-align:center; font-size:2.5em; font-weight:bold; margin-bottom:0; letter-spacing:1px; font-family: 'Segoe UI', sans-serif;"><span style="color:#1C4980;">Azure Data Factory (ADF)</span></h1>
+<!------------------------------------------------------------------------------------------------------------------------->
+
+<style>
+/* Modern Azure-themed header styling */
+.modern-header {
+  background: linear-gradient(135deg, #0078D4 0%, #005A9E 50%, #003F7A 100%);
+  color: white;
+  text-align: center;
+  font-size: 3em;
+  font-weight: 700;
+  margin: 20px 0 10px 0;
+  letter-spacing: 2px;
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  border-radius: 15px;
+  padding: 30px 20px;
+  box-shadow: 0 8px 32px rgba(0,120,212,0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.modern-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.modern-header .highlight {
+  color: #00BCF2;
+  text-shadow: 0 0 20px rgba(0,188,242,0.5);
+  position: relative;
+}
+
+.modern-header .subtitle {
+  font-size: 0.4em;
+  font-weight: 300;
+  letter-spacing: 1px;
+  margin-top: 10px;
+  opacity: 0.9;
+}
+
+/* Enhanced document styling */
+body {
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #0078D4;
+  font-weight: 600;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+h2 {
+  border-bottom: 3px solid #00BCF2;
+  padding-bottom: 10px;
+  font-size: 1.8em;
+}
+
+h3 {
+  color: #005A9E;
+  font-size: 1.4em;
+}
+
+code {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 0.9em;
+}
+
+pre {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 15px;
+  overflow-x: auto;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 20px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 12px 15px;
+  text-align: left;
+}
+
+th {
+  background: linear-gradient(135deg, #0078D4, #005A9E);
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  letter-spacing: 0.5px;
+}
+
+tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+tr:hover {
+  background-color: #e3f2fd;
+  transition: background-color 0.3s ease;
+}
+
+blockquote {
+  border-left: 4px solid #00BCF2;
+  background-color: #f8f9fa;
+  padding: 15px 20px;
+  margin: 20px 0;
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+}
+
+.line {
+  display: block;
+  position: relative;
+  padding-right: 160px;
+  line-height: 1.6;
+}
+
+.line::after {
+  content: "LinkedIn · @AshishZope";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 1.1px;
+  color: rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+  user-select: none;
+  pointer-events: none;
+}
+</style>
+
+<div class="modern-header">
+  <div>Azure Data Factory</div>
+  <div class="highlight">(ADF)</div>
+  <div class="subtitle">Cloud Data Integration Service</div>
+</div>
 
 # Table of Contents
 
