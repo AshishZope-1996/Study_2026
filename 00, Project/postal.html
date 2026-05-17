@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postal Address</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="container dashboard-container">
+
+    <header class="dashboard-header">
+        <div>
+            <h2>Postal Address</h2>
+            <p class="subtitle">Save your delivery address so your profile is complete.</p>
+        </div>
+        <button class="logout-button" onclick="logout()">Logout</button>
+    </header>
+
+    <nav class="page-nav">
+        <a class="nav-link" href="dashboard.html">Home</a>
+        <a class="nav-link" href="profile.html">Profile</a>
+        <a class="nav-link active" href="postal.html">Postal</a>
+    </nav>
+
+    <section class="card postal-card">
+        <h3>Postal Address</h3>
+        <form id="postalForm" onsubmit="savePostal(event)">
+            <label for="addressLine">Address</label>
+            <input type="text" id="addressLine" placeholder="Street address" />
+            <label for="city">City</label>
+            <input type="text" id="city" placeholder="City" />
+            <label for="state">State / Region</label>
+            <input type="text" id="state" placeholder="State or region" />
+            <label for="postalCode">Postal Code</label>
+            <input type="text" id="postalCode" placeholder="Postal code" />
+            <label for="country">Country</label>
+            <input type="text" id="country" placeholder="Country" />
+
+            <button type="submit" class="save-button">Save Address</button>
+        </form>
+
+        <div class="address-summary">
+            <h4>Saved Address</h4>
+            <p id="savedAddress">No postal details saved yet.</p>
+        </div>
+    </section>
+
+</div>
+
+<script src="js/postal.js"></script>
+
+</body>
+</html>

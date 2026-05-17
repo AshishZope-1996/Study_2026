@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="container dashboard-container">
+
+    <header class="dashboard-header">
+        <div>
+            <h2>Profile</h2>
+            <p class="subtitle">Your account details and saved information.</p>
+        </div>
+        <button class="logout-button" onclick="logout()">Logout</button>
+    </header>
+
+    <nav class="page-nav">
+        <a class="nav-link" href="dashboard.html">Home</a>
+        <a class="nav-link active" href="profile.html">Profile</a>
+        <a class="nav-link" href="postal.html">Postal</a>
+    </nav>
+
+    <section class="card profile-view">
+        <div class="profile-top">
+            <div class="profile-avatar">
+                <img id="profileImage" src="https://via.placeholder.com/120?text=?" alt="Profile Image">
+            </div>
+            <div class="profile-summary">
+                <h3 id="userName"></h3>
+                <p id="userEmail"></p>
+                <p id="userType"></p>
+            </div>
+        </div>
+        <div class="profile-meta">
+            <p><strong>User ID:</strong> <span id="userId"></span></p>
+            <p><strong>Account Type:</strong> <span id="userLoginType"></span></p>
+            <p><strong>Saved Address:</strong> <span id="addressSummary">No address saved</span></p>
+        </div>
+    </section>
+
+</div>
+
+<script src="js/profile.js"></script>
+
+</body>
+</html>

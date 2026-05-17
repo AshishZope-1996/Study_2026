@@ -21,57 +21,49 @@
 
 <body>
 
-<div class="container">
+<div class="container auth-card">
 
-    <h2>Login</h2>
-
-    <input type="email"
-           id="email"
-           placeholder="Enter Email">
-
-    <input type="password"
-           id="password"
-           placeholder="Enter Password">
-
-    <button onclick="login()">
-        Login
-    </button>
-
-    <br><br>
-
-    <!-- GOOGLE SIGNIN -->
-
-    <div id="g_id_onload"
-         data-client_id="220354237347-5oa25ooc08sqslibppont80nsupglvie.apps.googleusercontent.com"
-         data-callback="handleGoogleSignin">
+    <div class="auth-header">
+        <h2>Welcome Back</h2>
+        <p>Login to continue to your profile and postal dashboard.</p>
     </div>
 
-    <div class="g_id_signin"
-         data-type="standard"
-         data-size="large"
-         data-theme="outline"
-         data-text="signin_with"
-         data-shape="rectangular"
-         data-logo_alignment="left">
+    <div class="form-content">
+        <input type="email"
+               id="email"
+               placeholder="Enter Email">
+
+        <input type="password"
+               id="password"
+               placeholder="Enter Password">
+
+        <button class="primary-button" onclick="login()">
+            Login
+        </button>
+
+        <div class="separator">OR</div>
+
+        <!-- GOOGLE SIGNIN -->
+
+        <div id="g_id_onload"
+             data-client_id="220354237347-5oa25ooc08sqslibppont80nsupglvie.apps.googleusercontent.com"
+             data-callback="handleGoogleSignin">
+        </div>
+
+        <div class="g_id_signin"
+             data-type="standard"
+             data-size="large"
+             data-theme="outline"
+             data-text="signin_with"
+             data-shape="rectangular"
+             data-logo_alignment="left">
+        </div>
+
+        <div class="auth-links">
+            <a href="forgot-password.html">Forgot Password?</a>
+            <a href="signup.html">Create an account</a>
+        </div>
     </div>
-
-    <p>
-
-        <a href="forgot-password.html">
-            Forgot Password?
-        </a>
-
-    </p>
-
-    <p>
-
-        Don't have account?
-
-        <a href="signup.html">
-            Signup
-        </a>
-
-    </p>
 
 </div>
 
