@@ -2,58 +2,71 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Signup</title>
-
+    <title>Study Portal Signup</title>
     <link rel="stylesheet" href="css/style.css">
-
-    <!-- GOOGLE SIGNUP API -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-
 </head>
 
-<body>
+<body class="auth-page">
 
-    <div class="container">
+<div class="auth-grid">
 
-        <h2>Signup</h2>
+    <section class="auth-panel">
+        <div class="hero-badge">Study Portal</div>
+        <h1>Join your study community</h1>
+        <p>Create an account to track progress, manage your profile, and save postal details for certificates.</p>
 
-        <input type="text" id="name" placeholder="Enter Name">
+        <div class="hero-features">
+            <div>
+                <strong>Smart Dashboard</strong>
+                <span>One place for learning tools.</span>
+            </div>
+            <div>
+                <strong>Google Signup</strong>
+                <span>Quick and secure authentication.</span>
+            </div>
+            <div>
+                <strong>Mobile Ready</strong>
+                <span>Looks great on phones and desktops.</span>
+            </div>
+        </div>
+    </section>
 
-        <input type="email" id="email" placeholder="Enter Email">
-
-        <input type="password" id="password" placeholder="Enter Password">
-
-        <button onclick="signup()">
-            Signup
-        </button>
-
-        <br><br>
-
-        <!-- GOOGLE SIGNUP -->
-
-        <div id="g_id_onload" data-client_id="220354237347-5oa25ooc08sqslibppont80nsupglvie.apps.googleusercontent.com"
-            data-callback="handleGoogleSignup">
+    <section class="auth-card">
+        <div class="auth-card-header">
+            <h2>Create Account</h2>
+            <p>Start your study portal journey.</p>
         </div>
 
-        <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="signup_with"
-            data-shape="rectangular" data-logo_alignment="left">
+        <div class="form-content">
+            <input type="text" id="name" placeholder="Full name">
+            <input type="email" id="email" placeholder="Email address">
+            <input type="password" id="password" placeholder="Password">
+
+            <button class="primary-button" onclick="signup()">Signup</button>
+
+            <div class="separator">OR</div>
+
+            <div id="g_id_onload" data-client_id="220354237347-5oa25ooc08sqslibppont80nsupglvie.apps.googleusercontent.com"
+                 data-callback="handleGoogleSignup">
+            </div>
+
+            <div class="g_id_signin" data-type="standard" data-size="large" data-theme="filled_blue" data-text="signup_with"
+                 data-shape="pill" data-logo_alignment="left">
+            </div>
+
+            <div class="auth-links">
+                <a href="index.html">Already have account?</a>
+            </div>
         </div>
+    </section>
 
-        <p>
-            Already have account?
-            <a href="index.html">
-                Login
-            </a>
-        </p>
+</div>
 
-    </div>
-
-    <script src="js/signup.js"></script>
-    <script src="js/google-signup.js"></script>
+<script src="js/signup.js"></script>
+<script src="js/google-signup.js"></script>
 
 </body>
 

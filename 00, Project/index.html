@@ -2,73 +2,77 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
-
-    <title>Login</title>
-
+    <title>Study Portal Login</title>
     <link rel="stylesheet" href="css/style.css">
-
-    <!-- GOOGLE API -->
-
-    <script src="https://accounts.google.com/gsi/client"
-            async defer>
-    </script>
-
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 
-<body>
+<body class="auth-page">
 
-<div class="container auth-card">
+<div class="auth-grid">
 
-    <div class="auth-header">
-        <h2>Welcome Back</h2>
-        <p>Login to continue to your profile and postal dashboard.</p>
-    </div>
+    <section class="auth-panel">
+        <div class="hero-badge">Study Portal</div>
+        <h1>Welcome to your learning hub</h1>
+        <p>Login to access courses, profile details, postal address management, and study progress anywhere.</p>
 
-    <div class="form-content">
-        <input type="email"
-               id="email"
-               placeholder="Enter Email">
+        <div class="hero-features">
+            <div>
+                <strong>Course Library</strong>
+                <span>Track your study roadmap</span>
+            </div>
+            <div>
+                <strong>Fast Access</strong>
+                <span>Mobile-first experience</span>
+            </div>
+            <div>
+                <strong>Secure Login</strong>
+                <span>Easy sign-in with email or Google</span>
+            </div>
+        </div>
+    </section>
 
-        <input type="password"
-               id="password"
-               placeholder="Enter Password">
-
-        <button class="primary-button" onclick="login()">
-            Login
-        </button>
-
-        <div class="separator">OR</div>
-
-        <!-- GOOGLE SIGNIN -->
-
-        <div id="g_id_onload"
-             data-client_id="220354237347-5oa25ooc08sqslibppont80nsupglvie.apps.googleusercontent.com"
-             data-callback="handleGoogleSignin">
+    <section class="auth-card">
+        <div class="auth-card-header">
+            <h2>Sign in to Study</h2>
+            <p>Beautiful and responsive login for web and mobile.</p>
         </div>
 
-        <div class="g_id_signin"
-             data-type="standard"
-             data-size="large"
-             data-theme="outline"
-             data-text="signin_with"
-             data-shape="rectangular"
-             data-logo_alignment="left">
-        </div>
+        <div class="form-content">
+            <input type="email" id="email" placeholder="Email address">
+            <input type="password" id="password" placeholder="Password">
 
-        <div class="auth-links">
-            <a href="forgot-password.html">Forgot Password?</a>
-            <a href="signup.html">Create an account</a>
+            <button class="primary-button" onclick="login()">Login</button>
+
+            <div class="separator">OR</div>
+
+            <div id="g_id_onload"
+                 data-client_id="220354237347-5oa25ooc08sqslibppont80nsupglvie.apps.googleusercontent.com"
+                 data-callback="handleGoogleSignin">
+            </div>
+
+            <div class="g_id_signin"
+                 data-type="standard"
+                 data-size="large"
+                 data-theme="filled_blue"
+                 data-text="signin_with"
+                 data-shape="pill"
+                 data-logo_alignment="left">
+            </div>
+
+            <div class="auth-links">
+                <a href="forgot-password.html">Forgot password?</a>
+                <a href="signup.html">Create account</a>
+            </div>
         </div>
-    </div>
+    </section>
 
 </div>
 
 <script src="js/login.js"></script>
-
 </body>
 
 </html>

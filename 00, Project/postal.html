@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Postal Address</title>
+    <title>Study Portal Postal</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -11,11 +11,21 @@
 <div class="container dashboard-container">
 
     <header class="dashboard-header">
-        <div>
-            <h2>Postal Address</h2>
-            <p class="subtitle">Save your delivery address so your profile is complete.</p>
+        <div class="brand-block">
+            <div class="brand-logo">SP</div>
+            <div>
+                <h2>Postal Address</h2>
+                <p class="subtitle">Keep your address up to date for certificates and mailing.</p>
+            </div>
         </div>
-        <button class="logout-button" onclick="logout()">Logout</button>
+        <div class="header-actions">
+            <button class="mobile-menu-button" onclick="toggleMenu()" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <button class="logout-button" onclick="logout()">Logout</button>
+        </div>
     </header>
 
     <nav class="page-nav">
@@ -49,6 +59,7 @@
 
 </div>
 
+<script src="js/menu.js"></script>
 <script src="js/postal.js"></script>
 
 </body>

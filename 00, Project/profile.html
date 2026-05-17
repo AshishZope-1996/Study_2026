@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
+    <title>Study Portal Profile</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -11,11 +11,21 @@
 <div class="container dashboard-container">
 
     <header class="dashboard-header">
-        <div>
-            <h2>Profile</h2>
-            <p class="subtitle">Your account details and saved information.</p>
+        <div class="brand-block">
+            <div class="brand-logo">SP</div>
+            <div>
+                <h2>Profile</h2>
+                <p class="subtitle">Your study profile and account information.</p>
+            </div>
         </div>
-        <button class="logout-button" onclick="logout()">Logout</button>
+        <div class="header-actions">
+            <button class="mobile-menu-button" onclick="toggleMenu()" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <button class="logout-button" onclick="logout()">Logout</button>
+        </div>
     </header>
 
     <nav class="page-nav">
@@ -44,6 +54,7 @@
 
 </div>
 
+<script src="js/menu.js"></script>
 <script src="js/profile.js"></script>
 
 </body>
