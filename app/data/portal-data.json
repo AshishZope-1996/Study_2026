@@ -82,5 +82,66 @@
       "description": "A small app for tracking study hours and tasks.",
       "link": "https://example.com/study-planner"
     }
+  ],
+  "studyNotes": [
+    {
+      "id": "sql-notes",
+      "title": "SQL Notes",
+      "description": "Key SQL concepts and examples from the study collection.",
+      "path": "../01. SQL/Notes.md"
+    },
+    {
+      "id": "sql-interview",
+      "title": "SQL Interview Notes",
+      "description": "Interview-ready SQL questions and answers.",
+      "path": "../01. SQL/SQL Interview.md"
+    },
+    {
+      "id": "python-notes",
+      "title": "Python Notes",
+      "description": "Python learning notes and practical code snippets.",
+      "path": "../02. Python/Notes.md"
+    },
+    {
+      "id": "pyspark-notes",
+      "title": "PySpark Notes",
+      "description": "PySpark concepts and example flows from your workspace.",
+      "path": "../03. PySpark/Notes.md"
+    },
+    {
+      "id": "powerbi-notes",
+      "title": "Power BI Notes",
+      "description": "Power BI study notes for dashboard and analytics.",
+      "path": "../05. PowerBI/Notes.md"
+    },
+    {
+      "id": "adf-notes",
+      "title": "ADF Notes",
+      "description": "Azure Data Factory notes to support your study plan.",
+      "path": "../06. ADF/Notes.md"
+    }
+  ],
+  "studyVideos": [
+    {
+      "id": "video-sql",
+      "title": "SQL Basics in 20 Minutes",
+      "channel": "Simplilearn",
+      "url": "https://www.youtube.com/watch?v=HXV3zeQKqGY",
+      "thumbnail": "https://img.youtube.com/vi/HXV3zeQKqGY/hqdefault.jpg"
+    },
+    {
+      "id": "video-python",
+      "title": "Python Crash Course",
+      "channel": "Programming with Mosh",
+      "url": "https://www.youtube.com/watch?v=_uQrJ0TkZlc",
+      "thumbnail": "https://img.youtube.com/vi/_uQrJ0TkZlc/hqdefault.jpg"
+    },
+    {
+      "id": "video-pbi",
+      "title": "Power BI Dashboard Tutorial",
+      "channel": "Learnit Training",
+      "url": "https://www.youtube.com/watch?v=AGrl-H87pRU",
+      "thumbnail": "https://img.youtube.com/vi/AGrl-H87pRU/hqdefault.jpg"
+    }
   ]
 }

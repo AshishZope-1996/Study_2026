@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Notes - Study Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-body">
+
+<div class="loader-overlay" id="globalLoader">
+    <div class="loader"></div>
+    <p>Loading your study notes...</p>
+</div>
+
+<div class="container study-page">
+    <header class="dashboard-header">
+        <div class="brand-block">
+            <button class="mobile-menu-button" onclick="toggleMenu()" aria-label="Open navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="brand-logo">SP</div>
+            <div>
+                <p class="eyebrow">Study Notes</p>
+                <h1>Project-level learning</h1>
+                <p class="subtitle">Click any note to render the best markdown details for SQL, Python, PySpark, Power BI and more.</p>
+            </div>
+        </div>
+        <button class="logout-button" onclick="logout()">Logout</button>
+    </header>
+
+    <nav class="page-nav">
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="study.html" class="nav-link active">Study Notes</a>
+        <a href="profile.html" class="nav-link">Profile</a>
+        <a href="postal.html" class="nav-link">Postal</a>
+        <a href="signup.html" class="nav-link">New Account</a>
+        <a href="forgot-password.html" class="nav-link">Help</a>
+    </nav>
+
+    <section class="study-grid">
+        <aside class="study-sidebar card">
+            <div class="sidebar-header">
+                <h2>Note categories</h2>
+                <p>Fast access to markdown assets from your workspace.</p>
+            </div>
+            <div class="study-list" id="studyList"></div>
+        </aside>
+
+        <main class="study-content card">
+            <div class="study-toolbar">
+                <div>
+                    <span class="pill">Markdown viewer</span>
+                    <span id="currentNoteLabel" class="label-secondary">Choose a note</span>
+                </div>
+            </div>
+            <article class="markdown-body" id="noteContent">
+                <h2>Pick a note from the left menu</h2>
+                <p>The content will render here instantly and also cache in your browser for faster loads.</p>
+            </article>
+            <div class="video-section">
+                <h2>Recommended videos</h2>
+                <div class="video-grid" id="studyVideoList"></div>
+            </div>
+        </main>
+    </section>
+</div>
+
+<script src="js/data-store.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/menu.js"></script>
+<script src="js/study.js"></script>
+</body>
+</html>

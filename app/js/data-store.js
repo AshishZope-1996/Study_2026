@@ -17,13 +17,26 @@ async function fetchPortalDataFile() {
     }
 }
 
+async function fetchUserSeedFile() {
+    try {
+        const response = await fetch("data/users.json");
+        if (!response.ok) {
+            throw new Error("Failed to fetch user seed file");
+        }
+        return await response.json();
+    } catch (error) {
+        return [];
+    }
+}
+
 async function initPortalData() {
     if (!localStorage.getItem("portalData")) {
         const data = await fetchPortalDataFile();
         localStorage.setItem("portalData", JSON.stringify(data));
     }
     if (!localStorage.getItem("users")) {
-        localStorage.setItem("users", JSON.stringify([]));
+        const seedUsers = await fetchUserSeedFile();
+        localStorage.setItem("users", JSON.stringify(seedUsers));
     }
     if (!localStorage.getItem("googleUsers")) {
         localStorage.setItem("googleUsers", JSON.stringify([]));
@@ -52,4 +65,29 @@ function getStoredGoogleUsers() {
 
 function saveStoredGoogleUsers(users) {
     localStorage.setItem("googleUsers", JSON.stringify(users));
+}
+
+const cacheConfig = {
+    markdownTtl: 1000 * 60 * 60 * 8,
+};
+
+function getCachedMarkdown(key) {
+    const cache = JSON.parse(localStorage.getItem('markdownCache') || '{}');
+    const entry = cache[key];
+    if (!entry) return null;
+    if (Date.now() - entry.timestamp > cacheConfig.markdownTtl) {
+        delete cache[key];
+        localStorage.setItem('markdownCache', JSON.stringify(cache));
+        return null;
+    }
+    return entry.content;
+}
+
+function saveCachedMarkdown(key, content) {
+    const cache = JSON.parse(localStorage.getItem('markdownCache') || '{}');
+    cache[key] = {
+        content,
+        timestamp: Date.now()
+    };
+    localStorage.setItem('markdownCache', JSON.stringify(cache));
 }

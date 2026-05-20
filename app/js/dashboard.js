@@ -15,7 +15,7 @@ async function loadDashboard() {
     statsGrid.innerHTML = `
         <div class="stat-card">
             <h4>Hours studied</h4>
-            <span>${Math.floor(Math.random() * 50) + 20}</span>
+            <span>${Math.floor(Math.random() * 60) + 30}</span>
         </div>
         <div class="stat-card">
             <h4>Certifications</h4>
@@ -26,8 +26,8 @@ async function loadDashboard() {
             <span>${portalData.projects.length}</span>
         </div>
         <div class="stat-card">
-            <h4>Study notes</h4>
-            <span>${portalData.studyMaterials.length}</span>
+            <h4>Study Notes</h4>
+            <span>${portalData.studyNotes ? portalData.studyNotes.length : 0}</span>
         </div>
     `;
 
@@ -39,6 +39,19 @@ async function loadDashboard() {
             <a href="${item.link}" target="_blank">Open resource</a>
         </div>
     `).join('');
+
+    const studyNotesSection = document.getElementById('studyNotesList');
+    if (studyNotesSection) {
+        studyNotesSection.innerHTML = (portalData.studyNotes || []).map(note => `
+            <a class="note-card" href="study.html?note=${encodeURIComponent(note.id)}">
+                <div>
+                    <h4>${note.title}</h4>
+                    <p>${note.description}</p>
+                </div>
+                <span>Open</span>
+            </a>
+        `).join('');
+    }
 
     const certificationsList = document.getElementById('certificationsList');
     certificationsList.innerHTML = portalData.certifications.map(cert => `
@@ -58,6 +71,19 @@ async function loadDashboard() {
             <a href="${project.link}" target="_blank">View project</a>
         </div>
     `).join('');
+
+    const videoList = document.getElementById('videoList');
+    if (videoList) {
+        videoList.innerHTML = (portalData.studyVideos || []).map(video => `
+            <a class="video-card" href="${video.url}" target="_blank">
+                <img src="${video.thumbnail}" alt="${video.title}">
+                <div>
+                    <h4>${video.title}</h4>
+                    <p>${video.channel}</p>
+                </div>
+            </a>
+        `).join('');
+    }
 
     hideLoader();
 }
