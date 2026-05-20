@@ -1,36 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Study Portal Login</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
-
 <body class="auth-page">
+
+<div class="loader-overlay" id="globalLoader">
+    <div class="loader"></div>
+    <p>Preparing your study portal...</p>
+</div>
 
 <div class="auth-grid">
 
     <section class="auth-panel">
         <div class="hero-badge">Study Portal</div>
         <h1>Welcome to your learning hub</h1>
-        <p>Login to access courses, profile details, postal address management, and study progress anywhere.</p>
+        <p>Login to access courses, profile details, postal address management, certifications, projects and study resources.</p>
 
         <div class="hero-features">
             <div>
-                <strong>Course Library</strong>
-                <span>Track your study roadmap</span>
+                <strong>Study Materials</strong>
+                <span>Find curated resources across technologies.</span>
             </div>
             <div>
-                <strong>Fast Access</strong>
-                <span>Mobile-first experience</span>
+                <strong>Portfolio Ready</strong>
+                <span>Track certifications and projects in one place.</span>
             </div>
             <div>
-                <strong>Secure Login</strong>
-                <span>Easy sign-in with email or Google</span>
+                <strong>Mobile First</strong>
+                <span>Smart design for phones and desktop screens.</span>
             </div>
         </div>
     </section>
@@ -38,7 +40,7 @@
     <section class="auth-card">
         <div class="auth-card-header">
             <h2>Sign in to Study</h2>
-            <p>Beautiful and responsive login for web and mobile.</p>
+            <p>Secure access to your study portal, projects, and certification tracker.</p>
         </div>
 
         <div class="form-content">
@@ -72,7 +74,8 @@
 
 </div>
 
+<script src="js/data-store.js"></script>
+<script src="js/ui.js"></script>
 <script src="js/login.js"></script>
 </body>
-
 </html>

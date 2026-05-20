@@ -1,38 +1,35 @@
-let user = JSON.parse(localStorage.getItem("loggedInUser"));
+async function loadProfile() {
+    showLoader('Loading profile details...');
+    await initPortalData();
 
-if (!user) {
-    window.location.href = "index.html";
-}
+    const portalData = getPortalData();
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || 'null');
+    if (!loggedInUser) {
+        window.location.href = 'index.html';
+        return;
+    }
 
-const profileImage = document.getElementById("profileImage");
-const userName = document.getElementById("userName");
-const userEmail = document.getElementById("userEmail");
-const userType = document.getElementById("userType");
-const userId = document.getElementById("userId");
-const userLoginType = document.getElementById("userLoginType");
-const addressSummary = document.getElementById("addressSummary");
+    document.getElementById('profileName').textContent = loggedInUser.name || loggedInUser.email;
+    document.getElementById('profileEmail').textContent = loggedInUser.email;
+    document.getElementById('profileJoined').textContent = `Joined on ${loggedInUser.joined || 'Unknown'}`;
+    document.getElementById('accountType').textContent = loggedInUser.type || 'Standard';
+    document.getElementById('accountEmail').textContent = loggedInUser.email;
+    document.getElementById('profileBio').textContent = 'Your study portal profile saves your certifications, projects and materials in one place.';
 
-userName.innerText = user.name || "Guest User";
-userEmail.innerText = user.email || "No email provided";
-userType.innerText = user.loginType === "google" ? "Google Account" : "Standard Account";
-userId.innerText = user.id || "—";
-userLoginType.innerText = user.loginType || "password";
-addressSummary.innerText = getAddressText();
+    document.getElementById('certCount').textContent = portalData.certifications.length;
+    document.getElementById('projectCount').textContent = portalData.projects.length;
+    document.getElementById('materialCount').textContent = portalData.studyMaterials.length;
+    document.getElementById('techCount').textContent = portalData.technologies.length;
 
-if (user.picture) {
-    profileImage.src = user.picture;
-} else {
-    const initials = user.name ? user.name.trim()[0].toUpperCase() : "U";
-    profileImage.src = `https://via.placeholder.com/120/007bff/ffffff?text=${initials}`;
-}
+    const avatarImage = document.getElementById('avatarImage');
+    avatarImage.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(loggedInUser.name || loggedInUser.email)}&background=38bdf8&color=0f172a&size=256`;
 
-function getAddressText() {
-    const parts = [user.addressLine, user.city, user.state, user.postalCode, user.country].filter(Boolean);
-    return parts.length ? parts.join(", ") : "No address saved";
+    hideLoader();
 }
 
 function logout() {
-    localStorage.removeItem("loggedInUser");
-    alert("Logout Successful");
-    window.location.href = "index.html";
+    localStorage.removeItem('loggedInUser');
+    window.location.href = 'index.html';
 }
+
+window.addEventListener('DOMContentLoaded', loadProfile);

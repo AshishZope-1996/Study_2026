@@ -1,0 +1,86 @@
+{
+  "technologies": [
+    "HTML & CSS",
+    "JavaScript",
+    "Python",
+    "SQL",
+    "Power BI",
+    "Azure Data Factory"
+  ],
+  "studyMaterials": [
+    {
+      "id": 1,
+      "title": "Responsive Web Design Basics",
+      "tech": "HTML & CSS",
+      "type": "Article",
+      "link": "https://developer.mozilla.org/en-US/docs/Learn/CSS"
+    },
+    {
+      "id": 2,
+      "title": "JavaScript Fundamentals",
+      "tech": "JavaScript",
+      "type": "Course",
+      "link": "https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/"
+    },
+    {
+      "id": 3,
+      "title": "Python for Everybody",
+      "tech": "Python",
+      "type": "Course",
+      "link": "https://www.coursera.org/specializations/python"
+    },
+    {
+      "id": 4,
+      "title": "SQL Querying Essentials",
+      "tech": "SQL",
+      "type": "Article",
+      "link": "https://mode.com/sql-tutorial/"
+    },
+    {
+      "id": 5,
+      "title": "Power BI Dashboard Design",
+      "tech": "Power BI",
+      "type": "Guide",
+      "link": "https://docs.microsoft.com/en-us/power-bi/"
+    },
+    {
+      "id": 6,
+      "title": "Azure Data Factory Intro",
+      "tech": "Azure Data Factory",
+      "type": "Video",
+      "link": "https://learn.microsoft.com/en-us/azure/data-factory/"
+    }
+  ],
+  "certifications": [
+    {
+      "id": 1,
+      "title": "Front-End Web Developer",
+      "issuer": "FreeCodeCamp",
+      "year": "2024",
+      "description": "Completed responsive web design and JavaScript modules."
+    },
+    {
+      "id": 2,
+      "title": "Python Programmer",
+      "issuer": "SoloLearn",
+      "year": "2024",
+      "description": "Basics of Python programming, data structures, and scripting."
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "title": "Portfolio Website",
+      "tech": "HTML/CSS",
+      "description": "A responsive portfolio to showcase completed projects.",
+      "link": "https://example.com/portfolio"
+    },
+    {
+      "id": 2,
+      "title": "Study Planner App",
+      "tech": "JavaScript",
+      "description": "A small app for tracking study hours and tasks.",
+      "link": "https://example.com/study-planner"
+    }
+  ]
+}

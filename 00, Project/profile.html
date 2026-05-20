@@ -3,59 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Study Portal Profile</title>
+    <title>Profile - Study Portal</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="page-body">
 
-<div class="container dashboard-container">
+<div class="loader-overlay" id="globalLoader">
+    <div class="loader"></div>
+    <p>Loading profile...</p>
+</div>
 
+<div class="container profile-page">
     <header class="dashboard-header">
         <div class="brand-block">
-            <div class="brand-logo">SP</div>
-            <div>
-                <h2>Profile</h2>
-                <p class="subtitle">Your study profile and account information.</p>
-            </div>
-        </div>
-        <div class="header-actions">
-            <button class="mobile-menu-button" onclick="toggleMenu()" aria-label="Toggle menu">
+            <button class="mobile-menu-button" onclick="toggleMenu()" aria-label="Open navigation menu">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
-            <button class="logout-button" onclick="logout()">Logout</button>
+            <div class="brand-logo">SP</div>
+            <div>
+                <p class="eyebrow">Profile</p>
+                <h1>Your account</h1>
+                <p class="subtitle">Manage your study profile, certifications, projects and account details.</p>
+            </div>
         </div>
+        <button class="logout-button" onclick="logout()">Logout</button>
     </header>
 
     <nav class="page-nav">
-        <a class="nav-link" href="dashboard.html">Home</a>
-        <a class="nav-link active" href="profile.html">Profile</a>
-        <a class="nav-link" href="postal.html">Postal</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="profile.html" class="nav-link active">Profile</a>
+        <a href="postal.html" class="nav-link">Postal</a>
+        <a href="signup.html" class="nav-link">New Account</a>
+        <a href="forgot-password.html" class="nav-link">Help</a>
     </nav>
 
-    <section class="card profile-view">
-        <div class="profile-top">
-            <div class="profile-avatar">
-                <img id="profileImage" src="https://via.placeholder.com/120?text=?" alt="Profile Image">
+    <section class="profile-view">
+        <div class="card profile-card">
+            <div class="profile-top">
+                <div class="profile-avatar" id="profileAvatar">
+                    <img id="avatarImage" src="" alt="Profile avatar">
+                </div>
+                <div class="profile-summary">
+                    <h2 id="profileName">John Doe</h2>
+                    <p id="profileEmail">email@example.com</p>
+                    <p id="profileJoined">Joined on</p>
+                </div>
             </div>
-            <div class="profile-summary">
-                <h3 id="userName"></h3>
-                <p id="userEmail"></p>
-                <p id="userType"></p>
+            <div class="profile-meta">
+                <p id="profileBio">Your study portal keeps track of your certifications, projects and materials in one place.</p>
             </div>
         </div>
-        <div class="profile-meta">
-            <p><strong>User ID:</strong> <span id="userId"></span></p>
-            <p><strong>Account Type:</strong> <span id="userLoginType"></span></p>
-            <p><strong>Saved Address:</strong> <span id="addressSummary">No address saved</span></p>
+
+        <div class="stats-grid profile-stats">
+            <div class="stat-card">
+                <h4>Certifications</h4>
+                <span id="certCount">0</span>
+            </div>
+            <div class="stat-card">
+                <h4>Projects</h4>
+                <span id="projectCount">0</span>
+            </div>
+            <div class="stat-card">
+                <h4>Materials</h4>
+                <span id="materialCount">0</span>
+            </div>
+            <div class="stat-card">
+                <h4>Technologies</h4>
+                <span id="techCount">0</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>User activity</h2>
+            <div class="content-list">
+                <div class="item-card">
+                    <h4>Account type</h4>
+                    <p id="accountType">Standard</p>
+                </div>
+                <div class="item-card">
+                    <h4>Profile email</h4>
+                    <p id="accountEmail">email@example.com</p>
+                </div>
+            </div>
         </div>
     </section>
-
 </div>
 
+<script src="js/data-store.js"></script>
+<script src="js/ui.js"></script>
 <script src="js/menu.js"></script>
 <script src="js/profile.js"></script>
-
 </body>
 </html>

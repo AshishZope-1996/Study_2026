@@ -1,86 +1,26 @@
-function handleGoogleSignup(response) {
+async function handleGoogleSignup(response) {
+    showLoader('Signing up with Google...');
+    await initPortalData();
 
-    let userData = parseJwt(response.credential);
+    const userData = parseJwt(response.credential);
+    const googleUsers = getStoredGoogleUsers();
+    const existingGoogleUser = googleUsers.find(user => user.email === userData.email);
 
-    console.log(userData);
-
-    let googleUsers = JSON.parse(
-        localStorage.getItem("googleUsers")
-    ) || [];
-
-    let existingGoogleUser = googleUsers.find(user =>
-        user.email === userData.email
-    );
-
-    if(existingGoogleUser){
-
-        alert("Google User Already Registered");
-
-        localStorage.setItem(
-            "loggedInUser",
-            JSON.stringify(existingGoogleUser)
-        );
-
-        window.location.href = "dashboard.html";
-
-        return;
-    }
-
-    let googleUser = {
-
-        id: userData.sub,
-
-        name: userData.name,
-
+    const newGoogleUser = {
+        name: userData.name || userData.email.split('@')[0],
         email: userData.email,
-
-        picture: userData.picture,
-
-        loginType: "google"
+        password: '',
+        joined: new Date().toLocaleDateString(),
+        type: 'Google'
     };
 
-    googleUsers.push(googleUser);
+    if (!existingGoogleUser) {
+        googleUsers.push(newGoogleUser);
+        saveStoredGoogleUsers(googleUsers);
+    }
 
-    localStorage.setItem(
-        "googleUsers",
-        JSON.stringify(googleUsers)
-    );
-
-    localStorage.setItem(
-        "loggedInUser",
-        JSON.stringify(googleUser)
-    );
-
-    alert("Google Signup Successful");
-
-    window.location.href = "dashboard.html";
-}
-
-
-/* ========================= */
-/* JWT TOKEN PARSER */
-/* ========================= */
-
-function parseJwt(token) {
-
-    let base64Url = token.split('.')[1];
-
-    let base64 = base64Url
-        .replace(/-/g, '+')
-        .replace(/_/g, '/');
-
-    let jsonPayload = decodeURIComponent(
-
-        atob(base64)
-        .split('')
-        .map(function(c) {
-
-            return '%' + ('00' +
-                c.charCodeAt(0).toString(16)).slice(-2);
-
-        }).join('')
-
-    );
-
-    return JSON.parse(jsonPayload);
+    localStorage.setItem('loggedInUser', JSON.stringify(existingGoogleUser || newGoogleUser));
+    await sleep(600);
+    hideLoader();
+    window.location.href = 'dashboard.html';
 }

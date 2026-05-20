@@ -1,62 +1,52 @@
-let user = JSON.parse(localStorage.getItem("loggedInUser"));
+async function loadPostal() {
+    showLoader('Loading address book...');
+    await initPortalData();
 
-if (!user) {
-    window.location.href = "index.html";
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || 'null');
+    if (!loggedInUser) {
+        window.location.href = 'index.html';
+        return;
+    }
+
+    const postalAddress = JSON.parse(localStorage.getItem('postalAddress') || 'null');
+    const postalSummary = document.getElementById('postalSummary');
+    if (postalAddress) {
+        postalSummary.innerHTML = `
+            <h4>Saved address</h4>
+            <p>${postalAddress.street}, ${postalAddress.city}, ${postalAddress.state} ${postalAddress.zip}, ${postalAddress.country}</p>
+        `;
+    } else {
+        postalSummary.innerHTML = `
+            <h4>Saved address</h4>
+            <p>No address saved yet.</p>
+        `;
+    }
+
+    hideLoader();
 }
 
-const addressLineInput = document.getElementById("addressLine");
-const cityInput = document.getElementById("city");
-const stateInput = document.getElementById("state");
-const postalCodeInput = document.getElementById("postalCode");
-const countryInput = document.getElementById("country");
-const savedAddress = document.getElementById("savedAddress");
+function savePostalAddress() {
+    const street = document.getElementById('street').value.trim();
+    const city = document.getElementById('city').value.trim();
+    const state = document.getElementById('state').value.trim();
+    const zip = document.getElementById('zip').value.trim();
+    const country = document.getElementById('country').value.trim();
 
-addressLineInput.value = user.addressLine || "";
-cityInput.value = user.city || "";
-stateInput.value = user.state || "";
-postalCodeInput.value = user.postalCode || "";
-countryInput.value = user.country || "";
+    if (!street || !city || !state || !zip || !country) {
+        alert('Please fill in all the address fields.');
+        return;
+    }
 
-updateAddressSummary();
+    const address = { street, city, state, zip, country };
+    localStorage.setItem('postalAddress', JSON.stringify(address));
 
-function savePostal(event) {
-    event.preventDefault();
+    const postalSummary = document.getElementById('postalSummary');
+    postalSummary.innerHTML = `
+        <h4>Saved address</h4>
+        <p>${street}, ${city}, ${state} ${zip}, ${country}</p>
+    `;
 
-    user.addressLine = addressLineInput.value.trim();
-    user.city = cityInput.value.trim();
-    user.state = stateInput.value.trim();
-    user.postalCode = postalCodeInput.value.trim();
-    user.country = countryInput.value.trim();
-
-    localStorage.setItem("loggedInUser", JSON.stringify(user));
-    updateStoredUser(user);
-    updateAddressSummary();
-
-    alert("Postal address saved successfully.");
+    alert('Postal address saved successfully.');
 }
 
-function updateAddressSummary() {
-    const parts = [user.addressLine, user.city, user.state, user.postalCode, user.country].filter(Boolean);
-    savedAddress.innerText = parts.length ? parts.join(", ") : "No postal details saved yet.";
-}
-
-function updateStoredUser(currentUser) {
-    ["users", "googleUsers"].forEach(key => {
-        const storedUsers = JSON.parse(localStorage.getItem(key)) || [];
-        const index = storedUsers.findIndex(item => item.email === currentUser.email);
-
-        if (index !== -1) {
-            storedUsers[index] = {
-                ...storedUsers[index],
-                ...currentUser
-            };
-            localStorage.setItem(key, JSON.stringify(storedUsers));
-        }
-    });
-}
-
-function logout() {
-    localStorage.removeItem("loggedInUser");
-    alert("Logout Successful");
-    window.location.href = "index.html";
-}
+window.addEventListener('DOMContentLoaded', loadPostal);

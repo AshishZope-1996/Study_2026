@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,28 +7,32 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
-
 <body class="auth-page">
+
+<div class="loader-overlay" id="globalLoader">
+    <div class="loader"></div>
+    <p>Preparing signup flow...</p>
+</div>
 
 <div class="auth-grid">
 
     <section class="auth-panel">
         <div class="hero-badge">Study Portal</div>
-        <h1>Join your study community</h1>
-        <p>Create an account to track progress, manage your profile, and save postal details for certificates.</p>
+        <h1>Join the study community</h1>
+        <p>Create your portal account and start tracking certifications, projects, and study materials every day.</p>
 
         <div class="hero-features">
             <div>
-                <strong>Smart Dashboard</strong>
-                <span>One place for learning tools.</span>
+                <strong>Certification tracker</strong>
+                <span>Log certificates and achievements.</span>
             </div>
             <div>
-                <strong>Google Signup</strong>
-                <span>Quick and secure authentication.</span>
+                <strong>Project showcase</strong>
+                <span>Save project ideas and links.</span>
             </div>
             <div>
-                <strong>Mobile Ready</strong>
-                <span>Looks great on phones and desktops.</span>
+                <strong>Study library</strong>
+                <span>Explore resources across technologies.</span>
             </div>
         </div>
     </section>
@@ -37,7 +40,7 @@
     <section class="auth-card">
         <div class="auth-card-header">
             <h2>Create Account</h2>
-            <p>Start your study portal journey.</p>
+            <p>Fast signup for your study portal experience.</p>
         </div>
 
         <div class="form-content">
@@ -58,16 +61,16 @@
             </div>
 
             <div class="auth-links">
-                <a href="index.html">Already have account?</a>
+                <a href="index.html">Already have an account?</a>
             </div>
         </div>
     </section>
 
 </div>
 
+<script src="js/data-store.js"></script>
+<script src="js/ui.js"></script>
 <script src="js/signup.js"></script>
 <script src="js/google-signup.js"></script>
-
 </body>
-
 </html>

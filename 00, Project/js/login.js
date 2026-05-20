@@ -1,121 +1,50 @@
-/* ============================ */
-/* NORMAL LOGIN */
-/* ============================ */
+async function login() {
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
 
-function login() {
-
-    let email =
-        document.getElementById("email").value;
-
-    let password =
-        document.getElementById("password").value;
-
-    let users =
-        JSON.parse(localStorage.getItem("users"))
-        || [];
-
-    let validUser = users.find(user =>
-
-        user.email === email &&
-        user.password === password
-
-    );
-
-    if(validUser){
-
-        localStorage.setItem(
-            "loggedInUser",
-            JSON.stringify(validUser)
-        );
-
-        alert("Login Successful");
-
-        window.location.href =
-            "dashboard.html";
+    if (!email || !password) {
+        alert('Please enter both email and password.');
+        return;
     }
-    else{
 
-        alert("Invalid Credentials");
+    showLoader('Signing you in...');
+    await initPortalData();
 
+    const users = getStoredUsers();
+    const validUser = users.find(user => user.email === email && user.password === password);
+
+    await sleep(400);
+
+    if (validUser) {
+        localStorage.setItem('loggedInUser', JSON.stringify(validUser));
+        hideLoader();
+        window.location.href = 'dashboard.html';
+    } else {
+        hideLoader();
+        alert('Invalid credentials or user not found.');
     }
 }
 
+function handleGoogleSignin(response) {
+    showLoader('Checking Google account...');
+    const userData = parseJwt(response.credential);
+    const googleUsers = getStoredGoogleUsers();
+    const existingGoogleUser = googleUsers.find(user => user.email === userData.email);
 
-/* ============================ */
-/* GOOGLE SIGNIN */
-/* ============================ */
-
-function handleGoogleSignin(response){
-
-    let userData =
-        parseJwt(response.credential);
-
-    console.log(userData);
-
-    let googleUsers =
-        JSON.parse(
-            localStorage.getItem("googleUsers")
-        ) || [];
-
-    let existingGoogleUser =
-        googleUsers.find(user =>
-
-            user.email === userData.email
-
-        );
-
-    /* CHECK USER EXISTS */
-
-    if(existingGoogleUser){
-
-        localStorage.setItem(
-            "loggedInUser",
-            JSON.stringify(existingGoogleUser)
-        );
-
-        alert("Google Login Successful");
-
-        window.location.href =
-            "dashboard.html";
-
-    }
-    else{
-
-        alert(
-            "Google Account Not Registered. Please Signup First."
-        );
-
-        window.location.href =
-            "signup.html";
+    if (existingGoogleUser) {
+        localStorage.setItem('loggedInUser', JSON.stringify(existingGoogleUser));
+        hideLoader();
+        window.location.href = 'dashboard.html';
+    } else {
+        hideLoader();
+        alert('Google account not registered. Please signup first.');
+        window.location.href = 'signup.html';
     }
 }
-
-
-/* ============================ */
-/* JWT PARSER */
-/* ============================ */
 
 function parseJwt(token) {
-
-    let base64Url = token.split('.')[1];
-
-    let base64 = base64Url
-        .replace(/-/g, '+')
-        .replace(/_/g, '/');
-
-    let jsonPayload = decodeURIComponent(
-
-        atob(base64)
-        .split('')
-        .map(function(c) {
-
-            return '%' + ('00' +
-                c.charCodeAt(0).toString(16))
-                .slice(-2);
-
-        }).join('')
-
-    );
-
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map(c => '%'+('00'+c.charCodeAt(0).toString(16)).slice(-2)).join(''));
     return JSON.parse(jsonPayload);
 }

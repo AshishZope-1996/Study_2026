@@ -1,30 +1,39 @@
-function signup(){
+async function signup() {
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
 
-    let name = document.getElementById("name").value;
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
-
-    let users = JSON.parse(localStorage.getItem("users")) || [];
-
-    let existingUser = users.find(user => user.email === email);
-
-    if(existingUser){
-        alert("User already exists");
+    if (!name || !email || !password) {
+        alert('Please provide your name, email, and password.');
         return;
     }
 
-    let user = {
-        id: Date.now(),
-        name: name,
-        email: email,
-        password: password
+    showLoader('Creating your account...');
+    await initPortalData();
+
+    const users = getStoredUsers();
+    const googleUsers = getStoredGoogleUsers();
+    const emailExists = users.some(user => user.email === email) || googleUsers.some(user => user.email === email);
+
+    if (emailExists) {
+        hideLoader();
+        alert('This email is already registered. Please login or use a different email.');
+        return;
+    }
+
+    const newUser = {
+        name,
+        email,
+        password,
+        joined: new Date().toLocaleDateString(),
+        type: 'Standard'
     };
 
-    users.push(user);
+    users.push(newUser);
+    saveStoredUsers(users);
+    localStorage.setItem('loggedInUser', JSON.stringify(newUser));
 
-    localStorage.setItem("users", JSON.stringify(users));
-
-    alert("Signup Successful");
-
-    window.location.href = "index.html";
+    await sleep(500);
+    hideLoader();
+    window.location.href = 'dashboard.html';
 }
