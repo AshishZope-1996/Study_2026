@@ -236,6 +236,51 @@ button:hover,
     border-color: rgba(10, 102, 194, 0.2);
 }
 
+.file-label {
+    display: block;
+    width: 100%;
+    margin-top: 18px;
+    padding: 16px 18px;
+    border-radius: 16px;
+    background: var(--surface-soft);
+    border: 1px dashed var(--border);
+    color: var(--text-primary);
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.file-label input {
+    display: none;
+}
+
+.file-list {
+    display: grid;
+    gap: 14px;
+    margin-top: 18px;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px;
+    border-radius: 18px;
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+}
+
+.file-item strong {
+    display: block;
+    color: var(--text-primary);
+}
+
+.profile-actions {
+    display: grid;
+    gap: 16px;
+    margin-top: 24px;
+}
+
 .separator {
     text-align: center;
     margin: 30px 0 0;

@@ -55,6 +55,23 @@
             <div class="profile-meta">
                 <p id="profileBio">Your study portal keeps track of your certifications, projects and materials in one place.</p>
             </div>
+            <div class="profile-actions">
+                <label class="file-label">
+                    Upload profile photo
+                    <input type="file" id="photoUpload" accept="image/*" onchange="uploadProfilePhoto(event)">
+                </label>
+                <label class="file-label">
+                    Upload certification document
+                    <input type="file" id="certUpload" accept="image/*,.pdf" onchange="uploadCertificationDocs(event)">
+                </label>
+            </div>
+        </div>
+
+        <div class="card certification-card">
+            <h2>Your certification documents</h2>
+            <div class="file-list" id="certList">
+                <p>No documents uploaded yet.</p>
+            </div>
         </div>
 
         <div class="stats-grid profile-stats">

@@ -67,6 +67,31 @@ function saveStoredGoogleUsers(users) {
     localStorage.setItem("googleUsers", JSON.stringify(users));
 }
 
+function getUserAssets(email) {
+    if (!email) return { photo: null, certificationDocs: [] };
+    const raw = localStorage.getItem(`userAssets:${email}`) || '{}';
+    try {
+        const assets = JSON.parse(raw);
+        return {
+            photo: assets.photo || null,
+            certificationDocs: assets.certificationDocs || []
+        };
+    } catch {
+        return { photo: null, certificationDocs: [] };
+    }
+}
+
+function saveUserAssets(email, assets) {
+    if (!email) return;
+    const existing = getUserAssets(email);
+    const merged = {
+        ...existing,
+        ...assets,
+        certificationDocs: assets.certificationDocs || existing.certificationDocs || []
+    };
+    localStorage.setItem(`userAssets:${email}`, JSON.stringify(merged));
+}
+
 const cacheConfig = {
     markdownTtl: 1000 * 60 * 60 * 8,
 };
