@@ -6,6 +6,10 @@ function getQueryParam(name) {
 function buildNoteList(notes) {
     const list = document.getElementById('studyList');
     if (!list) return;
+    if (!notes || notes.length === 0) {
+        list.innerHTML = `<div class="note-empty">No notes available. Please check your portal data.</div>`;
+        return;
+    }
 
     list.innerHTML = notes.map(note => `
         <button class="study-link" data-note="${note.id}">
@@ -18,9 +22,15 @@ function buildNoteList(notes) {
     `).join('');
 
     list.querySelectorAll('.study-link').forEach(item => {
-        item.addEventListener('click', () => {
+        item.addEventListener('click', async (e) => {
+            e.preventDefault();
             const noteId = item.dataset.note;
-            window.location.search = `?note=${encodeURIComponent(noteId)}`;
+            // load note without full page reload
+            await loadNoteContent(noteId, notes);
+            // update URL for shareability
+            try { history.pushState({}, '', `?note=${encodeURIComponent(noteId)}`); } catch (err) {}
+            // on mobile, close the sidebar after selection
+            closeStudySidebar();
         });
     });
 }
@@ -106,6 +116,12 @@ async function loadNoteContent(noteId, notes) {
 
     if (cached) {
         document.getElementById('noteContent').innerHTML = renderMarkdown(cached);
+        // persist last opened note for this user
+        try {
+            const lu = JSON.parse(localStorage.getItem('loggedInUser') || 'null');
+            const email = lu && (lu.email || lu.username);
+            if (email) saveUserData(email, { lastOpenedNote: note.id });
+        } catch (e) {}
         return;
     }
 
@@ -118,6 +134,12 @@ async function loadNoteContent(noteId, notes) {
         const text = await response.text();
         saveCachedMarkdown(note.id, text);
         document.getElementById('noteContent').innerHTML = renderMarkdown(text);
+        // persist last opened note for this user
+        try {
+            const lu = JSON.parse(localStorage.getItem('loggedInUser') || 'null');
+            const email = lu && (lu.email || lu.username);
+            if (email) saveUserData(email, { lastOpenedNote: note.id });
+        } catch (e) {}
     } catch (error) {
         document.getElementById('noteContent').innerHTML = `<p>Unable to load this note. Please check that the markdown file is available in the workspace.</p>`;
     } finally {
@@ -150,15 +172,45 @@ async function initStudyPage() {
         return;
     }
 
-    buildNoteList(portalData.studyNotes || []);
+    const userEmail = (loggedInUser && (loggedInUser.email || loggedInUser.username)) || null;
+    const userData = getUserData(userEmail || 'guest');
+
+    // If portalData doesn't contain studyNotes (old seed), refresh from file
+    let notes = portalData.studyNotes || [];
+    if (!notes || notes.length === 0) {
+        try {
+            const fresh = await fetchPortalDataFile();
+            if (fresh && fresh.studyNotes && fresh.studyNotes.length) {
+                savePortalData(fresh);
+                notes = fresh.studyNotes;
+            }
+        } catch (err) {
+            // ignore
+        }
+    }
+
+    buildNoteList(notes);
     loadVideoRecommendations(portalData.studyVideos || []);
 
-    const noteId = getQueryParam('note') || (portalData.studyNotes && portalData.studyNotes[0] && portalData.studyNotes[0].id);
+    const noteId = getQueryParam('note') || userData.lastOpenedNote || (notes && notes[0] && notes[0].id);
     if (noteId) {
-        await loadNoteContent(noteId, portalData.studyNotes || []);
+        await loadNoteContent(noteId, notes || []);
     }
 
     hideLoader();
+}
+
+// Mobile sidebar helpers
+function toggleStudySidebar() {
+    const sidebar = document.querySelector('.study-sidebar');
+    if (!sidebar) return;
+    sidebar.classList.toggle('active');
+}
+
+function closeStudySidebar() {
+    const sidebar = document.querySelector('.study-sidebar');
+    if (!sidebar) return;
+    sidebar.classList.remove('active');
 }
 
 function logout() {

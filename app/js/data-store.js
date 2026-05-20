@@ -116,3 +116,21 @@ function saveCachedMarkdown(key, content) {
     };
     localStorage.setItem('markdownCache', JSON.stringify(cache));
 }
+
+// Per-user persistent data (bookmarks, last opened note, preferences)
+function getUserData(email) {
+    if (!email) return {};
+    try {
+        const raw = localStorage.getItem(`userData:${email}`) || '{}';
+        return JSON.parse(raw);
+    } catch {
+        return {};
+    }
+}
+
+function saveUserData(email, data) {
+    if (!email) return;
+    const existing = getUserData(email);
+    const merged = { ...existing, ...data };
+    localStorage.setItem(`userData:${email}`, JSON.stringify(merged));
+}

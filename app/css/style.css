@@ -452,6 +452,10 @@ button:hover,
     grid-template-columns: 320px 1fr;
 }
 
+.study-sidebar {
+    transition: transform 0.28s cubic-bezier(.2,.8,.2,1), box-shadow 0.2s ease;
+}
+
 .profile-top,
 .dashboard-header {
     display: flex;
@@ -609,6 +613,98 @@ button:hover,
 
     .mobile-menu-button {
         display: flex;
+    }
+
+    .mobile-topbar {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 16px;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        border-radius: 0 0 12px 12px;
+        margin-bottom: 12px;
+    }
+
+    .mobile-topbar .mobile-brand {
+        font-weight: 800;
+        font-size: 1.05rem;
+    }
+
+    /* bottom mobile nav */
+    .mobile-bottom-nav {
+        position: fixed;
+        left: 12px;
+        right: 12px;
+        bottom: 14px;
+        height: 58px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        display: flex;
+        gap: 6px;
+        align-items: center;
+        justify-content: space-around;
+        z-index: 1400;
+        padding: 6px 12px;
+        box-shadow: 0 12px 30px rgba(2,6,23,0.12);
+    }
+
+    .mobile-nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        background: transparent;
+        border: none;
+        color: var(--text-secondary);
+        font-size: 11px;
+        width: 20%;
+    }
+
+    .mobile-nav-item svg { color: var(--text-secondary); }
+
+    .mobile-nav-item:active,
+    .mobile-nav-item:focus {
+        outline: none;
+        color: var(--accent);
+    }
+    
+    /* Notes sidebar becomes an overlay on mobile */
+    .study-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .study-sidebar {
+        position: fixed;
+        left: 0;
+        top: 86px;
+        height: calc(100% - 96px);
+        width: 78%;
+        max-width: 420px;
+        transform: translateX(-110%);
+        z-index: 1200;
+        box-shadow: 0 24px 60px rgba(16,24,40,0.2);
+        background: var(--surface);
+        overflow-y: auto;
+        border-radius: 12px;
+    }
+
+    .study-sidebar.active {
+        transform: translateX(0);
+    }
+
+    .mobile-notes-toggle {
+        display: inline-flex;
+        padding: 8px 12px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: var(--surface-soft);
+        color: var(--text-primary);
+        font-weight: 700;
+        margin-right: 12px;
+        cursor: pointer;
     }
 }
 
