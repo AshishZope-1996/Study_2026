@@ -13,7 +13,7 @@
     <header>
         <nav>
 
-            <h2 class="logo">Ashish Zope</h2>
+            <a class="logo" href="#home">Ashish Zope</a>
 
             <div class="hamburger" id="hamburger">
                 ☰
@@ -32,105 +32,124 @@
 
     <section id="home" class="hero">
 
-        <div class="hero-content">
+        <div class="hero-glow glow-one"></div>
+        <div class="hero-glow glow-two"></div>
 
+        <div class="hero-content reveal">
+
+            <p class="eyebrow">Data Engineer • Power BI • SQL • Azure</p>
             <h1>Hello, I'm Ashish Zope</h1>
 
-            <h3>Data Engineer | Power BI Developer | SQL Expert</h3>
+            <h3>Turning raw data into reliable insights and intelligent dashboards.</h3>
 
-            <p>
-                Passionate about building scalable data pipelines,
-                creating business intelligence solutions,
-                and transforming raw data into actionable insights.
+            <p class="lead">
+                I build scalable data pipelines, automate reporting workflows, and turn business questions
+                into clean analytics experiences with modern cloud tools.
             </p>
 
-            <a href="assets/resume.pdf" class="btn" download>
-                Download Resume
-            </a>
+            <div class="chip-row">
+                <span class="chip">ETL & Pipelines</span>
+                <span class="chip">Power BI</span>
+                <span class="chip">PySpark</span>
+                <span class="chip">Azure Data Factory</span>
+            </div>
+
+            <div class="hero-actions">
+                <a href="assets/Notes.pdf" class="btn primary" download>Download Notes</a>
+                <a href="#projects" class="btn secondary">View Projects</a>
+            </div>
+
+            <div class="stat-grid">
+                <article class="stat-card reveal">
+                    <strong>7+</strong>
+                    <span>Years of Data Experience</span>
+                </article>
+                <article class="stat-card reveal">
+                    <strong>100%</strong>
+                    <span>Focus on Actionable Insights</span>
+                </article>
+                <article class="stat-card reveal">
+                    <strong>24/7</strong>
+                    <span>Automation & Reporting Mindset</span>
+                </article>
+            </div>
 
         </div>
 
     </section>
 
-    <section id="about">
+    <section id="about" class="reveal">
 
         <h2>About Me</h2>
 
-        <p>
-            Experienced Data Engineer with expertise in SQL,
-            Python, Azure Data Factory, Power BI and PostgreSQL.
-            Passionate about data analytics, automation and
-            cloud-based data solutions.
-
-            I have received multiple appraisals, Spot Awards,
-            Catalyst Awards and have been part of award-winning teams.
-        </p>
+        <div class="about-box">
+            <p>
+                Experienced Data Engineer with expertise in SQL, Python, Azure Data Factory, Power BI,
+                and PostgreSQL. I enjoy designing reliable data workflows, creating BI dashboards, and
+                helping teams convert raw data into clear business decisions.
+            </p>
+            <p>
+                I have received multiple appraisals, Spot Awards, and Catalyst Awards, and I thrive in
+                fast-moving environments where analytics, automation, and cloud solutions make a real impact.
+            </p>
+        </div>
 
     </section>
 
-    <section id="skills">
+    <section id="skills" class="reveal">
 
         <h2>Skills</h2>
 
         <div class="skills-grid">
 
-            <div class="card">SQL</div>
-            <div class="card">Python</div>
-            <div class="card">Power BI</div>
-            <div class="card">Azure Data Factory</div>
-            <div class="card">PostgreSQL</div>
-            <div class="card">PySpark</div>
-            <div class="card">Data Warehousing</div>
-            <div class="card">ETL Pipelines</div>
+            <div class="card reveal">SQL</div>
+            <div class="card reveal">Python</div>
+            <div class="card reveal">Power BI</div>
+            <div class="card reveal">Azure Data Factory</div>
+            <div class="card reveal">PostgreSQL</div>
+            <div class="card reveal">PySpark</div>
+            <div class="card reveal">Data Warehousing</div>
+            <div class="card reveal">ETL Pipelines</div>
 
         </div>
 
     </section>
 
-    <section id="projects">
+    <section id="projects" class="reveal">
 
         <h2>Projects</h2>
 
         <div class="project-container">
 
-            <div class="project-card">
-
+            <article class="project-card reveal">
                 <h3>Exam Form Application</h3>
-
                 <p>
                     End-to-end exam form submission application
                     using HTML, CSS, JavaScript, Python Flask and PostgreSQL.
                 </p>
+            </article>
 
-            </div>
-
-            <div class="project-card">
-
+            <article class="project-card reveal">
                 <h3>Sales Analytics Dashboard</h3>
-
                 <p>
                     Power BI dashboard with advanced DAX,
                     KPI monitoring and business insights.
                 </p>
+            </article>
 
-            </div>
-
-            <div class="project-card">
-
+            <article class="project-card reveal">
                 <h3>ETL Pipeline Automation</h3>
-
                 <p>
                     Automated ETL solution using ADF,
                     Python and SQL for enterprise reporting.
                 </p>
-
-            </div>
+            </article>
 
         </div>
 
     </section>
 
-    <section id="contact">
+    <section id="contact" class="reveal">
 
         <h2>Contact Me</h2>
 
@@ -153,7 +172,7 @@
     <footer>
 
         <p>
-            © 2026 Ashish Zope | Data Engineer Portfolio
+            © <span id="year"></span> Ashish Zope | Data Engineer Portfolio
         </p>
 
     </footer>
