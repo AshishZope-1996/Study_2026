@@ -23,6 +23,8 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#notes">Notes</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -68,9 +70,9 @@
                     <strong>100%</strong>
                     <span>Focus on Actionable Insights</span>
                 </article>
-                <article class="stat-card reveal">
-                    <strong>24/7</strong>
-                    <span>Automation & Reporting Mindset</span>
+                <article class="stat-card reveal" id="visitorBox">
+                    <strong>0</strong>
+                    <span>Visitors Count</span>
                 </article>
             </div>
 
@@ -115,6 +117,51 @@
 
     </section>
 
+    <section id="certifications" class="reveal">
+
+        <h2>Certifications</h2>
+
+        <div class="project-container">
+            <article class="project-card reveal">
+                <h3>Azure Data Engineer</h3>
+                <p>Hands-on cloud data pipeline design, ETL orchestration, and scalable analytics with Azure services.</p>
+            </article>
+            <article class="project-card reveal">
+                <h3>Power BI Analytics</h3>
+                <p>Dashboard design, data modeling, KPI storytelling, and insight delivery for business teams.</p>
+            </article>
+            <article class="project-card reveal">
+                <h3>SQL & Python Proficiency</h3>
+                <p>Advanced querying, automation, and analytical workflows built for real-world enterprise use cases.</p>
+            </article>
+        </div>
+
+    </section>
+
+    <section id="notes" class="reveal">
+
+        <h2>My Notes</h2>
+
+        <div class="project-container">
+            <article class="project-card reveal">
+                <h3>SQL Notes</h3>
+                <p>Core interview-ready SQL concepts, joins, window functions, optimization tips, and practice patterns.</p>
+                <a class="btn secondary note-link" href="notes.html?file=sql-notes.md" target="_self">Open Notes</a>
+            </article>
+            <article class="project-card reveal">
+                <h3>Python Notes</h3>
+                <p>Powerful Python logic, data handling, scripting habits, and automation examples for data work.</p>
+                <a class="btn secondary note-link" href="notes.html?file=python-notes.md" target="_self">Open Notes</a>
+            </article>
+            <article class="project-card reveal">
+                <h3>PySpark Notes</h3>
+                <p>Big data processing, transformations, distributed computing guidance, and practical Spark patterns.</p>
+                <a class="btn secondary note-link" href="notes.html?file=pyspark-notes.md" target="_self">Open Notes</a>
+            </article>
+        </div>
+
+    </section>
+
     <section id="projects" class="reveal">
 
         <h2>Projects</h2>
@@ -153,7 +200,9 @@
 
         <h2>Contact Me</h2>
 
-        <form id="contactForm">
+        <form id="contactForm" class="contact-form">
+
+            <div id="formStatus" class="form-status" aria-live="polite"></div>
 
             <input type="text" placeholder="Your Name" required>
 

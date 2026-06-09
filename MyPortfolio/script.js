@@ -1,9 +1,25 @@
 const contactForm = document.getElementById("contactForm");
+const visitorBox = document.getElementById("visitorBox");
+
+if (visitorBox) {
+    const storedVisitors = Number(localStorage.getItem("portfolioVisitorCount") || 0);
+    const nextCount = storedVisitors + 1;
+    localStorage.setItem("portfolioVisitorCount", String(nextCount));
+    visitorBox.querySelector("strong").textContent = nextCount;
+}
 
 if (contactForm) {
+    const statusBox = document.getElementById("formStatus");
+
     contactForm.addEventListener("submit", function (e) {
         e.preventDefault();
-        alert("Thank you for contacting me. I will get back to you soon.");
+
+        if (statusBox) {
+            statusBox.textContent = "Thank you for contacting me. I will get back to you soon.";
+            statusBox.classList.add("show");
+            setTimeout(() => statusBox.classList.remove("show"), 3200);
+        }
+
         this.reset();
     });
 }

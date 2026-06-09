@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Notes | Ashish Zope</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body class="notes-page">
+  <header class="notes-header">
+    <nav class="notes-nav">
+      <a class="btn secondary" href="index.html" target="_self">← Back to Portfolio</a>
+      <span class="eyebrow">Dedicated Notes Hub</span>
+    </nav>
+  </header>
+
+  <main class="notes-shell reveal">
+    <aside class="notes-sidebar card">
+      <h2>Explore Notes</h2>
+      <p>Choose a topic and read a focused, interview-ready set of notes tailored for data and analytics interviews.</p>
+      <a class="note-chip" href="notes.html?file=sql-notes.md" target="_self">SQL Notes</a>
+      <a class="note-chip" href="notes.html?file=python-notes.md" target="_self">Python Notes</a>
+      <a class="note-chip" href="notes.html?file=pyspark-notes.md" target="_self">PySpark Notes</a>
+      <a class="note-chip" href="notes.html?file=interview-notes.md" target="_self">Interview Ready Guide</a>
+    </aside>
+
+    <section class="notes-stage">
+      <article class="notes-hero card reveal">
+        <p class="eyebrow">Curated for recruiters and interview prep</p>
+        <h1>Soft, modern notes designed to impress.</h1>
+        <p>Every page is built to feel premium, readable, and easy to explore in one calm flow.</p>
+      </article>
+
+      <article class="notes-content card" id="noteContent">
+        <p>Loading your selected notes...</p>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const file = params.get('file') || 'sql-notes.md';
+    const noteContent = document.getElementById('noteContent');
+    const noteMap = {
+      'sql-notes.md': '# SQL Notes\n\n## 1. Core Concepts\n- Use `SELECT`, `WHERE`, `GROUP BY`, `HAVING`, and `ORDER BY` to shape data.\n- `JOIN` combines related tables; prefer indexes on join keys.\n- `COUNT(*)`, `SUM()`, `AVG()`, and `MIN()/MAX()` are essential analytics functions.\n\n## 2. Interview Tips\n- Explain the difference between `INNER JOIN` and `LEFT JOIN` clearly.\n- Mention window functions like `ROW_NUMBER()`, `RANK()`, and `SUM() OVER()` for advanced analysis.\n- Optimize queries with selective filters and proper indexing.\n\n## 3. Practice Checklist\n1. Write a join query from two tables.\n2. Use `GROUP BY` with aggregate functions.\n3. Solve a ranking problem using window functions.',
+      'python-notes.md': '# Python Notes\n\n## 1. Data Engineering Basics\n- Use Python for ETL, file handling, API calls, and automation.\n- Common libraries: `pandas`, `requests`, `json`, `os`, and `pathlib`.\n- Keep scripts modular and readable for production use.\n\n## 2. Interview Focus\n- Explain how you handle missing values and clean messy data.\n- Show how you structure reusable functions and maintainable code.\n- Mention logging, error handling, and testing as strong engineering practices.\n\n## 3. Best Habits\n- Use virtual environments for project isolation.\n- Write small debug-friendly code blocks.\n- Document assumptions and data transformations clearly.',
+      'pyspark-notes.md': '# PySpark Notes\n\n## 1. Spark Fundamentals\n- Use `SparkSession` to start distributed processing.\n- Prefer DataFrame APIs for readability and performance.\n- Use `select`, `filter`, `groupBy`, and `join` for transformations.\n\n## 2. Optimization Tips\n- Cache intermediate results when reused multiple times.\n- Avoid small file reads and prefer partitioning strategies.\n- Leverage built-in functions for faster and cleaner ETL logic.\n\n## 3. Interview Angle\n- Explain how you handle large datasets and distributed execution.\n- Show how you validate output quality using counts and checkpoints.\n- Mention how you optimize pipelines for scale and reliability.',
+      'interview-notes.md': '# Interview Ready Guide\n\n## What recruiters look for\n- Clear communication and problem-solving structure.\n- Practical examples from real projects and data pipelines.\n- Strong understanding of SQL, Python, Azure, Power BI, and ETL.\n\n## Strong portfolio message\n- Show end-to-end thinking from data collection to insight delivery.\n- Highlight automation, dashboards, optimization, and business impact.\n- Keep your notes structured, visual, and easy to scan.\n\n## Suggested talking points\n1. Explain one project from requirement to deployment.\n2. Describe how you handled data quality and performance.\n3. Show how your portfolio reflects real engineering maturity.'
+    };
+
+    function escapeHtml(value) {
+      return value
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function renderMarkdown(markdown) {
+      const lines = markdown.replace(/\r\n/g, '\n').split('\n');
+      let html = '';
+      let paragraph = '';
+      let listType = null;
+      let listItems = [];
+
+      const flushParagraph = () => {
+        if (paragraph.trim()) {
+          html += `<p>${escapeHtml(paragraph.trim())}</p>`;
+          paragraph = '';
+        }
+      };
+
+      const flushList = () => {
+        if (!listItems.length) return;
+        const tag = listType === 'ol' ? 'ol' : 'ul';
+        html += `<${tag}>${listItems.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</${tag}>`;
+        listItems = [];
+        listType = null;
+      };
+
+      lines.forEach((line) => {
+        const trimmed = line.trim();
+
+        if (!trimmed) {
+          flushParagraph();
+          flushList();
+          return;
+        }
+
+        if (/^#{1,6}\s+/.test(trimmed)) {
+          flushParagraph();
+          flushList();
+          const level = trimmed.match(/^#+/)[0].length;
+          const text = trimmed.replace(/^#{1,6}\s+/, '');
+          html += `<h${level}>${escapeHtml(text)}</h${level}>`;
+          return;
+        }
+
+        if (/^\d+\.\s+/.test(trimmed)) {
+          flushParagraph();
+          if (listType !== 'ol') {
+            flushList();
+            listType = 'ol';
+          }
+          listItems.push(trimmed.replace(/^\d+\.\s+/, ''));
+          return;
+        }
+
+        if (/^[-*+]\s+/.test(trimmed)) {
+          flushParagraph();
+          if (listType !== 'ul') {
+            flushList();
+            listType = 'ul';
+          }
+          listItems.push(trimmed.replace(/^[-*+]\s+/, ''));
+          return;
+        }
+
+        flushList();
+        paragraph += (paragraph ? ' ' : '') + trimmed;
+      });
+
+      flushParagraph();
+      flushList();
+      return html;
+    }
+
+    async function loadNote() {
+      try {
+        const response = await fetch(`notes/${file}`, { cache: 'no-store' });
+        if (!response.ok) throw new Error('Unable to load note');
+        const markdown = await response.text();
+        noteContent.innerHTML = (typeof marked !== 'undefined' && marked.parse)
+          ? marked.parse(markdown)
+          : renderMarkdown(markdown);
+      } catch (error) {
+        const fallback = noteMap[file] || '# Notes\n\nThe selected note could not be loaded from the local file path. Please open the portfolio from the running local server to view the markdown notes.';
+        noteContent.innerHTML = (typeof marked !== 'undefined' && marked.parse)
+          ? marked.parse(fallback)
+          : renderMarkdown(fallback);
+      }
+    }
+
+    loadNote();
+  </script>
+</body>
+</html>
