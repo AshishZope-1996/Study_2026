@@ -1,6 +1,6 @@
 # SQL Complete Learning Roadmap
 
-This document is a complete, practical, and interview-ready guide to SQL. It explains the theory behind each concept, shows the correct syntax, and gives simple examples you can run in PostgreSQL or any standard SQL database.
+This document is a complete, theory-first and practice-focused guide to SQL. It explains the theory behind each concept, shows the correct syntax, and gives simple examples you can run in PostgreSQL or any standard SQL database.
 
 ---
 
