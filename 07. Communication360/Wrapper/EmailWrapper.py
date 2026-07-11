@@ -86,6 +86,58 @@ def log_to_db(RECEIVER, STATUS, CAMPAIGN_TYPE, ERROR=""):
         print(f"Database error while logging audit entry: {exc}")
 
 
+def get_campaign_catalog():
+    templates = []
+    campaigns = []
+
+    for campaign_name, campaign_config in CAMPAIGN_CONFIG.items():
+        if campaign_name == "LinkedIn":
+            campaigns.append({"key": "LinkedIn", "label": "LinkedIn Campaign"})
+            templates.append({
+                "campaign": "LinkedIn",
+                "template": campaign_config["template"],
+                "label": "LinkedIn Outreach",
+                "subject": campaign_config["subject"]
+            })
+        elif campaign_name == "Festival":
+            campaigns.append({"key": "Festival", "label": "Festival Campaign"})
+            for festival_name, festival_config in campaign_config.items():
+                templates.append({
+                    "campaign": "Festival",
+                    "template": festival_config["template"],
+                    "label": f"Festival - {festival_name}",
+                    "subject": festival_config["subject"]
+                })
+
+    return {"campaigns": campaigns, "templates": templates}
+
+
+def load_campaign_history(limit=20):
+    try:
+        with get_db_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    'SELECT "TimeStamp", "SentTo", "CampaignType", "Status", "ErrorMessage" '
+                    'FROM log."EmailAuditLog" ORDER BY "TimeStamp" DESC LIMIT %s',
+                    (limit,)
+                )
+                rows = cur.fetchall()
+
+        history = []
+        for timestamp, sent_to, campaign_type, status, error_message in rows:
+            history.append({
+                "timestamp": str(timestamp),
+                "sent_to": sent_to,
+                "campaign_type": campaign_type,
+                "status": status,
+                "error_message": error_message or ""
+            })
+        return history
+    except Exception as exc:
+        print(f"Database error while loading campaign history: {exc}")
+        return []
+
+
 def send_campaign_email(TEMPLATE_NAME, EMAIL_SUBJECT, CAMPAIGN_TYPE, RECIPIENTS=None):
     TOTAL_SENT = 0
     TOTAL_FAILED = 0

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campaign Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-body">
+
+<div class="loader-overlay" id="globalLoader">
+    <div class="loader"></div>
+    <p>Preparing your campaign workspace...</p>
+</div>
+
+<div class="container">
+    <header class="dashboard-header">
+        <div class="brand-block">
+            <button class="mobile-menu-button" onclick="toggleMenu()" aria-label="Open navigation menu">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="brand-logo">CP</div>
+            <div>
+                <p class="eyebrow">Campaign Portal</p>
+                <h1>Launch and track outreach campaigns</h1>
+                <p class="subtitle">Send polished campaigns through your email wrapper and review delivery history instantly.</p>
+            </div>
+        </div>
+        <button class="logout-button" onclick="logout()">Logout</button>
+    </header>
+
+    <nav class="page-nav">
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="study.html" class="nav-link">Study Notes</a>
+        <a href="profile.html" class="nav-link">Profile</a>
+        <a href="postal.html" class="nav-link">Postal</a>
+        <a href="campaign.html" class="nav-link active">Campaigns</a>
+        <a href="signup.html" class="nav-link">New Account</a>
+    </nav>
+
+    <section class="card">
+        <h2>Create campaign</h2>
+        <p>Pick a template, choose a campaign type, and launch to your saved recipients from the database.</p>
+
+        <div class="form-grid campaign-grid">
+            <label>
+                <span class="form-label">Campaign type</span>
+                <select id="campaignTypeSelect">
+                    <option value="">Select campaign</option>
+                </select>
+            </label>
+            <label>
+                <span class="form-label">Template</span>
+                <select id="templateSelect">
+                    <option value="">Select template</option>
+                </select>
+            </label>
+            <label>
+                <span class="form-label">Subject</span>
+                <input type="text" id="campaignSubject" placeholder="Enter email subject" />
+            </label>
+            <button class="save-button" id="sendCampaignBtn">Send campaign</button>
+        </div>
+
+        <div class="status-box" id="campaignStatus">Choose a template and send your campaign.</div>
+    </section>
+
+    <section class="card">
+        <div class="section-title-row">
+            <h2>Campaign history</h2>
+            <button class="secondary-button" id="refreshHistoryBtn">Refresh</button>
+        </div>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Recipient</th>
+                        <th>Campaign</th>
+                        <th>Status</th>
+                        <th>Message</th>
+                    </tr>
+                </thead>
+                <tbody id="historyTableBody">
+                    <tr><td colspan="5">Loading history…</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
+
+<script src="js/data-store.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/menu.js"></script>
+<script src="js/campaign.js"></script>
+</body>
+</html>
