@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Happy Diwali</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(180deg, #fff6e0 0%, #ffd580 100%);
+        font-family: 'Segoe UI', Arial, sans-serif;
+        color: #4a1900;
+      }
+
+      .wrapper {
+        text-align: center;
+        padding: 40px 0;
+      }
+
+      .card {
+        display: inline-block;
+        max-width: 650px;
+        background: #ffffff;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        border: 1px solid #f5ce7f;
+        transition: all 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+      }
+
+      .header {
+        background: radial-gradient(circle at top left, #ffb300, #ff6f00, #d45a00);
+        padding: 30px 15px;
+        color: #fff;
+        text-align: center;
+      }
+
+      /* ✅ Emoji alignment fix */
+      .header h1 {
+        font-size: 1.9rem;
+        margin: 0;
+        font-weight: 700;
+        color: #fff;
+        text-shadow: 1px 2px 6px rgba(0,0,0,0.3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .header h1 span.emoji {
+        font-size: 1.4rem;
+        line-height: 1;
+      }
+
+      .header p {
+        margin-top: 10px;
+        font-size: 1rem;
+        color: #fffbe9;
+      }
+
+      .banner img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .content {
+        padding: 30px 28px 10px 28px;
+        font-size: 1rem;
+        line-height: 1.8;
+        background: #fffaf1;
+        text-align: left;
+      }
+
+      .content strong {
+        color: #b23a00;
+        font-weight: 600;
+      }
+
+      .divider {
+        height: 2px;
+        background: linear-gradient(to right, transparent, #e5b04c, transparent);
+        margin: 20px 0;
+      }
+
+      .cta {
+        text-align: center;
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: #b23a00;
+        margin: 25px 0 20px;
+      }
+
+      .signature {
+        text-align: right;
+        color: #5b2300;
+        margin-top: 20px;
+        font-weight: 500;
+      }
+
+      .footer {
+        background: linear-gradient(90deg, #b23a00, #ff7b00, #b23a00);
+        color: #fff;
+        text-align: center;
+        padding: 18px 10px;
+        font-size: 0.9rem;
+        border-top: 2px solid #e5b04c;
+      }
+
+      /* ✅ Mobile responsive fix */
+      @media only screen and (max-width: 600px) {
+        .wrapper {
+          padding: 20px 10px;
+        }
+
+        .card {
+          width: 100%;
+          border-radius: 15px;
+        }
+
+        .header h1 {
+          font-size: 1.5rem;
+          gap: 4px;
+        }
+
+        .header h1 span.emoji {
+          font-size: 1.1rem;
+        }
+
+        .header p {
+          font-size: 0.9rem;
+          padding: 0 10px;
+        }
+
+        .content {
+          padding: 20px 15px;
+          text-align: center;
+        }
+
+        .content p {
+          font-size: 0.95rem;
+          line-height: 1.6;
+        }
+
+        .cta {
+          font-size: 1rem;
+        }
+
+        .signature {
+          text-align: center;
+          margin-top: 15px;
+        }
+
+        .footer {
+          font-size: 0.8rem;
+          padding: 15px 5px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="card">
+        <div class="header">
+          <h1 align="center;">
+            <span class="emoji">🪔</span>
+            <span class="emoji">✨</span>
+            <span class="emoji">🎆</span>
+            Happy Diwali
+            <span class="emoji">🎇</span>
+            <span class="emoji">✨</span>
+            <span class="emoji">🪔</span>
+          </h1>
+          <p>Let’s celebrate the festival of lights with love, joy, and togetherness</p>
+        </div>
+
+        <div class="banner">
+          <img src="cid:diwali_banner" alt="Diwali Diyas and Lights - Festival Celebration">
+        </div>
+
+        <div class="content">
+          <p>Dear <strong>{{NAME}},</strong></p>
+
+          <p>
+            On this beautiful occasion of <strong>Diwali</strong>, may your life be illuminated with happiness,
+            success, and prosperity. May every diya you light remove darkness from your path and fill your
+            heart with peace and positivity.
+          </p>
+
+          <div class="divider"></div>
+
+          <p>
+            Let this Diwali bring you endless moments of joy, harmony, and fulfillment.
+            Cherish the glow of lights, the warmth of love, and the sweetness of celebrations
+            with your family and friends.
+          </p>
+
+          <p class="cta">🌟 Wishing You and Your Loved Ones a Sparkling and Joyous Diwali 🌟</p>
+
+          <p class="signature">Warm regards,<br><strong>Ashish Zope</strong></p>
+        </div>
+
+        <div class="footer">
+          🌼 May your Diwali be filled with light, laughter & endless blessings 🌼<br>
+          © 2025 Ashish Zope
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
