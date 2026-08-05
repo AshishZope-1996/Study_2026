@@ -1,7 +1,7 @@
 
 
 
-# 📘 SQL Interview Questions with Queries
+# 📘 SQL Interview Questions with Queries 
 
 ### 🔹 Salary & Employee Queries
 
