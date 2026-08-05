@@ -3,9 +3,10 @@
 
 # 📘 SQL Interview Questions with Queries 
 
-### 🔹 Salary & Employee Queries
+<!-- ### 🔹 Salary & Employee Queries -->
 
-**1. Write a query to find the second highest salary.**  
+### 1. Write a query to find the second highest salary.
+
 
 ```sql
 SELECT MAX(salary) AS SecondHighestSalary
@@ -13,7 +14,8 @@ FROM employees
 WHERE salary < (SELECT MAX(salary) FROM employees);
 ```
 
-**2. Write a query to find the Nth highest salary.**  
+### 2. Write a query to find the Nth highest salary.
+
 
 ```sql
 SELECT DISTINCT salary
@@ -22,7 +24,8 @@ ORDER BY salary DESC
 LIMIT 1 OFFSET N-1;
 ```
 
-**3. Write a query to find employees earning more than their manager.**  
+### 3. Write a query to find employees earning more than their manager.
+
 
 ```sql
 SELECT e.name AS Employee, e.salary, m.name AS Manager, m.salary AS ManagerSalary
@@ -31,7 +34,8 @@ JOIN employees m ON e.manager_id = m.id
 WHERE e.salary > m.salary;
 ```
 
-**4. Write a query to find employees with the same salary as their manager.**  
+### 4. Write a query to find employees with the same salary as their manager.
+
 
 ```sql
 SELECT e.name AS Employee, e.salary, m.name AS Manager
@@ -40,7 +44,8 @@ JOIN employees m ON e.manager_id = m.id
 WHERE e.salary = m.salary;
 ```
 
-**5. Write a query to find employees earning above the company average salary.**  
+### 5. Write a query to find employees earning above the company average salary.
+
 
 ```sql
 SELECT name, salary
@@ -48,9 +53,10 @@ FROM employees
 WHERE salary > (SELECT AVG(salary) FROM employees)
 ORDER BY salary DESC;
 ```
-### 🔹 Aggregations & Grouping
+<!-- ### 🔹 Aggregations & Grouping -->
 
-**6. Write a query to find duplicate records.**  
+### 6. Write a query to find duplicate records.
+
 
 ```sql
 SELECT name, COUNT(*)
@@ -59,7 +65,8 @@ GROUP BY name
 HAVING COUNT(*) > 1;
 ```
 
-**7. Write a query to count employees per department having more than 5 employees.**  
+### 7. Write a query to count employees per department having more than 5 employees.
+
 
 ```sql
 SELECT department_id, COUNT(*) AS num_employees
@@ -68,7 +75,8 @@ GROUP BY department_id
 HAVING COUNT(*) > 5;
 ```
 
-**8. Write a query to perform conditional aggregation (male/female count).**  
+### 8. Write a query to perform conditional aggregation (male/female count).
+
 
 ```sql
 SELECT department_id,
@@ -78,16 +86,18 @@ FROM employees
 GROUP BY department_id;
 ```
 
-**9. Write a query to count employees per job title.**  
+### 9. Write a query to count employees per job title.
+
 
 ```sql
 SELECT job_title, COUNT(*) AS num_employees
 FROM employees
 GROUP BY job_title;
 ```
-### 🔹 Window Functions
+<!-- ### 🔹 Window Functions -->
 
-**10. Write a query to calculate running total of salaries by department.**  
+### 10. Write a query to calculate running total of salaries by department.
+
 
 ```sql
 SELECT name, department_id, salary,
@@ -95,7 +105,8 @@ SUM(salary) OVER (PARTITION BY department_id ORDER BY id) AS running_total
 FROM employees;
 ```
 
-**11. Write a query to calculate salary difference using LAG.**  
+### 11. Write a query to calculate salary difference using LAG.
+
 
 ```sql
 SELECT name, salary,
@@ -103,7 +114,8 @@ salary - LAG(salary) OVER (ORDER BY id) AS salary_diff
 FROM employees;
 ```
 
-**12. Write a query to rank employees by salary.**  
+### 12. Write a query to rank employees by salary.
+
 
 ```sql
 SELECT name, salary,
@@ -111,7 +123,8 @@ RANK() OVER (ORDER BY salary DESC) AS salary_rank
 FROM employees;
 ```
 
-**13. Write a query to list top 5 highest‑paid employees per department.**  
+### 13. Write a query to list top 5 highest‑paid employees per department.
+
 
 ```sql
 SELECT *
@@ -121,9 +134,10 @@ FROM (
 ) sub
 WHERE rn <= 5;
 ```
-### 🔹 Recursive Queries
+<!-- ### 🔹 Recursive Queries -->
 
-**14. Write a recursive query to find the full reporting chain.**  
+### 14. Write a recursive query to find the full reporting chain.
+
 
 ```sql
 WITH RECURSIVE reporting_chain AS (
@@ -138,7 +152,8 @@ WITH RECURSIVE reporting_chain AS (
 SELECT * FROM reporting_chain ORDER BY level, id;
 ```
 
-**15. Write a recursive query to detect circular references in hierarchy.**  
+### 15. Write a recursive query to detect circular references in hierarchy.
+
 
 ```sql
 WITH RECURSIVE mgr_path (id, manager_id, path) AS (
@@ -155,9 +170,10 @@ SELECT DISTINCT id
 FROM mgr_path
 WHERE id = ANY(path);
 ```
-### 🔹 Sales & Customer Queries
+<!-- ### 🔹 Sales & Customer Queries -->
 
-**16. Write a query to calculate running total of sales per customer.**  
+### 16. Write a query to calculate running total of sales per customer.
+
 
 ```sql
 SELECT customer_id, sale_date, amount,
@@ -165,7 +181,8 @@ SUM(amount) OVER (PARTITION BY customer_id ORDER BY sale_date) AS running_total
 FROM sales;
 ```
 
-**17. Write a query to calculate percentage change in monthly sales.**  
+### 17. Write a query to calculate percentage change in monthly sales.
+
 
 ```sql
 SELECT product_id, sale_month, total_sales,
@@ -178,7 +195,8 @@ FROM (
 ) monthly_sales;
 ```
 
-**18. Write a query to find top 3 products with highest sales each month.**  
+### 18. Write a query to find top 3 products with highest sales each month.
+
 
 ```sql
 WITH monthly_product_sales AS (
@@ -196,9 +214,10 @@ WHERE sales_rank <= 3
 ORDER BY month, sales_rank;
 ```
 
-### 🔹 Salary & Employee Queries
+<!-- ### 🔹 Salary & Employee Queries -->
 
-**19. Write a query to find employees with salary greater than average salary in the company, ordered by salary descending.**  
+### 19. Write a query to find employees with salary greater than average salary in the company, ordered by salary descending.
+
 
 ```sql
 SELECT name, salary
@@ -207,7 +226,8 @@ WHERE salary > (SELECT AVG(salary) FROM employees)
 ORDER BY salary DESC;
 ```
 
-**20. Write a query to aggregate employee names in a department as JSON array.**  
+### 20. Write a query to aggregate employee names in a department as JSON array.
+
 
 ```sql
 SELECT department_id, JSON_AGG(name) AS employee_names
@@ -215,7 +235,8 @@ FROM employees
 GROUP BY department_id;
 ```
 
-**21. Write a query to get the first and last purchase date for each customer.**  
+### 21. Write a query to get the first and last purchase date for each customer.
+
 
 ```sql
 SELECT customer_id,
@@ -225,7 +246,8 @@ FROM sales
 GROUP BY customer_id;
 ```
 
-**22. Write a query to find departments with the highest average salary.**  
+### 22. Write a query to find departments with the highest average salary.
+
 
 ```sql
 WITH avg_salaries AS (
@@ -238,7 +260,8 @@ FROM avg_salaries
 WHERE avg_salary = (SELECT MAX(avg_salary) FROM avg_salaries);
 ```
 
-**23. Write a query to find employees without a department assigned.**  
+### 23. Write a query to find employees without a department assigned.
+
 
 ```sql
 SELECT *
@@ -246,14 +269,16 @@ FROM employees
 WHERE department_id IS NULL;
 ```
 
-**24. Write a query to calculate the difference in days between two dates in the same table.**  
+### 24. Write a query to calculate the difference in days between two dates in the same table.
+
 
 ```sql
-SELECT id, DATEDIFF(day, start_date, end_date) AS days_difference
+SELECT id, EXTRACT(DAY FROM (end_date) - (start_date)) AS days_difference
 FROM projects;
 ```
 
-**25. Write a query to calculate moving average of salaries over last 3 employees ordered by hire date.**  
+### 25. Write a query to calculate moving average of salaries over last 3 employees ordered by hire date.
+
 
 ```sql
 SELECT name, hire_date, salary,
@@ -261,7 +286,8 @@ AVG(salary) OVER (ORDER BY hire_date ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) A
 FROM employees;
 ```
 
-**26. Write a query to find the most recent purchase per customer using window functions.**  
+### 26. Write a query to find the most recent purchase per customer using window functions.
+
 
 ```sql
 SELECT *
@@ -272,7 +298,8 @@ FROM (
 WHERE rn = 1;
 ```
 
-**27. Write a query to detect hierarchical depth of each employee.**  
+### 27. Write a query to detect hierarchical depth of each employee.
+
 
 ```sql
 WITH RECURSIVE employee_depth AS (
@@ -287,7 +314,8 @@ WITH RECURSIVE employee_depth AS (
 SELECT * FROM employee_depth;
 ```
 
-**28. Write a query to perform a self‑join to find pairs of employees in the same department.**  
+### 28. Write a query to perform a self‑join to find pairs of employees in the same department.
+
 
 ```sql
 SELECT e1.name AS Employee1, e2.name AS Employee2, e1.department_id
@@ -295,7 +323,8 @@ FROM employees e1
 JOIN employees e2 ON e1.department_id = e2.department_id AND e1.id < e2.id;
 ```
 
-**29. Write a query to pivot rows into columns (simulate fixed values).**  
+### 29. Write a query to pivot rows into columns (simulate fixed values).
+
 
 ```sql
 SELECT department_id,
@@ -306,7 +335,8 @@ FROM employees
 GROUP BY department_id;
 ```
 
-**30. Write a query to find customers who made purchases in every category.**  
+### 30. Write a query to find customers who made purchases in every category.
+
 
 ```sql
 SELECT customer_id
@@ -315,7 +345,8 @@ GROUP BY customer_id
 HAVING COUNT(DISTINCT category_id) = (SELECT COUNT(DISTINCT category_id) FROM sales);
 ```
 
-**31. Write a query to identify employees who haven’t received a raise in more than a year.**  
+### 31. Write a query to identify employees who haven’t received a raise in more than a year.
+
 
 ```sql
 SELECT e.name
@@ -325,7 +356,8 @@ GROUP BY e.id, e.name
 HAVING MAX(sh.raise_date) < CURRENT_DATE - INTERVAL '1 year';
 ```
 
-**32. Write a query to rank salespeople by monthly sales, resetting rank every month.**  
+### 32. Write a query to rank salespeople by monthly sales, resetting rank every month.
+
 
 ```sql
 SELECT salesperson_id, sale_month, total_sales,
@@ -337,7 +369,8 @@ FROM (
 ) monthly_sales;
 ```
 
-**33. Write a query to calculate percentage change in sales compared to previous month.**  
+### 33. Write a query to calculate percentage change in sales compared to previous month.
+
 
 ```sql
 SELECT product_id, sale_month, total_sales,
@@ -350,7 +383,8 @@ FROM (
 ) monthly_sales;
 ```
 
-**34. Write a query to retrieve last 5 orders for each customer.**  
+### 34. Write a query to retrieve last 5 orders for each customer.
+
 
 ```sql
 SELECT *
@@ -361,7 +395,8 @@ FROM (
 WHERE rn <= 5;
 ```
 
-**35. Write a query to find employees with no salary changes in last 2 years.**  
+### 35. Write a query to find employees with no salary changes in last 2 years.
+
 
 ```sql
 SELECT e.*
@@ -370,7 +405,8 @@ LEFT JOIN salary_history sh ON e.id = sh.employee_id AND sh.change_date >= CURRE
 WHERE sh.employee_id IS NULL;
 ```
 
-**36. Write a query to find department with lowest average salary.**  
+### 36. Write a query to find department with lowest average salary.
+
 
 ```sql
 SELECT department_id, AVG(salary) AS avg_salary
@@ -380,7 +416,8 @@ ORDER BY avg_salary
 LIMIT 1;
 ```
 
-**37. Write a query to list employees whose names start and end with same letter.**  
+### 37. Write a query to list employees whose names start and end with same letter.
+
 
 ```sql
 SELECT *
@@ -388,7 +425,8 @@ FROM employees
 WHERE LEFT(name, 1) = RIGHT(name, 1);
 ```
 
-**38. Write a query to detect circular references in employee‑manager hierarchy.**  
+### 38. Write a query to detect circular references in employee‑manager hierarchy.
+
 
 ```sql
 WITH RECURSIVE mgr_path (id, manager_id, path) AS (
@@ -406,7 +444,8 @@ FROM mgr_path
 WHERE id = ANY(path);
 ```
 
-**39. Write a query to get running total of sales per customer.**  
+### 39. Write a query to get running total of sales per customer.
+
 
 ```sql
 SELECT customer_id, sale_date, amount,
@@ -414,7 +453,8 @@ SUM(amount) OVER (PARTITION BY customer_id ORDER BY sale_date) AS running_total
 FROM sales;
 ```
 
-**40. Write a query to find department‑wise 90th percentile salary.**  
+### 40. Write a query to find department‑wise 90th percentile salary.
+
 
 ```sql
 SELECT department_id, salary,
@@ -422,7 +462,8 @@ PERCENTILE_CONT(0.9) WITHIN GROUP (ORDER BY salary) OVER (PARTITION BY departmen
 FROM employees;
 ```
 
-**41. Write a query to find employees whose salary is a prime number.**  
+### 41. Write a query to find employees whose salary is a prime number.
+
 
 ```sql
 WITH primes AS (
@@ -440,7 +481,8 @@ FROM employees
 WHERE salary IN (SELECT num FROM primes);
 ```
 
-**42. Write a query to find employees who worked in multiple departments.**  
+### 42. Write a query to find employees who worked in multiple departments.
+
 
 ```sql
 SELECT employee_id
@@ -449,7 +491,8 @@ GROUP BY employee_id
 HAVING COUNT(DISTINCT department_id) > 1;
 ```
 
-**43. Write a query to calculate difference between current and previous sales partitioned by product.**  
+### 43. Write a query to calculate difference between current and previous sales partitioned by product.
+
 
 ```sql
 SELECT product_id, sale_date, amount,
@@ -457,7 +500,8 @@ amount - LAG(amount) OVER (PARTITION BY product_id ORDER BY sale_date) AS sales_
 FROM sales;
 ```
 
-**44. Write a query to find employees at lowest level in hierarchy (no subordinates).**  
+### 44. Write a query to find employees at lowest level in hierarchy (no subordinates).
+
 
 ```sql
 SELECT *
@@ -465,7 +509,8 @@ FROM employees e
 WHERE NOT EXISTS (SELECT 1 FROM employees sub WHERE sub.manager_id = e.id);
 ```
 
-**45. Write a query to find average order value per month and category.**  
+### 45. Write a query to find average order value per month and category.
+
 
 ```sql
 SELECT DATE_TRUNC('month', order_date) AS order_month, category_id, AVG(order_value) AS avg_order_value
@@ -473,7 +518,8 @@ FROM orders
 GROUP BY order_month, category_id;
 ```
 
-**46. Write a query to create running count of employees joined each year.**  
+### 46. Write a query to create running count of employees joined each year.
+
 
 ```sql
 SELECT join_year, COUNT(*) AS yearly_hires,
@@ -486,9 +532,10 @@ GROUP BY join_year
 ORDER BY join_year;
 ```
 
-### 🔹 Ranking & Percentiles
+<!-- ### 🔹 Ranking & Percentiles -->
 
-**47. Write a query to rank employees by salary within their department and calculate percent rank.**  
+### 47. Write a query to rank employees by salary within their department and calculate percent rank.
+
 
 ```sql
 SELECT name, department_id, salary,
@@ -497,7 +544,8 @@ PERCENT_RANK() OVER (PARTITION BY department_id ORDER BY salary DESC) AS salary_
 FROM employees;
 ```
 
-**48. Write a query to find products that have never been sold.**  
+### 48. Write a query to find products that have never been sold.
+
 
 ```sql
 SELECT p.product_id, p.product_name
@@ -506,7 +554,8 @@ LEFT JOIN sales s ON p.product_id = s.product_id
 WHERE s.sale_id IS NULL;
 ```
 
-**49. Write a query to find consecutive days where sales were above a threshold.**  
+### 49. Write a query to find consecutive days where sales were above a threshold.
+
 
 ```sql
 WITH flagged_sales AS (
@@ -526,7 +575,8 @@ GROUP BY grp
 ORDER BY consecutive_days DESC;
 ```
 
-**50. Write a query to concatenate employee names in each department.**  
+### 50. Write a query to concatenate employee names in each department.
+
 
 ```sql
 SELECT department_id, STRING_AGG(name, ',') AS employee_names
@@ -534,7 +584,8 @@ FROM employees
 GROUP BY department_id;
 ```
 
-**51. Write a query to find employees whose salary is above their department’s average but below company‑wide average.**  
+### 51. Write a query to find employees whose salary is above their department’s average but below company‑wide average.
+
 
 ```sql
 SELECT *
@@ -543,7 +594,8 @@ WHERE salary > (SELECT AVG(salary) FROM employees WHERE department_id = e.depart
 AND salary < (SELECT AVG(salary) FROM employees);
 ```
 
-**52. Write a query to list customers who purchased all products in a specific category.**  
+### 52. Write a query to list customers who purchased all products in a specific category.
+
 
 ```sql
 SELECT customer_id
@@ -557,7 +609,8 @@ HAVING COUNT(DISTINCT product_id) = (
 );
 ```
 
-**53. Write a query to find employees with no entries in salary history.**  
+### 53. Write a query to find employees with no entries in salary history.
+
 
 ```sql
 SELECT e.*
@@ -566,7 +619,8 @@ LEFT JOIN salary_history sh ON e.id = sh.employee_id
 WHERE sh.employee_id IS NULL;
 ```
 
-**54. Write a query to show department with highest number of employees.**  
+### 54. Write a query to show department with highest number of employees.
+
 
 ```sql
 SELECT department_id, COUNT(*) AS employee_count
@@ -576,7 +630,8 @@ ORDER BY employee_count DESC
 LIMIT 1;
 ```
 
-**55. Write a recursive query to list all ancestors (managers) of a given employee.**  
+### 55. Write a recursive query to list all ancestors (managers) of a given employee.
+
 
 ```sql
 WITH RECURSIVE ancestors AS (
@@ -591,7 +646,8 @@ WITH RECURSIVE ancestors AS (
 SELECT * FROM ancestors WHERE id != 123;
 ```
 
-**56. Write a query to calculate median salary by department using window functions.**  
+### 56. Write a query to calculate median salary by department using window functions.
+
 
 ```sql
 SELECT DISTINCT department_id,
@@ -599,7 +655,8 @@ PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY salary) OVER (PARTITION BY departmen
 FROM employees;
 ```
 
-**57. Write a query to find first and last purchase date for each customer including non‑buyers.**  
+### 57. Write a query to find first and last purchase date for each customer including non‑buyers.
+
 
 ```sql
 SELECT c.customer_id,
@@ -610,7 +667,8 @@ LEFT JOIN sales s ON c.customer_id = s.customer_id
 GROUP BY c.customer_id;
 ```
 
-**58. Write a query to calculate percentage difference between each month’s sales and previous month.**  
+### 58. Write a query to calculate percentage difference between each month’s sales and previous month.
+
 
 ```sql
 WITH monthly_sales AS (
@@ -624,7 +682,8 @@ LAG(total_sales) OVER (ORDER BY month) AS pct_change
 FROM monthly_sales;
 ```
 
-**59. Write a query to find employees with longest tenure in their department.**  
+### 59. Write a query to find employees with longest tenure in their department.
+
 
 ```sql
 WITH tenure AS (
@@ -636,7 +695,8 @@ FROM tenure
 WHERE tenure_rank = 1;
 ```
 
-**60. Write a query to generate sales growth percentage compared to same month last year.**  
+### 60. Write a query to generate sales growth percentage compared to same month last year.
+
 
 ```sql
 WITH monthly_sales AS (
@@ -650,7 +710,8 @@ FROM monthly_sales ms1
 LEFT JOIN monthly_sales ms2 ON ms1.month = ms2.month + INTERVAL '1 year';
 ```
 
-**61. Write a query to identify overlapping shifts for employees.**  
+### 61. Write a query to identify overlapping shifts for employees.
+
 
 ```sql
 SELECT s1.employee_id, s1.shift_id AS shift1, s2.shift_id AS shift2
@@ -659,7 +720,8 @@ JOIN shifts s2 ON s1.employee_id = s2.employee_id AND s1.shift_id <> s2.shift_id
 WHERE s1.start_time < s2.end_time AND s1.end_time > s2.start_time;
 ```
 
-**62. Write a query to calculate total revenue per customer and rank them.**  
+### 62. Write a query to calculate total revenue per customer and rank them.
+
 
 ```sql
 SELECT customer_id, SUM(amount) AS total_revenue,
@@ -668,7 +730,8 @@ FROM sales
 GROUP BY customer_id;
 ```
 
-**63. Write a query to find employees who never received a promotion.**  
+### 63. Write a query to find employees who never received a promotion.
+
 
 ```sql
 SELECT e.*
@@ -677,7 +740,8 @@ LEFT JOIN promotions p ON e.id = p.employee_id
 WHERE p.employee_id IS NULL;
 ```
 
-**64. Write a query to find top 3 products with highest sales amount each month.**  
+### 64. Write a query to find top 3 products with highest sales amount each month.
+
 
 ```sql
 WITH monthly_product_sales AS (
@@ -695,7 +759,8 @@ WHERE sales_rank <= 3
 ORDER BY month, sales_rank;
 ```
 
-**65. Write a query to find customers who placed orders only in last 30 days.**  
+### 65. Write a query to find customers who placed orders only in last 30 days.
+
 
 ```sql
 SELECT DISTINCT customer_id
@@ -708,7 +773,8 @@ AND customer_id NOT IN (
 );
 ```
 
-**66. Write a query to find products that have never been ordered.**  
+### 66. Write a query to find products that have never been ordered.
+
 
 ```sql
 SELECT p.product_id, p.product_name
@@ -717,7 +783,8 @@ LEFT JOIN orders o ON p.product_id = o.product_id
 WHERE o.order_id IS NULL;
 ```
 
-**67. Write a query to calculate total sales amount and number of orders per customer in last year.**  
+### 67. Write a query to calculate total sales amount and number of orders per customer in last year.
+
 
 ```sql
 SELECT customer_id, COUNT(*) AS total_orders, SUM(amount) AS total_sales
@@ -726,7 +793,8 @@ WHERE sale_date >= CURRENT_DATE - INTERVAL '1 year'
 GROUP BY customer_id;
 ```
 
-**68. Write a query to find employees who have managed more than 3 projects.**  
+### 68. Write a query to find employees who have managed more than 3 projects.
+
 
 ```sql
 SELECT manager_id, COUNT(DISTINCT project_id) AS project_count
@@ -735,18 +803,20 @@ GROUP BY manager_id
 HAVING COUNT(DISTINCT project_id) > 3;
 ```
 
-### 🔹 Employee & Manager Queries
+<!-- ### 🔹 Employee & Manager Queries -->
 
-**69. Write a query to calculate the difference in days between each employee’s hire date and their manager’s hire date.**  
+### 69. Write a query to calculate the difference in days between each employee’s hire date and their manager’s hire date.
+
 
 ```sql
 SELECT e.name AS employee, m.name AS manager,
-DATEDIFF(day, m.hire_date, e.hire_date) AS days_difference
+EXTRACT(DAY FROM (e.hire_date) - (m.hire_date)) AS days_difference
 FROM employees e
 JOIN employees m ON e.manager_id = m.id;
 ```
 
-**70. Write a query to find the department with the highest average years of experience.**  
+### 70. Write a query to find the department with the highest average years of experience.
+
 
 ```sql
 SELECT department_id, AVG(EXTRACT(year FROM CURRENT_DATE - hire_date)) AS avg_experience_years
@@ -756,7 +826,8 @@ ORDER BY avg_experience_years DESC
 LIMIT 1;
 ```
 
-**71. Write a query to identify employees with overlapping project assignments.**  
+### 71. Write a query to identify employees with overlapping project assignments.
+
 
 ```sql
 SELECT p1.employee_id, p1.project_id AS project1, p2.project_id AS project2
@@ -765,7 +836,8 @@ JOIN project_assignments p2 ON p1.employee_id = p2.employee_id AND p1.project_id
 WHERE p1.start_date < p2.end_date AND p1.end_date > p2.start_date;
 ```
 
-**72. Write a query to find customers who made purchases in every month of the current year.**  
+### 72. Write a query to find customers who made purchases in every month of the current year.
+
 
 ```sql
 WITH months AS (SELECT generate_series(1, 12) AS month),
@@ -781,7 +853,8 @@ GROUP BY customer_id
 HAVING COUNT(DISTINCT month) = 12;
 ```
 
-**73. Write a query to list employees who earn more than all their subordinates.**  
+### 73. Write a query to list employees who earn more than all their subordinates.
+
 
 ```sql
 SELECT e.id, e.name, e.salary
@@ -789,7 +862,8 @@ FROM employees e
 WHERE e.salary > ALL (SELECT salary FROM employees sub WHERE sub.manager_id = e.id);
 ```
 
-**74. Write a query to get the product with the highest sales for each category.**  
+### 74. Write a query to get the product with the highest sales for each category.
+
 
 ```sql
 WITH category_sales AS (
@@ -803,7 +877,8 @@ FROM category_sales
 WHERE sales_rank = 1;
 ```
 
-**75. Write a query to find customers who haven’t ordered in the last 6 months.**  
+### 75. Write a query to find customers who haven’t ordered in the last 6 months.
+
 
 ```sql
 SELECT c.customer_id
@@ -813,7 +888,8 @@ GROUP BY c.customer_id
 HAVING MAX(o.order_date) < CURRENT_DATE - INTERVAL '6 months' OR MAX(o.order_date) IS NULL;
 ```
 
-**76. Write a query to find maximum salary gap between employees in same department.**  
+### 76. Write a query to find maximum salary gap between employees in same department.
+
 
 ```sql
 SELECT department_id, MAX(salary) - MIN(salary) AS salary_gap
@@ -821,7 +897,8 @@ FROM employees
 GROUP BY department_id;
 ```
 
-**77. Write a recursive query to compute total budget under each manager.**  
+### 77. Write a recursive query to compute total budget under each manager.
+
 
 ```sql
 WITH RECURSIVE manager_budget AS (
@@ -837,7 +914,8 @@ FROM manager_budget
 GROUP BY manager_id;
 ```
 
-**78. Write a query to detect gaps in invoice numbers.**  
+### 78. Write a query to detect gaps in invoice numbers.
+
 
 ```sql
 WITH numbered_invoices AS (
@@ -851,7 +929,8 @@ WHERE (invoice_number + 1) <> (
 );
 ```
 
-**79. Write a query to rank employees by salary within department but restart rank every 10 employees.**  
+### 79. Write a query to rank employees by salary within department but restart rank every 10 employees.
+
 
 ```sql
 WITH ranked_employees AS (
@@ -862,7 +941,8 @@ SELECT *, ((rn-1)/10)+1 AS rank_group
 FROM ranked_employees;
 ```
 
-**80. Write a query to calculate moving median of daily sales over last 7 days per product.**  
+### 80. Write a query to calculate moving median of daily sales over last 7 days per product.
+
 
 ```sql
 WITH daily_sales AS (
@@ -876,7 +956,8 @@ OVER (PARTITION BY product_id ORDER BY sale_date ROWS BETWEEN 6 PRECEDING AND CU
 FROM daily_sales;
 ```
 
-**81. Write a query to find customers who purchased both product A and product B.**  
+### 81. Write a query to find customers who purchased both product A and product B.
+
 
 ```sql
 SELECT customer_id
@@ -886,9 +967,10 @@ GROUP BY customer_id
 HAVING COUNT(DISTINCT product_id) = 2;
 ```
 
-### 🔹 Calendar, Attendance & Hierarchy
+<!-- ### 🔹 Calendar, Attendance & Hierarchy -->
 
-**82. Write a query to find employees who worked in more than 3 different departments.**  
+### 82. Write a query to find employees who worked in more than 3 different departments.
+
 
 ```sql
 SELECT employee_id
@@ -897,7 +979,8 @@ GROUP BY employee_id
 HAVING COUNT(DISTINCT department_id) > 3;
 ```
 
-**83. Write a query to calculate percentage contribution of each product’s sales to total monthly sales.**  
+### 83. Write a query to calculate percentage contribution of each product’s sales to total monthly sales.
+
 
 ```sql
 WITH monthly_sales AS (
@@ -916,7 +999,8 @@ FROM monthly_sales m
 JOIN total_monthly_sales t ON m.month = t.month;
 ```
 
-**84. Write a query to identify gaps and islands in attendance records.**  
+### 84. Write a query to identify gaps and islands in attendance records.
+
 
 ```sql
 WITH attendance_groups AS (
@@ -930,7 +1014,8 @@ GROUP BY employee_id, grp
 ORDER BY employee_id, start_date;
 ```
 
-**85. Write a recursive query to list all descendants of a manager.**  
+### 85. Write a recursive query to list all descendants of a manager.
+
 
 ```sql
 WITH RECURSIVE descendants AS (
@@ -945,7 +1030,8 @@ WITH RECURSIVE descendants AS (
 SELECT * FROM descendants;
 ```
 
-**86. Write a query to calculate a 3‑month moving average of monthly sales per product.**  
+### 86. Write a query to calculate a 3‑month moving average of monthly sales per product.
+
 
 ```sql
 WITH monthly_sales AS (
@@ -958,7 +1044,8 @@ AVG(total_sales) OVER (PARTITION BY product_id ORDER BY month ROWS BETWEEN 2 PRE
 FROM monthly_sales;
 ```
 
-**87. Write a query to find employees who have the same hire date as their managers.**  
+### 87. Write a query to find employees who have the same hire date as their managers.
+
 
 ```sql
 SELECT e.name AS employee_name, m.name AS manager_name, e.hire_date
@@ -967,7 +1054,8 @@ JOIN employees m ON e.manager_id = m.id
 WHERE e.hire_date = m.hire_date;
 ```
 
-**88. Write a query to find products with increasing sales over last 3 months.**  
+### 88. Write a query to find products with increasing sales over last 3 months.
+
 
 ```sql
 WITH monthly_sales AS (
@@ -987,7 +1075,8 @@ JOIN ranked_sales ms3 ON ms1.product_id = ms3.product_id AND ms3.rn = 3
 WHERE ms3.total_sales < ms2.total_sales AND ms2.total_sales < ms1.total_sales;
 ```
 
-**89. Write a query to get the Nth highest salary per department.**  
+### 89. Write a query to get the Nth highest salary per department.
+
 
 ```sql
 SELECT department_id, salary
@@ -998,7 +1087,8 @@ FROM (
 WHERE rn = N;
 ```
 
-**90. Write a query to find customers who made purchases in every category available.**  
+### 90. Write a query to find customers who made purchases in every category available.
+
 
 ```sql
 SELECT customer_id
@@ -1007,16 +1097,18 @@ GROUP BY customer_id
 HAVING COUNT(DISTINCT category_id) = (SELECT COUNT(DISTINCT category_id) FROM sales);
 ```
 
-**91. Write a query to calculate average tenure of employees by department.**  
+### 91. Write a query to calculate average tenure of employees by department.
+
 
 ```sql
 SELECT department_id, AVG(DATE_PART('year', CURRENT_DATE - hire_date)) AS avg_tenure_years
 FROM employees
 GROUP BY department_id;
 ```
-### 🔹 Sales & Orders
+<!-- ### 🔹 Sales & Orders -->
 
-**92. Write a query to find customers who purchased more than once in the same day.**  
+### 92. Write a query to find customers who purchased more than once in the same day.
+
 
 ```sql
 SELECT customer_id, purchase_date, COUNT(*) AS purchase_count
@@ -1025,7 +1117,8 @@ GROUP BY customer_id, purchase_date
 HAVING COUNT(*) > 1;
 ```
 
-**93. Write a query to find customers who purchased all products in a category.**  
+### 93. Write a query to find customers who purchased all products in a category.
+
 
 ```sql
 SELECT customer_id
@@ -1039,17 +1132,8 @@ HAVING COUNT(DISTINCT product_id) = (
 );
 ```
 
-**94. Write a query to find customers who purchased both product A and product B.**  
+### 94. Write a query to calculate cumulative percentage of total sales per product.
 
-```sql
-SELECT customer_id
-FROM sales
-WHERE product_id IN ('A', 'B')
-GROUP BY customer_id
-HAVING COUNT(DISTINCT product_id) = 2;
-```
-
-**95. Write a query to calculate cumulative percentage of total sales per product.**  
 
 ```sql
 SELECT product_id, sale_amount,
@@ -1057,7 +1141,8 @@ SUM(sale_amount) OVER (ORDER BY sale_amount DESC) * 100.0 / SUM(sale_amount) OVE
 FROM sales;
 ```
 
-**96. Write a query to calculate monthly sales growth compared to same month last year.**  
+### 95. Write a query to calculate monthly sales growth compared to same month last year.
+
 
 ```sql
 WITH monthly_sales AS (
@@ -1071,21 +1156,8 @@ FROM monthly_sales ms1
 LEFT JOIN monthly_sales ms2 ON ms1.month = ms2.month + INTERVAL '1 year';
 ```
 
-**97. Write a query to calculate moving median of daily sales over last 7 days per product.**  
+### 96. Write a query to calculate 3‑month moving average of monthly sales per product.
 
-```sql
-WITH daily_sales AS (
-  SELECT product_id, sale_date, SUM(amount) AS total_sales
-  FROM sales
-  GROUP BY product_id, sale_date
-)
-SELECT product_id, sale_date,
-PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY total_sales)
-OVER (PARTITION BY product_id ORDER BY sale_date ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) AS moving_median
-FROM daily_sales;
-```
-
-**98. Write a query to calculate 3‑month moving average of monthly sales per product.**  
 
 ```sql
 WITH monthly_sales AS (
@@ -1098,28 +1170,8 @@ AVG(total_sales) OVER (PARTITION BY product_id ORDER BY month ROWS BETWEEN 2 PRE
 FROM monthly_sales;
 ```
 
-**99. Write a query to calculate percentage contribution of each product’s sales to total monthly sales.**  
+### 97. Write a query to find employees who have worked in multiple departments over time.
 
-```sql
-WITH monthly_sales AS (
-  SELECT product_id, DATE_TRUNC('month', sale_date) AS month, SUM(amount) AS product_sales
-  FROM sales
-  GROUP BY product_id, month
-),
-total_monthly_sales AS (
-  SELECT month, SUM(product_sales) AS total_sales
-  FROM monthly_sales
-  GROUP BY month
-)
-SELECT m.product_id, m.month,
-(m.product_sales * 100.0 / t.total_sales) AS pct_contribution
-FROM monthly_sales m
-JOIN total_monthly_sales t ON m.month = t.month;
-```
-
-### 🔹 Employee & Department Analysis
-
-**100. Write a query to find employees who have worked in multiple departments over time.**  
 
 ```sql
 SELECT employee_id
@@ -1128,7 +1180,8 @@ GROUP BY employee_id
 HAVING COUNT(DISTINCT department_id) > 1;
 ```
 
-**101. Write a query to find employees who have worked in more than 3 different departments.**  
+### 98. Write a query to find employees who have worked in more than 3 different departments.
+
 
 ```sql
 SELECT employee_id
@@ -1137,7 +1190,8 @@ GROUP BY employee_id
 HAVING COUNT(DISTINCT department_id) > 3;
 ```
 
-**102. Write a query to find employees who earn more than the average salary across the company but less than the highest salary in their department.**  
+### 99. Write a query to find employees who earn more than the average salary across the company but less than the highest salary in their department.
+
 
 ```sql
 SELECT *
@@ -1146,7 +1200,8 @@ WHERE salary > (SELECT AVG(salary) FROM employees)
 AND salary < (SELECT MAX(salary) FROM employees WHERE department_id = e.department_id);
 ```
 
-**103. Write a query to find employees who earn more than all their subordinates.**  
+### 100. Write a query to find employees who earn more than all their subordinates.
+
 
 ```sql
 SELECT e.id, e.name, e.salary
@@ -1154,7 +1209,8 @@ FROM employees e
 WHERE e.salary > ALL (SELECT salary FROM employees sub WHERE sub.manager_id = e.id);
 ```
 
-**104. Write a query to find employees who have the longest tenure within their department.**  
+### 101. Write a query to find employees who have the longest tenure within their department.
+
 
 ```sql
 WITH tenure AS (
@@ -1166,7 +1222,8 @@ FROM tenure
 WHERE tenure_rank = 1;
 ```
 
-**105. Write a query to find employees who have never made a sale.**  
+### 102. Write a query to find employees who have never made a sale.
+
 
 ```sql
 SELECT e.id, e.name
@@ -1175,7 +1232,8 @@ LEFT JOIN sales s ON e.id = s.employee_id
 WHERE s.sale_id IS NULL;
 ```
 
-**106. Write a query to find employees who have never received a promotion.**  
+### 103. Write a query to find employees who have never received a promotion.
+
 
 ```sql
 SELECT e.*
@@ -1184,7 +1242,8 @@ LEFT JOIN promotions p ON e.id = p.employee_id
 WHERE p.employee_id IS NULL;
 ```
 
-**107. Write a query to find employees with no salary changes in the last 2 years.**  
+### 104. Write a query to find employees with no salary changes in the last 2 years.
+
 
 ```sql
 SELECT e.*
@@ -1193,7 +1252,8 @@ LEFT JOIN salary_history sh ON e.id = sh.employee_id AND sh.change_date >= CURRE
 WHERE sh.employee_id IS NULL;
 ```
 
-**108. Write a query to find employees who haven’t received a raise in more than a year.**  
+### 105. Write a query to find employees who haven’t received a raise in more than a year.
+
 
 ```sql
 SELECT e.name
@@ -1203,16 +1263,18 @@ GROUP BY e.id, e.name
 HAVING MAX(sh.raise_date) < CURRENT_DATE - INTERVAL '1 year';
 ```
 
-**109. Write a query to find employees who don’t have a department assigned.**  
+### 106. Write a query to find employees who don’t have a department assigned.
+
 
 ```sql
 SELECT *
 FROM employees
 WHERE department_id IS NULL;
 ```
-### 🔹 Customer & Sales Analysis
+<!-- ### 🔹 Customer & Sales Analysis -->
 
-**110. Write a query to find customers who have not made any purchase.**  
+### 107. Write a query to find customers who have not made any purchase.
+
 
 ```sql
 SELECT c.customer_id, c.name
@@ -1221,16 +1283,8 @@ LEFT JOIN sales s ON c.customer_id = s.customer_id
 WHERE s.sale_id IS NULL;
 ```
 
-**111. Write a query to find customers who purchased more than once in the same day.**  
+### 108. Write a query to find customers who purchased all products in a specific category.
 
-```sql
-SELECT customer_id, purchase_date, COUNT(*) AS purchase_count
-FROM sales
-GROUP BY customer_id, purchase_date
-HAVING COUNT(*) > 1;
-```
-
-**112. Write a query to find customers who purchased all products in a specific category.**  
 
 ```sql
 SELECT customer_id
@@ -1244,17 +1298,8 @@ HAVING COUNT(DISTINCT product_id) = (
 );
 ```
 
-**113. Write a query to find customers who purchased both product A and product B.**  
+### 109. Write a query to find customers who placed orders only in the last 30 days.
 
-```sql
-SELECT customer_id
-FROM sales
-WHERE product_id IN ('A', 'B')
-GROUP BY customer_id
-HAVING COUNT(DISTINCT product_id) = 2;
-```
-
-**114. Write a query to find customers who placed orders only in the last 30 days.**  
 
 ```sql
 SELECT DISTINCT customer_id
@@ -1267,33 +1312,8 @@ AND customer_id NOT IN (
 );
 ```
 
-**115. Write a query to find customers who haven’t ordered in the last 6 months.**  
+### 110. Write a query to find customers who purchased in every category available.
 
-```sql
-SELECT c.customer_id
-FROM customers c
-LEFT JOIN orders o ON c.customer_id = o.customer_id
-GROUP BY c.customer_id
-HAVING MAX(o.order_date) < CURRENT_DATE - INTERVAL '6 months' OR MAX(o.order_date) IS NULL;
-```
-
-**116. Write a query to find customers who made purchases in every month of the current year.**  
-
-```sql
-WITH months AS (SELECT generate_series(1, 12) AS month),
-customer_months AS (
-  SELECT customer_id, EXTRACT(MONTH FROM purchase_date) AS month
-  FROM sales
-  WHERE EXTRACT(YEAR FROM purchase_date) = EXTRACT(YEAR FROM CURRENT_DATE)
-  GROUP BY customer_id, EXTRACT(MONTH FROM purchase_date)
-)
-SELECT customer_id
-FROM customer_months
-GROUP BY customer_id
-HAVING COUNT(DISTINCT month) = 12;
-```
-
-**117. Write a query to find customers who purchased in every category available.**  
 
 ```sql
 SELECT customer_id
@@ -1302,7 +1322,8 @@ GROUP BY customer_id
 HAVING COUNT(DISTINCT category_id) = (SELECT COUNT(DISTINCT category_id) FROM sales);
 ```
 
-**118. Write a query to calculate total revenue for each customer and rank them.**  
+### 111. Write a query to calculate total revenue for each customer and rank them.
+
 
 ```sql
 SELECT customer_id, SUM(amount) AS total_revenue,
@@ -1311,7 +1332,8 @@ FROM sales
 GROUP BY customer_id;
 ```
 
-**119. Write a query to calculate total sales amount and number of orders per customer in the last year.**  
+### 112. Write a query to calculate total sales amount and number of orders per customer in the last year.
+
 
 ```sql
 SELECT customer_id, COUNT(*) AS total_orders, SUM(amount) AS total_sales
@@ -1319,9 +1341,10 @@ FROM sales
 WHERE sale_date >= CURRENT_DATE - INTERVAL '1 year'
 GROUP BY customer_id;
 ```
-### 🔹 Advanced Analytics
+<!-- ### 🔹 Advanced Analytics -->
 
-**120. Write a query to calculate cumulative distribution (CDF) of salaries.**  
+### 113. Write a query to calculate cumulative distribution (CDF) of salaries.
+
 
 ```sql
 SELECT name, salary,
@@ -1329,29 +1352,8 @@ CUME_DIST() OVER (ORDER BY salary) AS salary_cdf
 FROM employees;
 ```
 
-**121. Write a query to calculate cumulative percentage of total sales per product.**  
+### 114. Write a query to calculate percentage change in sales compared to previous month for each product.
 
-```sql
-SELECT product_id, sale_amount,
-SUM(sale_amount) OVER (ORDER BY sale_amount DESC) * 100.0 / SUM(sale_amount) OVER () AS cumulative_pct
-FROM sales;
-```
-
-**122. Write a query to calculate monthly sales growth compared to same month last year.**  
-
-```sql
-WITH monthly_sales AS (
-  SELECT DATE_TRUNC('month', sale_date) AS month, SUM(amount) AS total_sales
-  FROM sales
-  GROUP BY month
-)
-SELECT ms1.month, ms1.total_sales,
-((ms1.total_sales - ms2.total_sales) * 100.0 / ms2.total_sales) AS growth_pct
-FROM monthly_sales ms1
-LEFT JOIN monthly_sales ms2 ON ms1.month = ms2.month + INTERVAL '1 year';
-```
-
-**123. Write a query to calculate percentage change in sales compared to previous month for each product.**  
 
 ```sql
 SELECT product_id, sale_month, total_sales,
@@ -1364,44 +1366,8 @@ FROM (
 ) monthly_sales;
 ```
 
-**124. Write a query to calculate moving average of salaries over last 3 employees ordered by hire date.**  
+### 115. Write a query to find employees who are at the lowest level in the hierarchy (no subordinates).
 
-```sql
-SELECT name, hire_date, salary,
-AVG(salary) OVER (ORDER BY hire_date ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS moving_avg_salary
-FROM employees;
-```
-
-**125. Write a query to calculate 3‑month moving average of monthly sales per product.**  
-
-```sql
-WITH monthly_sales AS (
-  SELECT product_id, DATE_TRUNC('month', sale_date) AS month, SUM(amount) AS total_sales
-  FROM sales
-  GROUP BY product_id, month
-)
-SELECT product_id, month, total_sales,
-AVG(total_sales) OVER (PARTITION BY product_id ORDER BY month ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS moving_avg
-FROM monthly_sales;
-```
-
-**126. Write a query to calculate moving median of daily sales over last 7 days per product.**  
-
-```sql
-WITH daily_sales AS (
-  SELECT product_id, sale_date, SUM(amount) AS total_sales
-  FROM sales
-  GROUP BY product_id, sale_date
-)
-SELECT product_id, sale_date,
-PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY total_sales)
-OVER (PARTITION BY product_id ORDER BY sale_date ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) AS moving_median
-FROM daily_sales;
-```
-
-### 🔹 Employee & Hierarchy
-
-**127. Write a query to find employees who are at the lowest level in the hierarchy (no subordinates).**  
 
 ```sql
 SELECT *
@@ -1409,7 +1375,8 @@ FROM employees e
 WHERE NOT EXISTS (SELECT 1 FROM employees sub WHERE sub.manager_id = e.id);
 ```
 
-**128. Write a query to calculate hierarchical depth of each employee.**  
+### 116. Write a query to calculate hierarchical depth of each employee.
+
 
 ```sql
 WITH RECURSIVE employee_depth AS (
@@ -1424,7 +1391,8 @@ WITH RECURSIVE employee_depth AS (
 SELECT * FROM employee_depth;
 ```
 
-**129. Write a query to list all ancestors (managers) of a given employee.**  
+### 117. Write a query to list all ancestors (managers) of a given employee.
+
 
 ```sql
 WITH RECURSIVE ancestors AS (
@@ -1439,7 +1407,8 @@ WITH RECURSIVE ancestors AS (
 SELECT * FROM ancestors WHERE id != 123;
 ```
 
-**130. Write a query to list all descendants of a manager.**  
+### 118. Write a query to list all descendants of a manager.
+
 
 ```sql
 WITH RECURSIVE descendants AS (
@@ -1454,26 +1423,8 @@ WITH RECURSIVE descendants AS (
 SELECT * FROM descendants;
 ```
 
-**131. Write a query to detect circular references in employee‑manager hierarchy.**  
+### 119. Write a query to find the most recent purchase per customer.
 
-```sql
-WITH RECURSIVE mgr_path (id, manager_id, path) AS (
-  SELECT id, manager_id, ARRAY[id]
-  FROM employees
-  WHERE manager_id IS NOT NULL
-  UNION ALL
-  SELECT e.id, e.manager_id, path || e.id
-  FROM employees e
-  JOIN mgr_path mp ON e.manager_id = mp.id
-  WHERE NOT e.id = ANY(path)
-)
-SELECT DISTINCT id
-FROM mgr_path
-WHERE id = ANY(path);
-```
-### 🔹 Sales & Orders
-
-**132. Write a query to find the most recent purchase per customer.**  
 
 ```sql
 SELECT *
@@ -1484,7 +1435,8 @@ FROM (
 WHERE rn = 1;
 ```
 
-**133. Write a query to find the second most recent order date per customer.**  
+### 120. Write a query to find the second most recent order date per customer.
+
 
 ```sql
 SELECT customer_id, order_date
@@ -1496,7 +1448,8 @@ FROM (
 WHERE rn = 2;
 ```
 
-**134. Write a query to retrieve the last 5 orders for each customer.**  
+### 121. Write a query to retrieve the last 5 orders for each customer.
+
 
 ```sql
 SELECT *
@@ -1507,125 +1460,8 @@ FROM (
 WHERE rn <= 5;
 ```
 
-**135. Write a query to calculate total sales amount and number of orders per customer in the last year.**  
+### 122. Write a query to calculate salary percentile (e.g., 90th) per department.
 
-```sql
-SELECT customer_id, COUNT(*) AS total_orders, SUM(amount) AS total_sales
-FROM sales
-WHERE sale_date >= CURRENT_DATE - INTERVAL '1 year'
-GROUP BY customer_id;
-```
-
-**136. Write a query to calculate monthly sales growth compared to same month last year.**  
-
-```sql
-WITH monthly_sales AS (
-  SELECT DATE_TRUNC('month', sale_date) AS month, SUM(amount) AS total_sales
-  FROM sales
-  GROUP BY month
-)
-SELECT ms1.month, ms1.total_sales,
-((ms1.total_sales - ms2.total_sales) * 100.0 / ms2.total_sales) AS growth_pct
-FROM monthly_sales ms1
-LEFT JOIN monthly_sales ms2 ON ms1.month = ms2.month + INTERVAL '1 year';
-```
-
-**137. Write a query to calculate percentage change in sales compared to previous month for each product.**  
-
-```sql
-SELECT product_id, sale_month, total_sales,
-(total_sales - LAG(total_sales) OVER (PARTITION BY product_id ORDER BY sale_month)) * 100.0 /
-LAG(total_sales) OVER (PARTITION BY product_id ORDER BY sale_month) AS pct_change
-FROM (
-  SELECT product_id, DATE_TRUNC('month', sale_date) AS sale_month, SUM(amount) AS total_sales
-  FROM sales
-  GROUP BY product_id, sale_month
-) monthly_sales;
-```
-
-**138. Write a query to rank salespeople by monthly sales, resetting rank every month.**  
-
-```sql
-SELECT salesperson_id, sale_month, total_sales,
-RANK() OVER (PARTITION BY sale_month ORDER BY total_sales DESC) AS monthly_rank
-FROM (
-  SELECT salesperson_id, DATE_TRUNC('month', sale_date) AS sale_month, SUM(amount) AS total_sales
-  FROM sales
-  GROUP BY salesperson_id, sale_month
-) monthly_sales;
-```
-
-**139. Write a query to find top 3 products with highest sales each month.**  
-
-```sql
-WITH monthly_product_sales AS (
-  SELECT product_id, DATE_TRUNC('month', sale_date) AS month, SUM(amount) AS total_sales
-  FROM sales
-  GROUP BY product_id, month
-),
-ranked_sales AS (
-  SELECT *, RANK() OVER (PARTITION BY month ORDER BY total_sales DESC) AS sales_rank
-  FROM monthly_product_sales
-)
-SELECT product_id, month, total_sales
-FROM ranked_sales
-WHERE sales_rank <= 3
-ORDER BY month, sales_rank;
-```
-### 🔹 Advanced Analytics
-
-**140. Write a query to calculate cumulative distribution (CDF) of salaries.**  
-
-```sql
-SELECT name, salary,
-CUME_DIST() OVER (ORDER BY salary) AS salary_cdf
-FROM employees;
-```
-
-**141. Write a query to calculate cumulative percentage of total sales per product.**  
-
-```sql
-SELECT product_id, sale_amount,
-SUM(sale_amount) OVER (ORDER BY sale_amount DESC) * 100.0 / SUM(sale_amount) OVER () AS cumulative_pct
-FROM sales;
-```
-
-**142. Write a query to calculate moving average of salaries over last 3 employees ordered by hire date.**  
-
-```sql
-SELECT name, hire_date, salary,
-AVG(salary) OVER (ORDER BY hire_date ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS moving_avg_salary
-FROM employees;
-```
-
-**143. Write a query to calculate 3‑month moving average of monthly sales per product.**  
-
-```sql
-WITH monthly_sales AS (
-  SELECT product_id, DATE_TRUNC('month', sale_date) AS month, SUM(amount) AS total_sales
-  FROM sales
-  GROUP BY product_id, month
-)
-SELECT product_id, month, total_sales,
-AVG(total_sales) OVER (PARTITION BY product_id ORDER BY month ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS moving_avg
-FROM monthly_sales;
-```
-
-**144. Write a query to calculate moving median of daily sales over last 7 days per product.**  
-
-```sql
-WITH daily_sales AS (
-  SELECT product_id, sale_date, SUM(amount) AS total_sales
-  FROM sales
-  GROUP BY product_id, sale_date
-)
-SELECT product_id, sale_date,
-PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY total_sales)
-OVER (PARTITION BY product_id ORDER BY sale_date ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) AS moving_median
-FROM daily_sales;
-```
-
-**145. Write a query to calculate salary percentile (e.g., 90th) per department.**  
 
 ```sql
 SELECT department_id, salary,
@@ -1633,24 +1469,8 @@ PERCENTILE_CONT(0.9) WITHIN GROUP (ORDER BY salary) OVER (PARTITION BY departmen
 FROM employees;
 ```
 
-**146. Write a query to rank employees by salary within their department and calculate percent rank.**  
+### 123. Write a query to calculate difference between current row and previous row’s salary.
 
-```sql
-SELECT name, department_id, salary,
-RANK() OVER (PARTITION BY department_id ORDER BY salary DESC) AS salary_rank,
-PERCENT_RANK() OVER (PARTITION BY department_id ORDER BY salary DESC) AS salary_percent_rank
-FROM employees;
-```
-
-**147. Write a query to calculate difference between current and previous sales partitioned by product.**  
-
-```sql
-SELECT product_id, sale_date, amount,
-amount - LAG(amount) OVER (PARTITION BY product_id ORDER BY sale_date) AS sales_diff
-FROM sales;
-```
-
-**148. Write a query to calculate difference between current row and previous row’s salary.**  
 
 ```sql
 SELECT name, salary,
@@ -1658,18 +1478,20 @@ salary - LAG(salary) OVER (ORDER BY id) AS salary_diff
 FROM employees;
 ```
 
-**149. Write a query to calculate difference in days between employee’s hire date and manager’s hire date.**  
+### 124. Write a query to calculate difference in days between employee’s hire date and manager’s hire date.
+
 
 ```sql
 SELECT e.name AS employee, m.name AS manager,
-DATEDIFF(day, m.hire_date, e.hire_date) AS days_difference
+EXTRACT(DAY FROM (e.hire_date) - (m.hire_date)) AS days_difference
 FROM employees e
 JOIN employees m ON e.manager_id = m.id;
 ```
 
-### 🔹 Employee & Salary Analysis
+<!-- ### 🔹 Employee & Salary Analysis -->
 
-**150. Write a query to find employees whose salary is above their department’s average but below the overall company average.**  
+### 125. Write a query to find employees whose salary is above their department’s average but below the overall company average.
+
 
 ```sql
 SELECT *
@@ -1678,25 +1500,8 @@ WHERE salary > (SELECT AVG(salary) FROM employees WHERE department_id = e.depart
 AND salary < (SELECT AVG(salary) FROM employees);
 ```
 
-**151. Write a query to find employees whose salary is a prime number.**  
+### 126. Write a query to find employees with salary in the top 10% in their department.
 
-```sql
-WITH primes AS (
-  SELECT generate_series(2, (SELECT MAX(salary) FROM employees)) AS num
-  EXCEPT
-  SELECT num FROM (
-    SELECT num, UNNEST(ARRAY(
-      SELECT generate_series(2, FLOOR(SQRT(num))) AS divisor
-    )) AS divisor
-    WHERE num % divisor = 0
-  ) composite
-)
-SELECT *
-FROM employees
-WHERE salary IN (SELECT num FROM primes);
-```
-
-**152. Write a query to find employees with salary in the top 10% in their department.**  
 
 ```sql
 SELECT *
@@ -1707,7 +1512,8 @@ FROM (
 WHERE decile = 1;
 ```
 
-**153. Write a query to find employees whose names start and end with the same letter.**  
+### 127. Write a query to find employees whose names start and end with the same letter.
+
 
 ```sql
 SELECT *
@@ -1715,7 +1521,8 @@ FROM employees
 WHERE LEFT(name, 1) = RIGHT(name, 1);
 ```
 
-**154. Write a query to find employees who joined in the last 6 months.**  
+### 128. Write a query to find employees who joined in the last 6 months.
+
 
 ```sql
 SELECT *
@@ -1723,16 +1530,8 @@ FROM employees
 WHERE join_date >= CURRENT_DATE - INTERVAL '6 months';
 ```
 
-**155. Write a query to find employees who have the same hire date as their managers.**  
+### 129. Write a query to find employees who earn more than their manager.
 
-```sql
-SELECT e.name AS employee_name, m.name AS manager_name, e.hire_date
-FROM employees e
-JOIN employees m ON e.manager_id = m.id
-WHERE e.hire_date = m.hire_date;
-```
-
-**156. Write a query to find employees who earn more than their manager.**  
 
 ```sql
 SELECT e.name AS Employee, e.salary, m.name AS Manager, m.salary AS ManagerSalary
@@ -1741,7 +1540,8 @@ JOIN employees m ON e.manager_id = m.id
 WHERE e.salary > m.salary;
 ```
 
-**157. Write a query to find employees who earn the same salary as their manager.**  
+### 130. Write a query to find employees who earn the same salary as their manager.
+
 
 ```sql
 SELECT e.name AS Employee, e.salary, m.name AS Manager
@@ -1750,7 +1550,8 @@ JOIN employees m ON e.manager_id = m.id
 WHERE e.salary = m.salary;
 ```
 
-**158. Write a query to find employees who have worked in multiple departments.**  
+### 131. Write a query to find employees who have worked in multiple departments.
+
 
 ```sql
 SELECT employee_id
@@ -1759,188 +1560,8 @@ GROUP BY employee_id
 HAVING COUNT(DISTINCT department_id) > 1;
 ```
 
-**159. Write a query to find employees who have managed more than 3 projects.**  
+### 132. Write a query to find the department with the highest average salary.
 
-```sql
-SELECT manager_id, COUNT(DISTINCT project_id) AS project_count
-FROM projects
-GROUP BY manager_id
-HAVING COUNT(DISTINCT project_id) > 3;
-```
-### 🔹 Customer & Orders
-
-**160. Write a query to find customers who purchased all products in a specific category.**  
-
-```sql
-SELECT customer_id
-FROM sales
-WHERE category_id = 10
-GROUP BY customer_id
-HAVING COUNT(DISTINCT product_id) = (
-  SELECT COUNT(DISTINCT product_id)
-  FROM products
-  WHERE category_id = 10
-);
-```
-
-**161. Write a query to find customers who purchased both product A and product B.**  
-
-```sql
-SELECT customer_id
-FROM sales
-WHERE product_id IN ('A', 'B')
-GROUP BY customer_id
-HAVING COUNT(DISTINCT product_id) = 2;
-```
-
-**162. Write a query to find customers who purchased in every category available.**  
-
-```sql
-SELECT customer_id
-FROM sales
-GROUP BY customer_id
-HAVING COUNT(DISTINCT category_id) = (SELECT COUNT(DISTINCT category_id) FROM sales);
-```
-
-**163. Write a query to find customers who purchased more than once in the same day.**  
-
-```sql
-SELECT customer_id, purchase_date, COUNT(*) AS purchase_count
-FROM sales
-GROUP BY customer_id, purchase_date
-HAVING COUNT(*) > 1;
-```
-
-**164. Write a query to find customers who haven’t ordered in the last 6 months.**  
-
-```sql
-SELECT c.customer_id
-FROM customers c
-LEFT JOIN orders o ON c.customer_id = o.customer_id
-GROUP BY c.customer_id
-HAVING MAX(o.order_date) < CURRENT_DATE - INTERVAL '6 months' OR MAX(o.order_date) IS NULL;
-```
-
-**165. Write a query to find customers who placed orders only in the last 30 days.**  
-
-```sql
-SELECT DISTINCT customer_id
-FROM orders
-WHERE order_date >= CURRENT_DATE - INTERVAL '30 days'
-AND customer_id NOT IN (
-  SELECT DISTINCT customer_id
-  FROM orders
-  WHERE order_date < CURRENT_DATE - INTERVAL '30 days'
-);
-```
-
-**166. Write a query to find customers who made purchases in every month of the current year.**  
-
-```sql
-WITH months AS (SELECT generate_series(1, 12) AS month),
-customer_months AS (
-  SELECT customer_id, EXTRACT(MONTH FROM purchase_date) AS month
-  FROM sales
-  WHERE EXTRACT(YEAR FROM purchase_date) = EXTRACT(YEAR FROM CURRENT_DATE)
-  GROUP BY customer_id, EXTRACT(MONTH FROM purchase_date)
-)
-SELECT customer_id
-FROM customer_months
-GROUP BY customer_id
-HAVING COUNT(DISTINCT month) = 12;
-```
-
-**167. Write a query to find customers who have not made any purchase.**  
-
-```sql
-SELECT c.customer_id, c.name
-FROM customers c
-LEFT JOIN sales s ON c.customer_id = s.customer_id
-WHERE s.sale_id IS NULL;
-```
-### 🔹 Advanced Analytics
-
-**168. Write a query to calculate cumulative distribution (CDF) of salaries.**  
-
-```sql
-SELECT name, salary,
-CUME_DIST() OVER (ORDER BY salary) AS salary_cdf
-FROM employees;
-```
-
-**169. Write a query to calculate cumulative percentage of total sales per product.**  
-
-```sql
-SELECT product_id, sale_amount,
-SUM(sale_amount) OVER (ORDER BY sale_amount DESC) * 100.0 / SUM(sale_amount) OVER () AS cumulative_pct
-FROM sales;
-```
-
-**170. Write a query to calculate monthly sales growth compared to same month last year.**  
-
-```sql
-WITH monthly_sales AS (
-  SELECT DATE_TRUNC('month', sale_date) AS month, SUM(amount) AS total_sales
-  FROM sales
-  GROUP BY month
-)
-SELECT ms1.month, ms1.total_sales,
-((ms1.total_sales - ms2.total_sales) * 100.0 / ms2.total_sales) AS growth_pct
-FROM monthly_sales ms1
-LEFT JOIN monthly_sales ms2 ON ms1.month = ms2.month + INTERVAL '1 year';
-```
-
-**171. Write a query to calculate percentage change in sales compared to previous month for each product.**  
-
-```sql
-SELECT product_id, sale_month, total_sales,
-(total_sales - LAG(total_sales) OVER (PARTITION BY product_id ORDER BY sale_month)) * 100.0 /
-LAG(total_sales) OVER (PARTITION BY product_id ORDER BY sale_month) AS pct_change
-FROM (
-  SELECT product_id, DATE_TRUNC('month', sale_date) AS sale_month, SUM(amount) AS total_sales
-  FROM sales
-  GROUP BY product_id, sale_month
-) monthly_sales;
-```
-
-**172. Write a query to calculate moving average of salaries over last 3 employees ordered by hire date.**  
-
-```sql
-SELECT name, hire_date, salary,
-AVG(salary) OVER (ORDER BY hire_date ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS moving_avg_salary
-FROM employees;
-```
-
-**173. Write a query to calculate 3‑month moving average of monthly sales per product.**  
-
-```sql
-WITH monthly_sales AS (
-  SELECT product_id, DATE_TRUNC('month', sale_date) AS month, SUM(amount) AS total_sales
-  FROM sales
-  GROUP BY product_id, month
-)
-SELECT product_id, month, total_sales,
-AVG(total_sales) OVER (PARTITION BY product_id ORDER BY month ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS moving_avg
-FROM monthly_sales;
-```
-
-**174. Write a query to calculate moving median of daily sales over last 7 days per product.**  
-
-```sql
-WITH daily_sales AS (
-  SELECT product_id, sale_date, SUM(amount) AS total_sales
-  FROM sales
-  GROUP BY product_id, sale_date
-)
-SELECT product_id, sale_date,
-PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY total_sales)
-OVER (PARTITION BY product_id ORDER BY sale_date ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) AS moving_median
-FROM daily_sales;
-```
-
-### 🔹 Employee & Department Analysis
-
-**175. Write a query to find the department with the highest average salary.**  
 
 ```sql
 WITH avg_salaries AS (
@@ -1953,7 +1574,8 @@ FROM avg_salaries
 WHERE avg_salary = (SELECT MAX(avg_salary) FROM avg_salaries);
 ```
 
-**176. Write a query to find the department with the lowest average salary.**  
+### 133. Write a query to find the department with the lowest average salary.
+
 
 ```sql
 SELECT department_id, AVG(salary) AS avg_salary
@@ -1963,7 +1585,8 @@ ORDER BY avg_salary
 LIMIT 1;
 ```
 
-**177. Write a query to find the department with the highest number of employees.**  
+### 134. Write a query to find the department with the highest number of employees.
+
 
 ```sql
 SELECT department_id, COUNT(*) AS employee_count
@@ -1973,7 +1596,8 @@ ORDER BY employee_count DESC
 LIMIT 1;
 ```
 
-**178. Write a query to find the maximum salary gap between employees in the same department.**  
+### 135. Write a query to find the maximum salary gap between employees in the same department.
+
 
 ```sql
 SELECT department_id, MAX(salary) - MIN(salary) AS salary_gap
@@ -1981,15 +1605,8 @@ FROM employees
 GROUP BY department_id;
 ```
 
-**179. Write a query to calculate average tenure of employees by department.**  
+### 136. Write a query to calculate average years of experience by department.
 
-```sql
-SELECT department_id, AVG(DATE_PART('year', CURRENT_DATE - hire_date)) AS avg_tenure_years
-FROM employees
-GROUP BY department_id;
-```
-
-**180. Write a query to calculate average years of experience by department.**  
 
 ```sql
 SELECT department_id, AVG(EXTRACT(year FROM CURRENT_DATE - hire_date)) AS avg_experience_years
@@ -1998,19 +1615,8 @@ GROUP BY department_id
 ORDER BY avg_experience_years DESC;
 ```
 
-**181. Write a query to find employees with longest tenure in their department.**  
+### 137. Write a query to find employees who joined in each year and calculate running total hires.
 
-```sql
-WITH tenure AS (
-  SELECT *, RANK() OVER (PARTITION BY department_id ORDER BY hire_date ASC) AS tenure_rank
-  FROM employees
-)
-SELECT *
-FROM tenure
-WHERE tenure_rank = 1;
-```
-
-**182. Write a query to find employees who joined in each year and calculate running total hires.**  
 
 ```sql
 SELECT join_year, COUNT(*) AS yearly_hires,
@@ -2022,9 +1628,10 @@ FROM (
 GROUP BY join_year
 ORDER BY join_year;
 ```
-### 🔹 Customer & Orders
+<!-- ### 🔹 Customer & Orders -->
 
-**183. Write a query to find first and last purchase date for each customer.**  
+### 138. Write a query to find first and last purchase date for each customer.
+
 
 ```sql
 SELECT customer_id,
@@ -2034,7 +1641,8 @@ FROM sales
 GROUP BY customer_id;
 ```
 
-**184. Write a query to find first and last purchase date including customers who never purchased.**  
+### 139. Write a query to find first and last purchase date including customers who never purchased.
+
 
 ```sql
 SELECT c.customer_id,
@@ -2045,203 +1653,8 @@ LEFT JOIN sales s ON c.customer_id = s.customer_id
 GROUP BY c.customer_id;
 ```
 
-**185. Write a query to find customers who purchased more than once in the same day.**  
+### 140. Write a query to rank employees by salary with ties handled properly.
 
-```sql
-SELECT customer_id, purchase_date, COUNT(*) AS purchase_count
-FROM sales
-GROUP BY customer_id, purchase_date
-HAVING COUNT(*) > 1;
-```
-
-**186. Write a query to find customers who purchased in every category available.**  
-
-```sql
-SELECT customer_id
-FROM sales
-GROUP BY customer_id
-HAVING COUNT(DISTINCT category_id) = (SELECT COUNT(DISTINCT category_id) FROM sales);
-```
-
-**187. Write a query to find customers who purchased all products in a specific category.**  
-
-```sql
-SELECT customer_id
-FROM sales
-WHERE category_id = 10
-GROUP BY customer_id
-HAVING COUNT(DISTINCT product_id) = (
-  SELECT COUNT(DISTINCT product_id)
-  FROM products
-  WHERE category_id = 10
-);
-```
-
-**188. Write a query to find customers who purchased both product A and product B.**  
-
-```sql
-SELECT customer_id
-FROM sales
-WHERE product_id IN ('A', 'B')
-GROUP BY customer_id
-HAVING COUNT(DISTINCT product_id) = 2;
-```
-
-**189. Write a query to find customers who placed orders only in the last 30 days.**  
-
-```sql
-SELECT DISTINCT customer_id
-FROM orders
-WHERE order_date >= CURRENT_DATE - INTERVAL '30 days'
-AND customer_id NOT IN (
-  SELECT DISTINCT customer_id
-  FROM orders
-  WHERE order_date < CURRENT_DATE - INTERVAL '30 days'
-);
-```
-
-**190. Write a query to find customers who haven’t ordered in the last 6 months.**  
-
-```sql
-SELECT c.customer_id
-FROM customers c
-LEFT JOIN orders o ON c.customer_id = o.customer_id
-GROUP BY c.customer_id
-HAVING MAX(o.order_date) < CURRENT_DATE - INTERVAL '6 months' OR MAX(o.order_date) IS NULL;
-```
-
-**191. Write a query to find customers who made purchases in every month of the current year.**  
-
-```sql
-WITH months AS (SELECT generate_series(1, 12) AS month),
-customer_months AS (
-  SELECT customer_id, EXTRACT(MONTH FROM purchase_date) AS month
-  FROM sales
-  WHERE EXTRACT(YEAR FROM purchase_date) = EXTRACT(YEAR FROM CURRENT_DATE)
-  GROUP BY customer_id, EXTRACT(MONTH FROM purchase_date)
-)
-SELECT customer_id
-FROM customer_months
-GROUP BY customer_id
-HAVING COUNT(DISTINCT month) = 12;
-```
-
-**192. Write a query to find customers who have not made any purchase.**  
-
-```sql
-SELECT c.customer_id, c.name
-FROM customers c
-LEFT JOIN sales s ON c.customer_id = s.customer_id
-WHERE s.sale_id IS NULL;
-```
-### 🔹 Advanced Analytics
-
-**193. Write a query to calculate cumulative distribution (CDF) of salaries.**  
-
-```sql
-SELECT name, salary,
-CUME_DIST() OVER (ORDER BY salary) AS salary_cdf
-FROM employees;
-```
-
-**194. Write a query to calculate cumulative percentage of total sales per product.**  
-
-```sql
-SELECT product_id, sale_amount,
-SUM(sale_amount) OVER (ORDER BY sale_amount DESC) * 100.0 / SUM(sale_amount) OVER () AS cumulative_pct
-FROM sales;
-```
-
-**195. Write a query to calculate monthly sales growth compared to same month last year.**  
-
-```sql
-WITH monthly_sales AS (
-  SELECT DATE_TRUNC('month', sale_date) AS month, SUM(amount) AS total_sales
-  FROM sales
-  GROUP BY month
-)
-SELECT ms1.month, ms1.total_sales,
-((ms1.total_sales - ms2.total_sales) * 100.0 / ms2.total_sales) AS growth_pct
-FROM monthly_sales ms1
-LEFT JOIN monthly_sales ms2 ON ms1.month = ms2.month + INTERVAL '1 year';
-```
-
-**196. Write a query to calculate percentage change in sales compared to previous month for each product.**  
-
-```sql
-SELECT product_id, sale_month, total_sales,
-(total_sales - LAG(total_sales) OVER (PARTITION BY product_id ORDER BY sale_month)) * 100.0 /
-LAG(total_sales) OVER (PARTITION BY product_id ORDER BY sale_month) AS pct_change
-FROM (
-  SELECT product_id, DATE_TRUNC('month', sale_date) AS sale_month, SUM(amount) AS total_sales
-  FROM sales
-  GROUP BY product_id, sale_month
-) monthly_sales;
-```
-
-**197. Write a query to calculate moving average of salaries over last 3 employees ordered by hire date.**  
-
-```sql
-SELECT name, hire_date, salary,
-AVG(salary) OVER (ORDER BY hire_date ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS moving_avg_salary
-FROM employees;
-```
-
-**198. Write a query to calculate 3‑month moving average of monthly sales per product.**  
-
-```sql
-WITH monthly_sales AS (
-  SELECT product_id, DATE_TRUNC('month', sale_date) AS month, SUM(amount) AS total_sales
-  FROM sales
-  GROUP BY product_id, month
-)
-SELECT product_id, month, total_sales,
-AVG(total_sales) OVER (PARTITION BY product_id ORDER BY month ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS moving_avg
-FROM monthly_sales;
-```
-
-**199. Write a query to calculate moving median of daily sales over last 7 days per product.**  
-
-```sql
-WITH daily_sales AS (
-  SELECT product_id, sale_date, SUM(amount) AS total_sales
-  FROM sales
-  GROUP BY product_id, sale_date
-)
-SELECT product_id, sale_date,
-PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY total_sales)
-OVER (PARTITION BY product_id ORDER BY sale_date ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) AS moving_median
-FROM daily_sales;
-```
-
-**200. Write a query to calculate salary percentile (e.g., 90th) per department.**  
-
-```sql
-SELECT department_id, salary,
-PERCENTILE_CONT(0.9) WITHIN GROUP (ORDER BY salary) OVER (PARTITION BY department_id) AS pct_90_salary
-FROM employees;
-```
-
-### 🔹 Employee & Salary Analysis
-
-**201. Write a query to find the second highest salary.**  
-
-```sql
-SELECT MAX(salary) AS SecondHighestSalary
-FROM employees
-WHERE salary < (SELECT MAX(salary) FROM employees);
-```
-
-**202. Write a query to find the Nth highest salary.**  
-
-```sql
-SELECT DISTINCT salary
-FROM employees
-ORDER BY salary DESC
-LIMIT 1 OFFSET N-1;
-```
-
-**203. Write a query to rank employees by salary with ties handled properly.**  
 
 ```sql
 SELECT name, salary,
@@ -2249,7 +1662,8 @@ RANK() OVER (ORDER BY salary DESC) AS salary_rank
 FROM employees;
 ```
 
-**204. Write a query to calculate the median salary.**  
+### 141. Write a query to calculate the median salary.
+
 
 ```sql
 SELECT AVG(salary) AS median_salary
@@ -2262,7 +1676,8 @@ FROM (
 ) AS median_subquery;
 ```
 
-**205. Write a query to calculate the moving average of salaries over the last 3 employees ordered by hire date.**  
+### 142. Write a query to calculate the moving average of salaries over the last 3 employees ordered by hire date.
+
 
 ```sql
 SELECT name, hire_date, salary,
@@ -2270,7 +1685,8 @@ AVG(salary) OVER (ORDER BY hire_date ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) A
 FROM employees;
 ```
 
-**206. Write a query to calculate the difference between current row and previous row’s salary.**  
+### 143. Write a query to calculate the difference between current row and previous row’s salary.
+
 
 ```sql
 SELECT name, salary,
@@ -2278,225 +1694,19 @@ salary - LAG(salary) OVER (ORDER BY id) AS salary_diff
 FROM employees;
 ```
 
-**207. Write a query to calculate cumulative distribution (CDF) of salaries.**  
+### 144. Write a query to calculate salary difference between employee and manager hire dates.
 
-```sql
-SELECT name, salary,
-CUME_DIST() OVER (ORDER BY salary) AS salary_cdf
-FROM employees;
-```
-
-**208. Write a query to calculate salary percentile (e.g., 90th) per department.**  
-
-```sql
-SELECT department_id, salary,
-PERCENTILE_CONT(0.9) WITHIN GROUP (ORDER BY salary) OVER (PARTITION BY department_id) AS pct_90_salary
-FROM employees;
-```
-
-**209. Write a query to calculate salary difference between employee and manager hire dates.**  
 
 ```sql
 SELECT e.name AS employee, m.name AS manager,
-DATEDIFF(day, m.hire_date, e.hire_date) AS days_difference
+EXTRACT(DAY FROM (e.hire_date) - (m.hire_date)) AS days_difference
 FROM employees e
 JOIN employees m ON e.manager_id = m.id;
 ```
-### 🔹 Customer & Orders
+<!-- ### 🔹 Customer & Orders -->
 
-**210. Write a query to find customers who have not made any purchase.**  
+### 145. Write a query to count employees in each department having more than 5 employees.
 
-```sql
-SELECT c.customer_id, c.name
-FROM customers c
-LEFT JOIN sales s ON c.customer_id = s.customer_id
-WHERE s.sale_id IS NULL;
-```
-
-**211. Write a query to find customers who purchased more than once in the same day.**  
-
-```sql
-SELECT customer_id, purchase_date, COUNT(*) AS purchase_count
-FROM sales
-GROUP BY customer_id, purchase_date
-HAVING COUNT(*) > 1;
-```
-
-**212. Write a query to find customers who purchased all products in a specific category.**  
-
-```sql
-SELECT customer_id
-FROM sales
-WHERE category_id = 10
-GROUP BY customer_id
-HAVING COUNT(DISTINCT product_id) = (
-  SELECT COUNT(DISTINCT product_id)
-  FROM products
-  WHERE category_id = 10
-);
-```
-
-**213. Write a query to find customers who purchased both product A and product B.**  
-
-```sql
-SELECT customer_id
-FROM sales
-WHERE product_id IN ('A', 'B')
-GROUP BY customer_id
-HAVING COUNT(DISTINCT product_id) = 2;
-```
-
-**214. Write a query to find customers who purchased in every category available.**  
-
-```sql
-SELECT customer_id
-FROM sales
-GROUP BY customer_id
-HAVING COUNT(DISTINCT category_id) = (SELECT COUNT(DISTINCT category_id) FROM sales);
-```
-
-**215. Write a query to find customers who placed orders only in the last 30 days.**  
-
-```sql
-SELECT DISTINCT customer_id
-FROM orders
-WHERE order_date >= CURRENT_DATE - INTERVAL '30 days'
-AND customer_id NOT IN (
-  SELECT DISTINCT customer_id
-  FROM orders
-  WHERE order_date < CURRENT_DATE - INTERVAL '30 days'
-);
-```
-
-**216. Write a query to find customers who haven’t ordered in the last 6 months.**  
-
-```sql
-SELECT c.customer_id
-FROM customers c
-LEFT JOIN orders o ON c.customer_id = o.customer_id
-GROUP BY c.customer_id
-HAVING MAX(o.order_date) < CURRENT_DATE - INTERVAL '6 months' OR MAX(o.order_date) IS NULL;
-```
-
-**217. Write a query to find customers who made purchases in every month of the current year.**  
-
-```sql
-WITH months AS (SELECT generate_series(1, 12) AS month),
-customer_months AS (
-  SELECT customer_id, EXTRACT(MONTH FROM purchase_date) AS month
-  FROM sales
-  WHERE EXTRACT(YEAR FROM purchase_date) = EXTRACT(YEAR FROM CURRENT_DATE)
-  GROUP BY customer_id, EXTRACT(MONTH FROM purchase_date)
-)
-SELECT customer_id
-FROM customer_months
-GROUP BY customer_id
-HAVING COUNT(DISTINCT month) = 12;
-```
-
-**218. Write a query to find first and last purchase date for each customer.**  
-
-```sql
-SELECT customer_id,
-MIN(purchase_date) AS first_purchase,
-MAX(purchase_date) AS last_purchase
-FROM sales
-GROUP BY customer_id;
-```
-
-**219. Write a query to find first and last purchase date including customers who never purchased.**  
-
-```sql
-SELECT c.customer_id,
-MIN(s.purchase_date) AS first_purchase,
-MAX(s.purchase_date) AS last_purchase
-FROM customers c
-LEFT JOIN sales s ON c.customer_id = s.customer_id
-GROUP BY c.customer_id;
-```
-### 🔹 Advanced Analytics
-
-**220. Write a query to calculate cumulative percentage of total sales per product.**  
-
-```sql
-SELECT product_id, sale_amount,
-SUM(sale_amount) OVER (ORDER BY sale_amount DESC) * 100.0 / SUM(sale_amount) OVER () AS cumulative_pct
-FROM sales;
-```
-
-**221. Write a query to calculate monthly sales growth compared to same month last year.**  
-
-```sql
-WITH monthly_sales AS (
-  SELECT DATE_TRUNC('month', sale_date) AS month, SUM(amount) AS total_sales
-  FROM sales
-  GROUP BY month
-)
-SELECT ms1.month, ms1.total_sales,
-((ms1.total_sales - ms2.total_sales) * 100.0 / ms2.total_sales) AS growth_pct
-FROM monthly_sales ms1
-LEFT JOIN monthly_sales ms2 ON ms1.month = ms2.month + INTERVAL '1 year';
-```
-
-**222. Write a query to calculate percentage change in sales compared to previous month for each product.**  
-
-```sql
-SELECT product_id, sale_month, total_sales,
-(total_sales - LAG(total_sales) OVER (PARTITION BY product_id ORDER BY sale_month)) * 100.0 /
-LAG(total_sales) OVER (PARTITION BY product_id ORDER BY sale_month) AS pct_change
-FROM (
-  SELECT product_id, DATE_TRUNC('month', sale_date) AS sale_month, SUM(amount) AS total_sales
-  FROM sales
-  GROUP BY product_id, sale_month
-) monthly_sales;
-```
-
-**223. Write a query to calculate moving average of salaries over last 3 employees ordered by hire date.**  
-
-```sql
-SELECT name, hire_date, salary,
-AVG(salary) OVER (ORDER BY hire_date ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS moving_avg_salary
-FROM employees;
-```
-
-**224. Write a query to calculate 3‑month moving average of monthly sales per product.**  
-
-```sql
-WITH monthly_sales AS (
-  SELECT product_id, DATE_TRUNC('month', sale_date) AS month, SUM(amount) AS total_sales
-  FROM sales
-  GROUP BY product_id, month
-)
-SELECT product_id, month, total_sales,
-AVG(total_sales) OVER (PARTITION BY product_id ORDER BY month ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS moving_avg
-FROM monthly_sales;
-```
-
-**225. Write a query to calculate moving median of daily sales over last 7 days per product.**  
-
-```sql
-WITH daily_sales AS (
-  SELECT product_id, sale_date, SUM(amount) AS total_sales
-  FROM sales
-  GROUP BY product_id, sale_date
-)
-SELECT product_id, sale_date,
-PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY total_sales)
-OVER (PARTITION BY product_id ORDER BY sale_date ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) AS moving_median
-FROM daily_sales;
-```
-
-**226. Write a query to calculate salary percentile (e.g., 90th) per department.**  
-
-```sql
-SELECT department_id, salary,
-PERCENTILE_CONT(0.9) WITHIN GROUP (ORDER BY salary) OVER (PARTITION BY department_id) AS pct_90_salary
-FROM employees;
-```
-
-### 🔹 Employee & Department Analysis
-
-**227. Write a query to count employees in each department having more than 5 employees.**  
 
 ```sql
 SELECT department_id, COUNT(*) AS num_employees
@@ -2505,7 +1715,8 @@ GROUP BY department_id
 HAVING COUNT(*) > 5;
 ```
 
-**228. Write a query to find departments with no employees.**  
+### 146. Write a query to find departments with no employees.
+
 
 ```sql
 SELECT d.department_name
@@ -2514,7 +1725,8 @@ LEFT JOIN employees e ON d.department_id = e.department_id
 WHERE e.id IS NULL;
 ```
 
-**229. Write a query to list all departments and their employee counts, including departments with zero employees.**  
+### 147. Write a query to list all departments and their employee counts, including departments with zero employees.
+
 
 ```sql
 SELECT d.department_id, d.department_name, COUNT(e.id) AS employee_count
@@ -2523,15 +1735,8 @@ LEFT JOIN employees e ON d.department_id = e.department_id
 GROUP BY d.department_id, d.department_name;
 ```
 
-**230. Write a query to find employees without a department assigned.**  
+### 148. Write a query to find employees who earn more than the average salary in their department but less than the company‑wide average.
 
-```sql
-SELECT *
-FROM employees
-WHERE department_id IS NULL;
-```
-
-**231. Write a query to find employees who earn more than the average salary in their department but less than the company‑wide average.**  
 
 ```sql
 SELECT *
@@ -2540,16 +1745,8 @@ WHERE salary > (SELECT AVG(salary) FROM employees WHERE department_id = e.depart
 AND salary < (SELECT AVG(salary) FROM employees);
 ```
 
-**232. Write a query to find employees who earn more than the average salary across the company but less than the highest salary in their department.**  
+### 149. Write a query to find employees with salary above the average salary of their department but below the company‑wide average.
 
-```sql
-SELECT *
-FROM employees e
-WHERE salary > (SELECT AVG(salary) FROM employees)
-AND salary < (SELECT MAX(salary) FROM employees WHERE department_id = e.department_id);
-```
-
-**233. Write a query to find employees with salary above the average salary of their department but below the company‑wide average.**  
 
 ```sql
 SELECT *
@@ -2558,25 +1755,8 @@ WHERE salary > (SELECT AVG(salary) FROM employees WHERE department_id = e.depart
 AND salary < (SELECT AVG(salary) FROM employees);
 ```
 
-**234. Write a query to find employees who earn more than all their subordinates.**  
+### 150. Write a query to find duplicate rows based on multiple columns.
 
-```sql
-SELECT e.id, e.name, e.salary
-FROM employees e
-WHERE e.salary > ALL (SELECT salary FROM employees sub WHERE sub.manager_id = e.id);
-```
-
-**235. Write a query to find employees who have worked in more than 3 different departments.**  
-
-```sql
-SELECT employee_id
-FROM employee_department_history
-GROUP BY employee_id
-HAVING COUNT(DISTINCT department_id) > 3;
-```
-### 🔹 Customer & Orders
-
-**236. Write a query to find duplicate rows based on multiple columns.**  
 
 ```sql
 SELECT column1, column2, COUNT(*)
@@ -2585,187 +1765,3 @@ GROUP BY column1, column2
 HAVING COUNT(*) > 1;
 ```
 
-**237. Write a query to find customers who purchased more than once in the same day.**  
-
-```sql
-SELECT customer_id, purchase_date, COUNT(*) AS purchase_count
-FROM sales
-GROUP BY customer_id, purchase_date
-HAVING COUNT(*) > 1;
-```
-
-**238. Write a query to find customers who purchased all products in a specific category.**  
-
-```sql
-SELECT customer_id
-FROM sales
-WHERE category_id = 10
-GROUP BY customer_id
-HAVING COUNT(DISTINCT product_id) = (
-  SELECT COUNT(DISTINCT product_id)
-  FROM products
-  WHERE category_id = 10
-);
-```
-
-**239. Write a query to find customers who purchased both product A and product B.**  
-
-```sql
-SELECT customer_id
-FROM sales
-WHERE product_id IN ('A', 'B')
-GROUP BY customer_id
-HAVING COUNT(DISTINCT product_id) = 2;
-```
-
-**240. Write a query to find customers who purchased in every category available.**  
-
-```sql
-SELECT customer_id
-FROM sales
-GROUP BY customer_id
-HAVING COUNT(DISTINCT category_id) = (SELECT COUNT(DISTINCT category_id) FROM sales);
-```
-
-**241. Write a query to find customers who placed orders only in the last 30 days.**  
-
-```sql
-SELECT DISTINCT customer_id
-FROM orders
-WHERE order_date >= CURRENT_DATE - INTERVAL '30 days'
-AND customer_id NOT IN (
-  SELECT DISTINCT customer_id
-  FROM orders
-  WHERE order_date < CURRENT_DATE - INTERVAL '30 days'
-);
-```
-
-**242. Write a query to find customers who haven’t ordered in the last 6 months.**  
-
-```sql
-SELECT c.customer_id
-FROM customers c
-LEFT JOIN orders o ON c.customer_id = o.customer_id
-GROUP BY c.customer_id
-HAVING MAX(o.order_date) < CURRENT_DATE - INTERVAL '6 months' OR MAX(o.order_date) IS NULL;
-```
-
-**243. Write a query to find customers who made purchases in every month of the current year.**  
-
-```sql
-WITH months AS (SELECT generate_series(1, 12) AS month),
-customer_months AS (
-  SELECT customer_id, EXTRACT(MONTH FROM purchase_date) AS month
-  FROM sales
-  WHERE EXTRACT(YEAR FROM purchase_date) = EXTRACT(YEAR FROM CURRENT_DATE)
-  GROUP BY customer_id, EXTRACT(MONTH FROM purchase_date)
-)
-SELECT customer_id
-FROM customer_months
-GROUP BY customer_id
-HAVING COUNT(DISTINCT month) = 12;
-```
-
-**244. Write a query to find customers who have not made any purchase.**  
-
-```sql
-SELECT c.customer_id, c.name
-FROM customers c
-LEFT JOIN sales s ON c.customer_id = s.customer_id
-WHERE s.sale_id IS NULL;
-```
-### 🔹 Advanced Analytics
-
-**245. Write a query to calculate cumulative distribution (CDF) of salaries.**  
-
-```sql
-SELECT name, salary,
-CUME_DIST() OVER (ORDER BY salary) AS salary_cdf
-FROM employees;
-```
-
-**246. Write a query to calculate cumulative percentage of total sales per product.**  
-
-```sql
-SELECT product_id, sale_amount,
-SUM(sale_amount) OVER (ORDER BY sale_amount DESC) * 100.0 / SUM(sale_amount) OVER () AS cumulative_pct
-FROM sales;
-```
-
-**247. Write a query to calculate monthly sales growth compared to same month last year.**  
-
-```sql
-WITH monthly_sales AS (
-  SELECT DATE_TRUNC('month', sale_date) AS month, SUM(amount) AS total_sales
-  FROM sales
-  GROUP BY month
-)
-SELECT ms1.month, ms1.total_sales,
-((ms1.total_sales - ms2.total_sales) * 100.0 / ms2.total_sales) AS growth_pct
-FROM monthly_sales ms1
-LEFT JOIN monthly_sales ms2 ON ms1.month = ms2.month + INTERVAL '1 year';
-```
-
-**248. Write a query to calculate percentage change in sales compared to previous month for each product.**  
-
-```sql
-SELECT product_id, sale_month, total_sales,
-(total_sales - LAG(total_sales) OVER (PARTITION BY product_id ORDER BY sale_month)) * 100.0 /
-LAG(total_sales) OVER (PARTITION BY product_id ORDER BY sale_month) AS pct_change
-FROM (
-  SELECT product_id, DATE_TRUNC('month', sale_date) AS sale_month, SUM(amount) AS total_sales
-  FROM sales
-  GROUP BY product_id, sale_month
-) monthly_sales;
-```
-
-**249. Write a query to calculate moving average of salaries over last 3 employees ordered by hire date.**  
-
-```sql
-SELECT name, hire_date, salary,
-AVG(salary) OVER (ORDER BY hire_date ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS moving_avg_salary
-FROM employees;
-```
-
-**250. Write a query to calculate 3‑month moving average of monthly sales per product.**  
-
-```sql
-WITH monthly_sales AS (
-  SELECT product_id, DATE_TRUNC('month', sale_date) AS month, SUM(amount) AS total_sales
-  FROM sales
-  GROUP BY product_id, month
-)
-SELECT product_id, month, total_sales,
-AVG(total_sales) OVER (PARTITION BY product_id ORDER BY month ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS moving_avg
-FROM monthly_sales;
-```
-
-**251. Write a query to calculate moving median of daily sales over last 7 days per product.**  
-
-```sql
-WITH daily_sales AS (
-  SELECT product_id, sale_date, SUM(amount) AS total_sales
-  FROM sales
-  GROUP BY product_id, sale_date
-)
-SELECT product_id, sale_date,
-PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY total_sales)
-OVER (PARTITION BY product_id ORDER BY sale_date ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) AS moving_median
-FROM daily_sales;
-```
-
-**252. Write a query to calculate salary percentile (e.g., 90th) per department.**  
-
-```sql
-SELECT department_id, salary,
-PERCENTILE_CONT(0.9) WITHIN GROUP (ORDER BY salary) OVER (PARTITION BY department_id) AS pct_90_salary
-FROM employees;
-```
-
-**253. Write a query to calculate difference between current and previous sales partitioned by product.**  
-
-```sql
-SELECT product_id, sale_date, amount,
-amount - LAG(amount) OVER (PARTITION BY product_id ORDER BY sale_date) AS sales_diff
-FROM sales;
-```
