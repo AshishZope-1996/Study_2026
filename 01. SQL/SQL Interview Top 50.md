@@ -1841,8 +1841,13 @@ SELECT * FROM Employee WHERE EmployeeID = 123;
 6. **Random vs Sequential I/O:** Multiple seeks slower than one scan
 
 **Example:**
-```sql\nIndex on Status returns 500 of 1000 rows:
-- Index route: 500 seeks + 500 lookups = 1000ms\nTable scan: 1 scan = 50ms\nOptimizer chooses SCAN\n```
+
+```sql
+Index on Status returns 500 of 1000 rows:
+- Index route: 500 seeks + 500 lookups = 1000ms
+Table scan: 1 scan = 50ms
+Optimizer chooses SCAN
+```
 
 **Prevention:** Update statistics, defragment index, improve selectivity, use covering index.
 
