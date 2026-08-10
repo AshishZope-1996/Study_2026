@@ -134,7 +134,7 @@ def get_template_catalog_from_db():
                 cur.execute(
                     '''
                     SELECT "TemplateFile", "CampaignType", "DisplayName", "Subject", "PdfPath"
-                    FROM public."TemplateCatalog"
+                    FROM master."TemplateCatalog"
                     WHERE "IsActive" = true
                     ORDER BY "CampaignType", "DisplayName"
                     '''
@@ -227,7 +227,7 @@ def sync_template_catalog_to_db(template_dir=None, force=False):
             with conn.cursor() as cur:
                 cur.execute(
                     '''
-                    CREATE TABLE IF NOT EXISTS public."TemplateCatalog" (
+                    CREATE TABLE IF NOT EXISTS master."TemplateCatalog" (
                         "TemplateId" SERIAL PRIMARY KEY,
                         "TemplateFile" VARCHAR(255) NOT NULL,
                         "CampaignType" VARCHAR(100) NOT NULL,
@@ -240,17 +240,17 @@ def sync_template_catalog_to_db(template_dir=None, force=False):
                     '''
                 )
                 cur.execute(
-                    'CREATE UNIQUE INDEX IF NOT EXISTS ux_template_catalog_template_file ON public."TemplateCatalog" ("TemplateFile")'
+                    'CREATE UNIQUE INDEX IF NOT EXISTS ux_template_catalog_template_file ON master."TemplateCatalog" ("TemplateFile")'
                 )
 
                 if force:
-                    cur.execute('DELETE FROM public."TemplateCatalog"')
+                    cur.execute('DELETE FROM master."TemplateCatalog"')
 
                 for template in catalog["templates"]:
                     pdf_path = (template.get("pdf_path") or "").strip()
                     cur.execute(
                         '''
-                        INSERT INTO public."TemplateCatalog" (
+                        INSERT INTO master."TemplateCatalog" (
                             "TemplateFile", "CampaignType", "DisplayName", "Subject", "PdfPath", "IsActive"
                         )
                         VALUES (%s, %s, %s, %s, %s, %s)

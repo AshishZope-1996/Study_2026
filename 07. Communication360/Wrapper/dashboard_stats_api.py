@@ -28,7 +28,7 @@ class DashboardStatsHandler(BaseHTTPRequestHandler):
         try:
             with get_db_connection() as conn:
                 with conn.cursor() as cur:
-                    cur.execute('SELECT * FROM public.get_dashboard_stats()')
+                    cur.execute('SELECT * FROM master.get_dashboard_stats()')
                     row = cur.fetchone()
 
             if not row:

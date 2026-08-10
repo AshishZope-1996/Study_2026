@@ -1,5 +1,5 @@
 -- PostgreSQL DDL
-CREATE TABLE IF NOT EXISTS public."TemplateCatalog" (
+CREATE TABLE IF NOT EXISTS master."TemplateCatalog" (
     "TemplateId" SERIAL PRIMARY KEY,
     "TemplateFile" VARCHAR(255) NOT NULL UNIQUE,
     "CampaignType" VARCHAR(100) NOT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS public."TemplateCatalog" (
 );
 
 -- DML: insert / update template record with PDF path
-INSERT INTO public."TemplateCatalog" (
+INSERT INTO master."TemplateCatalog" (
     "TemplateFile",
     "CampaignType",
     "DisplayName",
@@ -53,5 +53,5 @@ DO UPDATE SET
     "IsActive" = EXCLUDED."IsActive";
 
 SELECT *
-FROM public."TemplateCatalog"
+FROM master."TemplateCatalog"
 ORDER BY "CampaignType", "DisplayName";
