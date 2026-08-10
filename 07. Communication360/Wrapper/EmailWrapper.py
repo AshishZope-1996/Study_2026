@@ -2,13 +2,14 @@ import os
 import sys
 import smtplib
 from datetime import datetime
+from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'ConfigFile'))
 
-from Config import SENDER_EMAIL, SENDER_PASSWORD
-from configdb import get_db_connection
+from Config import SENDER_EMAIL, SENDER_PASSWORD # type: ignore
+from configdb import get_db_connection # type: ignore
 
 # 
 SMTP_SERVER = "smtp.gmail.com"
@@ -16,14 +17,14 @@ SMTP_PORT = 587
 
 CAMPAIGN_CONFIG = {
     "LinkedIn": {
-        "template": "Email_Instagram.html",
-        "subject": "Instagram Follow  ->> @decode.dataengineer",
+        "template": "LinkdinPost.html",
+        "subject": "Sharing My Notes With You",
         "type": "LinkedIn Campaign"
     },
     "Festival": {
         "Diwali": {
             "template": "Festival_Diwali.html",
-            "subject": "Happy Diwali....!!",
+            "subject": "AAshish Zope",
             "type": "Diwali Festival Campaign"
         },
         "Holi": {
@@ -46,7 +47,7 @@ def load_receivers_from_db():
             with conn.cursor() as cur:
                 cur.execute(
                     'SELECT "FirstName", "LastName", "EmailAddress", "Date" '
-                    'FROM master."UserDetails" ORDER BY "UserId"'
+                    'FROM master."UserDetails" WHERE isactive = true ORDER BY "UserId"'
                 )
                 rows = cur.fetchall()
 
@@ -138,6 +139,21 @@ def load_campaign_history(limit=20):
         return []
 
 
+def get_pdf_attachments(pdf_dir=None):
+    if pdf_dir is None:
+        pdf_dir = os.path.join(os.path.dirname(__file__), "..", "Templates", "PDF")
+
+    if not os.path.isdir(pdf_dir):
+        return []
+
+    pdf_files = []
+    for file_name in sorted(os.listdir(pdf_dir)):
+        full_path = os.path.join(pdf_dir, file_name)
+        if os.path.isfile(full_path) and file_name.lower().endswith(".pdf"):
+            pdf_files.append(full_path)
+    return pdf_files
+
+
 def send_campaign_email(TEMPLATE_NAME, EMAIL_SUBJECT, CAMPAIGN_TYPE, RECIPIENTS=None):
     TOTAL_SENT = 0
     TOTAL_FAILED = 0
@@ -152,6 +168,7 @@ def send_campaign_email(TEMPLATE_NAME, EMAIL_SUBJECT, CAMPAIGN_TYPE, RECIPIENTS=
     try:
         DATA_FOLDER = os.path.join(os.path.dirname(__file__), "..", "Templates")
         HTML_PATH = os.path.join(DATA_FOLDER, TEMPLATE_NAME)
+        PDF_FILES = get_pdf_attachments(os.path.join(DATA_FOLDER, "PDF"))
 
         if not os.path.exists(HTML_PATH):
             print(f"Template '{TEMPLATE_NAME}' not found.")
@@ -170,14 +187,25 @@ def send_campaign_email(TEMPLATE_NAME, EMAIL_SUBJECT, CAMPAIGN_TYPE, RECIPIENTS=
                     RECEIVER_NAME = RECEIVER["name"]
                     HTML_CONTENT = HTML_TEMPLATE.replace("{{NAME}}", RECEIVER_NAME)
 
-                    MSG = MIMEMultipart("related")
+                    MSG = MIMEMultipart("mixed")
                     MSG["From"] = SENDER_EMAIL
                     MSG["To"] = RECEIVER_EMAIL
                     MSG["Subject"] = EMAIL_SUBJECT
 
-                    MSG_ALT = MIMEMultipart("alternative")
-                    MSG.attach(MSG_ALT)
-                    MSG_ALT.attach(MIMEText(HTML_CONTENT, "html"))
+                    BODY_PART = MIMEText(HTML_CONTENT, "html")
+                    MSG.attach(BODY_PART)
+
+                    for pdf_path in PDF_FILES:
+                        with open(pdf_path, "rb") as pdf_file:
+                            pdf_data = pdf_file.read()
+
+                        pdf_attachment = MIMEApplication(pdf_data, _subtype="pdf")
+                        pdf_attachment.add_header(
+                            "Content-Disposition",
+                            "attachment",
+                            filename=os.path.basename(pdf_path)
+                        )
+                        MSG.attach(pdf_attachment)
 
                     SERVER.send_message(MSG)
                     print(f"✓ Email sent to: {RECEIVER_EMAIL}")

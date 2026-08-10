@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campaign Portal</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="page-body">
+
+  <!-- Loader -->
+  <div class="loader-overlay" id="globalLoader" aria-live="polite">
+    <div class="loader"></div>
+    <h3>Please wait...</h3>
+    <p>Preparing your campaign workspace</p>
+  </div>
+
+  <!-- Dashboard Container -->
+  <div class="container">
+
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div class="brand-section">
+        <span class="eyebrow">EMAIL CAMPAIGN PORTAL</span>
+        <h1>Launch & Manage Campaigns</h1>
+        <p class="subtitle">Create, schedule and monitor email campaigns from a single dashboard.</p>
+      </div>
+    </header>
+
+    <!-- Stats Section -->
+    <section class="stats-grid" aria-label="Campaign Statistics">
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fa-solid fa-paper-plane"></i></div>
+        <div>
+          <h2 id="campaignCount">0</h2>
+          <span>Total Campaigns</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fa-solid fa-envelope-circle-check"></i></div>
+        <div>
+          <h2 id="sentCount">0</h2>
+          <span>Emails Sent</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+        <div>
+          <h2 id="recipientCount">0</h2>
+          <span>Recipients</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+        <div>
+          <h2 id="historyCount">0</h2>
+          <span>History</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Create Campaign -->
+    <section class="card" aria-labelledby="createCampaignTitle">
+      <div class="section-title-row">
+        <div>
+          <h2 id="createCampaignTitle"><i class="fa-solid fa-bullhorn"></i> Create Campaign</h2>
+          <p>Choose a campaign type, template and send emails to all saved recipients.</p>
+        </div>
+      </div>
+
+      <form class="form-grid campaign-grid" id="campaignForm">
+        <!-- Campaign Type -->
+        <div class="form-group">
+          <label class="form-label" for="campaignTypeSelect">Campaign Type</label>
+          <select id="campaignTypeSelect" required>
+            <option value="">Select Campaign</option>
+          </select>
+        </div>
+
+        <!-- Template -->
+        <div class="form-group">
+          <label class="form-label" for="templateSelect">Email Template</label>
+          <select id="templateSelect" required>
+            <option value="">Select Template</option>
+          </select>
+        </div>
+
+        <!-- Subject -->
+        <div class="form-group full-width">
+          <label class="form-label" for="campaignSubject">Subject</label>
+          <input type="text" id="campaignSubject" placeholder="Enter campaign email subject" required>
+        </div>
+      </form>
+
+      <div class="button-row">
+        <button class="save-button" id="sendCampaignBtn">
+          <i class="fa-solid fa-paper-plane"></i> Send Campaign
+        </button>
+        <button class="secondary-button" id="refreshHistoryBtn">
+          <i class="fa-solid fa-rotate"></i> Refresh History
+        </button>
+      </div>
+
+      <div class="status-box" id="campaignStatus">
+        <i class="fa-solid fa-circle-info"></i> Ready to launch your campaign.
+      </div>
+    </section>
+
+    <!-- Campaign History -->
+    <section class="card" aria-labelledby="campaignHistoryTitle">
+      <div class="section-title-row">
+        <div>
+          <h2 id="campaignHistoryTitle"><i class="fa-solid fa-clock-rotate-left"></i> Campaign History</h2>
+          <p>View all sent campaign records and delivery status.</p>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Time</th>
+              <th scope="col">Recipient</th>
+              <th scope="col">Campaign</th>
+              <th scope="col">Status</th>
+              <th scope="col">Message</th>
+            </tr>
+          </thead>
+          <tbody id="historyTableBody">
+            <tr>
+              <td colspan="5">Loading campaign history...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Quick Actions -->
+    <section class="card" aria-labelledby="quickActionsTitle">
+      <div class="section-title-row">
+        <h2 id="quickActionsTitle"><i class="fa-solid fa-bolt"></i> Quick Actions</h2>
+      </div>
+      <div class="quick-actions">
+        <button class="secondary-button"><i class="fa-solid fa-user-plus"></i> Add Recipient</button>
+        <button class="secondary-button"><i class="fa-solid fa-file-import"></i> Import Contacts</button>
+        <button class="secondary-button"><i class="fa-solid fa-file-export"></i> Export History</button>
+        <button class="secondary-button"><i class="fa-solid fa-chart-pie"></i> Reports</button>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>© 2026 Campaign Portal • Designed for Modern Email Campaign Management</p>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data-store.js"></script>
+  <script src="js/ui.js"></script>
+  <!-- <script src="js/menu.js"></script> -->
+  <script src="js/dashboard-stats.js"></script>
+  <script src="js/campaign.js"></script>
+</body>
+
+</html>
