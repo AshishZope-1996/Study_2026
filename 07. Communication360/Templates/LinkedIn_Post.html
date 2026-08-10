@@ -1,209 +1,200 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="x-apple-disable-message-reformatting" />
   <title>SQL Interview Notes</title>
-  <meta name="x-apple-disable-message-reformatting">
-
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: #f3f6f9;
+      background: #eef3f8;
       font-family: Arial, Helvetica, sans-serif;
+      color: #122033;
     }
 
     table {
       border-collapse: collapse;
     }
 
+    img {
+      border: 0;
+      outline: none;
+      text-decoration: none;
+      display: block;
+    }
+
     a {
       text-decoration: none;
     }
 
-    @media only screen and (max-width:600px) {
+    @media only screen and (max-width: 640px) {
       .container {
         width: 100% !important;
       }
 
-      .cta a {
+      .content-padding {
+        padding-left: 18px !important;
+        padding-right: 18px !important;
+      }
+
+      .cta-button {
         display: block !important;
         width: 100% !important;
       }
-    }
 
-    .notes-box {
-      background: #f1f7ff;
-      border-left: 5px solid #0A66C2;
-      border-radius: 8px;
-      padding: 18px 20px;
-      margin: 22px 0;
-    }
-
-    .notes-box ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .notes-box li {
-      margin: 8px 0;
-      font-size: 14.5px;
+      .social-links td {
+        display: inline-block !important;
+      }
     }
   </style>
 </head>
-
 <body>
-
-  <table width="100%" bgcolor="#f3f6f9" cellpadding="0" cellspacing="0">
+  <table width="100%" bgcolor="#eef3f8" cellpadding="0" cellspacing="0" style="width:100%; background-color:#eef3f8; margin:0; padding:0;">
     <tr>
-      <td align="center" style="padding:20px 10px;">
+      <td align="center" style="padding: 28px 14px;">
+        <table class="container" width="720" cellpadding="0" cellspacing="0" style="width:720px; max-width:720px; background:#ffffff; border:1px solid #dfe9f3; border-radius:18px; overflow:hidden; box-shadow:0 12px 30px rgba(15, 23, 42, 0.08);">
 
-        <!-- HERO - IMPROVED HEADER -->
-
-        <table class="container" width="720" cellpadding="0" cellspacing="0"
-          style="max-width:720px;background:#ffffff;border-radius:12px; border:1px solid #e2e8f0;overflow:hidden;">
           <tr>
-            <td align="center" style="background:#0A66C2; padding:26px; color:#ffffff; text-align:center;">
-              <h1 style="margin:0; font-size:22px; line-height:1.2; font-weight:700;">
-                <span style="display:inline-block; vertical-align:middle; margin:0 6px;">SQL Interview Practice
-                  Guide</span>
+            <td style="background: linear-gradient(135deg, #0b5ed7 0%, #0a66c2 40%, #0f172a 100%); padding: 30px 28px 34px; text-align:center;">
+              <div style="font-size:12px; letter-spacing:2px; color:#dfeeff; font-weight:700; text-transform:uppercase; margin-bottom:10px;">
+                Professional SQL Guide
+              </div>
+              <h1 style="margin:0; font-size:28px; line-height:1.2; color:#ffffff; font-weight:700;">
+                SQL Interview Practice Guide
               </h1>
-              <p style="margin:8px 0 0; font-size:14px; opacity:0.95;">PostgreSQL · Real Interview Questions · Practical
-                Learning</p>
-            </td>
-          </tr>
-
-          <!-- PROFILE -->
-          <tr>
-            <td align="center" style="padding:0 20px 12px;">
-              <img
-                src="https://media.licdn.com/dms/image/v2/D5603AQGmicnv9wU9cA/profile-displayphoto-scale_400_400/B56Zq2abcVIcAg-/0/1763996979482?e=1767830400&v=beta&t=eJZcY0PNNcgjDiDLALQVNvXWp2Zp5s68rmpqBnUcK7E"
-                alt="avatar" width="92" height="92"
-                style="border-radius:50%; border:5px solid #ffffff; margin-top:-46px; display:block;" />
-              <div style="font-size:18px; font-weight:700; color:#062635; margin-top:8px;">Ashish Zope</div>
-              <div style="font-size:13px; color:#475569; margin-top:4px; line-height:1.4;">Senior Data Engineer • SQL •
-                Python • Databricks • Cloud • Big Data<br />📍 Bengaluru, India</div>
+              <p style="margin:10px 0 0; font-size:14px; color:#eaf4ff; line-height:1.6;">
+                PostgreSQL • Real Interview Questions • Practical Learning
+              </p>
             </td>
           </tr>
 
           <tr>
-            <td style="padding:12px 20px;">
-              <table width="100%" cellpadding="0" cellspacing="0" border="0"
-                style="background:#fff7e6; border-left:4px solid #f2b94b; border-radius:6px;">
+            <td align="center" style="padding:0 24px; background:#ffffff;">
+              <table cellpadding="0" cellspacing="0" style="margin-top:-30px;">
                 <tr>
-                  <td style="padding:10px 14px; font-size:13.5px; color:#5a4630;">
-                    PostgreSQL · Real Interview Questions · Practical Learning
+                  <td style="background:#ffffff; border-radius:50%; padding:4px; box-shadow:0 8px 18px rgba(15, 23, 42, 0.10);">
+                    <img
+                      src="https://media.licdn.com/dms/image/v2/D5603AQGmicnv9wU9cA/profile-displayphoto-scale_400_400/B56Zq2abcVIcAg-/0/1763996979482?e=1767830400&v=beta&t=eJZcY0PNNcgjDiDLALQVNvXWp2Zp5s68rmpqBnUcK7E"
+                      alt="Ashish Zope"
+                      width="96"
+                      height="96"
+                      style="width:96px; height:96px; border-radius:50%; border:3px solid #ffffff; display:block;"
+                    />
+                  </td>
+                </tr>
+              </table>
+              <div style="font-size:19px; font-weight:700; color:#132238; margin-top:12px;">Ashish Zope</div>
+              <div style="font-size:13px; color:#58697d; line-height:1.6; margin-top:4px; margin-bottom:12px;">
+                Senior Data Engineer • SQL • Python • Databricks • Cloud • Big Data<br />
+                Bengaluru, India
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="content-padding" style="padding: 10px 30px 0;">
+              <table width="100%" cellpadding="0" cellspacing="0" style="background:#fff8ea; border-left:4px solid #f4b447; border-radius:10px;">
+                <tr>
+                  <td style="padding:12px 16px; font-size:13px; line-height:1.6; color:#5f4a28; font-weight:600;">
+                    PostgreSQL • Real Interview Questions • Practical Learning
                   </td>
                 </tr>
               </table>
             </td>
           </tr>
 
-
-          <!-- BODY -->
           <tr>
-            <td style="padding:22px 26px;font-size:14px;color:#07233b;line-height:1.6;">
-              <p><strong>Hi {{NAME}},</strong></p>
-
-              <p>
-                I'm sharing my <strong>SQL Interview Preparation Notes</strong> that I personally used
-                while preparing for data engineering interviews.
+            <td class="content-padding" style="padding: 24px 30px 8px; font-size:15px; line-height:1.8; color:#1e2d3d;">
+              <p style="margin:0 0 14px;">
+                <strong>Hi {{NAME}},</strong>
               </p>
 
-              <p><strong>What's inside the PDF:</strong></p>
-              <div class="notes-box">
-                <ul>
-                  <li>✅ 100+ scenario-based interview questions</li>
-                  <li>✅ Beginner to critical-thinking level</li>
-                  <li>✅ Complete CompanyDB schema</li>
-                  <li>✅ Fully tested & production-ready SQL</li>
-                </ul>
-              </div>
-
-              <p>
-                You can open the complete notes using the button below.
+              <p style="margin:0 0 16px;">
+                I’m sharing a curated set of <strong>SQL interview preparation notes</strong> that I personally used while preparing for data engineering roles and technical interviews.
               </p>
-            </td>
-          </tr>
 
-          <!-- CTA -->
-          <tr>
-            <td align="center" style="padding:10px 26px 26px;">
-              <table width="100%" cellpadding="0" cellspacing="0">
+              <p style="margin:0 0 14px;">
+                These notes are designed to help you build practical confidence in SQL, especially for real-world interview situations and hands-on problem solving.
+              </p>
+
+              <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f8fd; border:1px solid #dfe9f3; border-radius:12px; margin:18px 0;">
                 <tr>
-                  <td align="center">
-                    <table width="100%" cellpadding="0" cellspacing="0"
-                      style="max-width:320px;background:#0A66C2;border-radius:10px;">
+                  <td style="padding:18px 18px 10px; font-size:14px; color:#18314d; font-weight:700;">
+                    What’s inside the PDF
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:0 18px 18px;">
+                    <table width="100%" cellpadding="0" cellspacing="0">
                       <tr>
-                        <td align="center" style="padding:16px;" class="cta">
-                          <!-- <a href="../Data/InterviewPreparation.pdf" target="_blank" -->
-                          <a href="https://drive.google.com/file/d/1kFo1CLpdLsRcY8nCZUdIp5Lsw5u9CDhT/view?usp=sharing" target="_blank"
-                            style="display:block;width:100%;font-size:16px;font-weight:700;color:#ffffff;">
-                            View & Download Notes PDF
-                          </a>
-                        </td>
+                        <td style="padding:8px 0; font-size:14px; color:#23364f;">✅ 100+ scenario-based SQL interview questions</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:8px 0; font-size:14px; color:#23364f;">✅ Beginner to advanced level coverage</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:8px 0; font-size:14px; color:#23364f;">✅ Complete CompanyDB schema and practical examples</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:8px 0; font-size:14px; color:#23364f;">✅ Production-oriented SQL written for interview confidence</td>
                       </tr>
                     </table>
                   </td>
                 </tr>
               </table>
+
+              <p style="margin:0 0 18px;">
+                You can access the full notes and download the PDF using the button below.
+              </p>
             </td>
           </tr>
 
-          <!-- SOCIAL LINKS -->
           <tr>
-            <td align="center" style="padding:0 26px 20px;">
-              <table cellpadding="0" cellspacing="0">
+            <td class="content-padding" align="center" style="padding: 8px 30px 26px;">
+              <table width="100%" cellpadding="0" cellspacing="0" style="max-width:360px;">
                 <tr>
-
-                  <td style="padding:6px;">
-                    <a href="https://www.linkedin.com/in/ashish-zope-627628169" target="_blank"
-                      style="font-size:13px;font-weight:700;color:#0A66C2;">
-                      LinkedIn
+                  <td align="center" bgcolor="#0a66c2" style="border-radius:10px; background-color:#0a66c2;">
+                    <a href="https://drive.google.com/file/d/1kFo1CLpdLsRcY8nCZUdIp5Lsw5u9CDhT/view?usp=sharing" target="_blank" class="cta-button" style="display:inline-block; width:100%; padding:16px 20px; font-size:16px; font-weight:700; color:#ffffff; text-align:center; border-radius:10px;">
+                      View & Download Notes PDF
                     </a>
                   </td>
-
-                  <td style="padding:6px;">
-                    <a href="https://www.instagram.com/decode.dataengineer" target="_blank"
-                      style="font-size:13px;font-weight:700;color:#6b5cff;">
-                      Instagram
-                    </a>
-                  </td>
-
-                  <td style="padding:6px;">
-                    <a href="https://wa.me/917744046830" target="_blank"
-                      style="font-size:13px;font-weight:700;color:#25D366;">
-                      WhatsApp
-                    </a>
-                  </td>
-
                 </tr>
               </table>
             </td>
           </tr>
 
-          <!-- FOOTER -->
           <tr>
-            <td
-              style="padding:14px; text-align:center; font-size:12.8px; color:#56616d; background:#f8fafc; border-top:1px solid #e2e8f0;">
-              You received this because you're part of my LinkedIn community — connected, engaged, or interacting with
-              my content.<br />
-              <strong>— Ashish Zope</strong><br />
-              <a href="mailto:zope17ashish@gmail.com?subject=Unsubscribe%20from%20LinkedIn%20Updates&body=Hi%20Ashish%2C%0D%0A%0D%0AI%20would%20like%20to%20unsubscribe%20from%20future%20LinkedIn%20updates.%20Thank%20you.%0D%0A%0D%0ABest%20regards%2C%0D%0A{{NAME}}"
-                style="color:#0A66C2; text-decoration:underline; font-size:15px;">Unsubscribe</a>
+            <td class="content-padding" align="center" style="padding:0 30px 18px;">
+              <table class="social-links" cellpadding="0" cellspacing="0" style="margin:0 auto;">
+                <tr>
+                  <td style="padding:0 8px;">
+                    <a href="https://www.linkedin.com/in/ashish-zope-627628169" target="_blank" style="font-size:13px; font-weight:700; color:#0a66c2;">LinkedIn</a>
+                  </td>
+                  <td style="padding:0 8px;">
+                    <a href="https://www.instagram.com/decode.dataengineer" target="_blank" style="font-size:13px; font-weight:700; color:#6c5ce7;">Instagram</a>
+                  </td>
+                  <td style="padding:0 8px;">
+                    <a href="https://wa.me/917744046830" target="_blank" style="font-size:13px; font-weight:700; color:#25d366;">WhatsApp</a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:16px 22px 24px; border-top:1px solid #e4edf7; background:#f8fafc; text-align:center; font-size:12px; line-height:1.7; color:#5e6d7d;">
+              You received this because you're part of my LinkedIn community — connected, engaged, or interacting with my content.<br />
+              <strong style="color:#1b2b3d;">— Ashish Zope</strong><br />
+              <a href="mailto:zope17ashish@gmail.com?subject=Unsubscribe%20from%20LinkedIn%20Updates&body=Hi%20Ashish%2C%0D%0A%0D%0AI%20would%20like%20to%20unsubscribe%20from%20future%20LinkedIn%20updates.%20Thank%20you.%0D%0A%0D%0ABest%20regards%2C%0D%0A{{NAME}}" style="color:#0a66c2; text-decoration:underline; font-weight:600;">Unsubscribe</a>
             </td>
           </tr>
 
         </table>
-        <!-- END CARD -->
-
       </td>
     </tr>
   </table>
-
 </body>
-
 </html>
