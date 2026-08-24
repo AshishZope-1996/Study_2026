@@ -1,13 +1,14 @@
 
 
-Q 1. What is SQL?
+## Q 1. What is SQL?
+
 SQL stands for Structured Query Language. It is a
 programming language used for managing and
 manipulating relational databases.
 Ans:
 
 
-Q 2. What is a database?
+## Q 2. What is a database?
 A database is an organized collection of data stored
 and accessed electronically. It provides a way to
 store, organize, and retrieve large amounts of data
@@ -15,7 +16,7 @@ efficiently.
 Ans:
 
 
-Q 3. What is a primary key?
+## Q 3. What is a primary key?
 A primary key is a column or combination of columns
 that uniquely identifies each row in a table. It
 enforces the entity integrity rule in a relational
@@ -24,7 +25,7 @@ Ans:
 01
 
 
-Q 4. What is a foreign key?
+## Q 4. What is a foreign key?
 A foreign key is a column or combination of columns
 that establishes a link between data in two tables. It
 ensures referential integrity by enforcing
@@ -33,7 +34,7 @@ Ans:
 02
 
 
-Q 5. What is the difference between a primary key
+## Q 5. What is the difference between a primary key
 and a unique key?
 A primary key is used to uniquely identify a row in a
 table and must have a unique value. On the other
@@ -51,7 +52,7 @@ Form (PJNF)
 The different types of normalization are:
 
 
-Q 6. What is normalization?
+## Q 6. What is normalization?
 Normalization is the process of organizing data in a
 database to minimize redundancy and dependency.
 It involves breaking down a table into smaller tables
@@ -60,12 +61,12 @@ Ans:
 03
 
 
-Q 7. What are the different types of
+## Q 7. What are the different types of
 normalization?
 Ans:
 
 
-Q 8. What is a join in SQL?
+## Q 8. What is a join in SQL?
 A join is an operation used to combine rows from two
 or more tables based on related columns. It allows
 you to retrieve data from multiple tables
@@ -73,7 +74,7 @@ simultaneously.
 Ans:
 
 
-Q 9. What is the difference between DELETE and
+## Q 9. What is the difference between DELETE and
 TRUNCATE in SQL?
 The DELETE statement is used to remove specific
 rows from a table based on a condition. It can be
@@ -87,7 +88,7 @@ Ans:
 04
 
 
-Q 10. What is the difference between UNION
+## Q 10. What is the difference between UNION
 and UNION ALL?
 UNION and UNION ALL are used to combine the
 result sets of two or more SELECT statements.
@@ -98,7 +99,7 @@ duplicates.
 Ans:
 
 
-Q 11. What is the difference between the HAVING
+## Q 11. What is the difference between the HAVING
 clause and the WHERE clause?
 The WHERE clause is used to filter rows based on a
 condition before the data is grouped or aggregated.
@@ -111,7 +112,7 @@ Ans:
 05
 
 
-Q 12. What is a transaction in SQL?
+## Q 12. What is a transaction in SQL?
 A transaction is a sequence of SQL statements that
 are executed as a single logical unit of work. It
 ensures data consistency and integrity by either
@@ -120,7 +121,7 @@ error occurs.
 Ans:
 
 
-Q 13. What is the difference between a clustered
+## Q 13. What is the difference between a clustered
 and a non-clustered index?
 A clustered index determines the physical order of
 data in a table. It changes the way the data is stored
@@ -148,7 +149,7 @@ and Durability. It is a set of properties that guarantee
 reliable processing of database transactions.
 
 
-Q 14. What is ACID in the context of database
+## Q 14. What is ACID in the context of database
 transactions?
 Ans:
 07
@@ -159,7 +160,7 @@ of the transactions can proceed, and the system may
 become unresponsive.
 
 
-Q 15. What is a deadlock?
+## Q 15. What is a deadlock?
 Ans:
 08
 A database is a container that holds multiple objects,
@@ -171,7 +172,7 @@ ownership. It provides a way to organize and manage
 database objects.
 
 
-Q 16. What is the difference between a database
+## Q 16. What is the difference between a database
 and a schema?
 Ans:
 A temporary table is a table that is created and exists
@@ -183,7 +184,7 @@ within a batch, stored procedure, or function. It is
 automatically deallocated when the scope ends.
 
 
-Q 17. What is the difference between a temporary
+## Q 17. What is the difference between a temporary
 table and a table variable?
 Ans:
 09
@@ -194,14 +195,14 @@ SUM, AVG, COUNT, etc., to perform calculations on
 grouped data.
 
 
-Q 18. What is the purpose of the GROUP BY
+## Q 18. What is the purpose of the GROUP BY
 clause?
 Ans:
 CHAR is a fixed-length string data type, while
 VARCHAR is a variable-length string data type.
 
 
-Q 19. What is the difference between CHAR and
+## Q 19. What is the difference between CHAR and
 VARCHAR data types?
 Ans:
 10
@@ -211,21 +212,21 @@ repeatedly. It provides code reusability and better
 performance.
 
 
-Q 20. What is a stored procedure?
+## Q 20. What is a stored procedure?
 Ans:
 A subquery is a query nested inside another query. It
 is used to retrieve data based on the result of an
 inner query.
 
 
-Q 21. What is a subquery?
+## Q 21. What is a subquery?
 Ans:
 A view is a virtual table based on the result of an SQL
 statement. It allows users to retrieve and manipulate
 data as if
 
 
-Q 22. What is a view?
+## Q 22. What is a view?
 Ans:
 11
 A cross join (Cartesian product) returns the
@@ -234,7 +235,7 @@ An inner join returns only the matching rows based
 on a join condition.
 
 
-Q 23. What is the difference between a cross join
+## Q 23. What is the difference between a cross join
 and an inner join?
 Ans:
 12
@@ -244,7 +245,7 @@ transaction and makes the changes visible to other
 users.
 
 
-Q 24. What is the purpose of the COMMIT
+## Q 24. What is the purpose of the COMMIT
 statement?
 Ans:
 The ROLLBACK statement is used to undo changes
@@ -252,7 +253,7 @@ made in a transaction. It reverts the database to its
 previous state before the transaction started.
 
 
-Q 25. What is the purpose of the ROLLBACK
+## Q 25. What is the purpose of the ROLLBACK
 statement?
 Ans:
 NULL represents the absence of a value or unknown
@@ -260,7 +261,7 @@ value. It is different from zero or an empty string and
 requires special handling in SQL queries.
 
 
-Q 26. What is the purpose of the NULL value in
+## Q 26. What is the purpose of the NULL value in
 SQL?
 Ans:
 13
@@ -270,7 +271,7 @@ periodically. It improves query performance at the
 cost of data freshness.
 
 
-Q 27. What is the difference between a view and a
+## Q 27. What is the difference between a view and a
 materialized view?
 Ans:
 A correlated subquery is a subquery that refers to a
@@ -278,7 +279,7 @@ column from the outer query. It executes once for
 each row processed by the outer query.
 
 
-Q 28. What is a correlated subquery?
+## Q 28. What is a correlated subquery?
 Ans:
 14
 The DISTINCT keyword is used to retrieve unique
@@ -286,7 +287,7 @@ values from a column or combination of columns in a
 SELECT statement.
 
 
-Q 29. What is the purpose of the DISTINCT
+## Q 29. What is the purpose of the DISTINCT
 keyword?
 Ans:
 CHAR stores fixed-length character strings, while
@@ -295,7 +296,7 @@ The storage size of CHAR is constant, while
 VARCHAR adjusts dynamically.
 
 
-Q 30. What is the difference between the CHAR
+## Q 30. What is the difference between the CHAR
 and VARCHAR data types?
 Ans:
 15
@@ -305,7 +306,7 @@ operator checks for the existence of rows returned
 by a subquery.
 
 
-Q 31. What is the difference between the IN and
+## Q 31. What is the difference between the IN and
 EXISTS operators?
 Ans:
 The TRIGGER statement is used to associate a set of
@@ -314,7 +315,7 @@ database. It is executed automatically when the
 event occurs
 
 
-Q 32. What is the purpose of the TRIGGER
+## Q 32. What is the purpose of the TRIGGER
 statement?
 Ans:
 A unique constraint ensures the uniqueness of
@@ -323,7 +324,7 @@ enforces the uniqueness and also improves query
 performance.
 
 
-Q 33. What is the difference between a unique
+## Q 33. What is the difference between a unique
 constraint and a unique index?
 Ans:
 16
@@ -332,7 +333,7 @@ used to limit the number of rows returned by a
 query. It is often used with an ORDER BY clause.
 
 
-Q 34. What is the purpose of the TOP or LIMIT
+## Q 34. What is the purpose of the TOP or LIMIT
 clause?
 Ans:
 UNION combines the result sets of two or more
@@ -341,7 +342,7 @@ columns from two or more tables horizontally based
 on a join condition.
 
 
-Q 35. What is the difference between the UNION
+## Q 35. What is the difference between the UNION
 and JOIN operators?
 Ans:
 17
@@ -351,7 +352,7 @@ It is designed for efficient reporting, analysis, and
 business intelligence purposes.
 
 
-Q 36. What is a data warehouse?
+## Q 36. What is a data warehouse?
 Ans:
 A primary key is a chosen candidate key that
 uniquely identifies a row in a table.
@@ -359,7 +360,7 @@ A candidate key is a set of one or more columns that
 could potentially become the primary key.
 
 
-Q 37. What is the difference between a primary key
+## Q 37. What is the difference between a primary key
 and a candidate key?
 Ans:
 18
@@ -368,7 +369,7 @@ permissions or privileges to users or roles in a
 database.
 
 
-Q 38. What is the purpose of the GRANT statement?
+## Q 38. What is the purpose of the GRANT statement?
 Ans:
 A correlated update is an update statement that
 refers to a column from the same table in a
@@ -376,7 +377,7 @@ subquery. It updates values based on the result of
 the subquery for each row.
 
 
-Q 39. What is a correlated update?
+## Q 39. What is a correlated update?
 Ans:
 19
 The CASE statement is used to perform conditional
@@ -384,14 +385,14 @@ logic in SQL queries. It allows you to return different
 values based on specified conditions.
 
 
-Q 40. What is the purpose of the CASE statement?
+## Q 40. What is the purpose of the CASE statement?
 Ans:
 The COALESCE function returns the first non-null
 expression from a list of expressions. It is often used
 to handle null values effectively.
 
 
-Q 41. What is the purpose of the COALESCE
+## Q 41. What is the purpose of the COALESCE
 function?
 Ans:
 The ROW_NUMBER() function assigns a unique
@@ -400,7 +401,7 @@ It is commonly used for pagination or ranking
 purposes.ll values effectively.
 
 
-Q 42. What is the purpose of the ROW_NUMBER()
+## Q 42. What is the purpose of the ROW_NUMBER()
 function?
 Ans:
 20
@@ -410,7 +411,7 @@ tables. It is automatically determined by the
 database.
 
 
-Q 43. What is the difference between a natural
+## Q 43. What is the difference between a natural
 join and an inner join?
 Ans:
 The CASCADE DELETE constraint is used to
@@ -418,7 +419,7 @@ automatically delete related rows in child tables
 when a row in the parent table is deleted.
 
 
-Q 44. What is the purpose of the CASCADE
+## Q 44. What is the purpose of the CASCADE
 DELETE constraint?
 Ans:
 21
@@ -427,7 +428,7 @@ automatically delete related rows in child tables
 when a row in the parent table is deleted.
 
 
-Q 45. What is the purpose of the ALL keyword in
+## Q 45. What is the purpose of the ALL keyword in
 SQL?
 Ans:
 22
@@ -436,7 +437,7 @@ returns any rows, while the NOT EXISTS operator
 returns true if a subquery returns no rows.
 
 
-Q 46. What is the difference between the EXISTS
+## Q 46. What is the difference between the EXISTS
 and NOT EXISTS operators?
 Ans:
 23
@@ -444,7 +445,7 @@ The CROSS APPLY operator is used to invoke a tablevalued function for each row o
 returns the combined result set.
 
 
-Q 47. What is the purpose of the CROSS APPLY
+## Q 47. What is the purpose of the CROSS APPLY
 operator?
 Ans:
 A self-join is a join operation where a table is joined
@@ -453,7 +454,7 @@ rows within the same table based on related
 columns. It requiresbined result set.
 
 
-Q 48. What is a self-join?
+## Q 48. What is a self-join?
 Ans:
 24
 ALIAS command in SQL is the name that can be given
@@ -462,7 +463,7 @@ referred in WHERE clause to identify a particular
 table or a column.
 
 
-Q 49. What is an ALIAS command?
+## Q 49. What is an ALIAS command?
 Ans:
 To perform some calculations on the data
 To modify individual data items
@@ -472,5 +473,5 @@ To convert the data types
 SQL functions are used for the following purposes:
 
 
-Q 50. Why are SQL functions used?
+## Q 50. Why are SQL functions used?
 Ans:
