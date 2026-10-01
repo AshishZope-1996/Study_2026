@@ -1,6 +1,3 @@
-
-# Top 50 SQL Interview Questions with Answers
-
 ## 1. Find the Second Highest Salary
 
 **Scenario:** In HR departments, it's common to identify the second-highest earner for promotion decisions or salary benchmarking. This query helps find the person earning the second-highest salary without duplicates or considering ties.
