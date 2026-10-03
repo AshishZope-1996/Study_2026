@@ -280,14 +280,33 @@ df_emp.withColumn("total_compensation", df_emp.salary + df_emp.bonus).select(
 ```
 
 ### 45. Create `double_salary`.
+```python
+df_emp.withColumn("double_salary", col("salary") * 2).select("first_name", "double_salary").show(5)
+```
 
 ### 46. Create `salary_after_5_percent_increment`.
+```python
+df_emp.withColumn("salary_after_5_percent_increment", col("salary") * 1.05).select("first_name", "salary_after_5_percent_increment").show(5)
+```
 
 ### 47. Create `salary_difference` between salary and bonus.
+```python
+df_emp.withColumn("salary_difference", col("salary") - col("bonus")).select("first_name", "salary", "bonus", "salary_difference").show(5)
+```
 
 ### 48. Create `monthly_salary` from annual salary.
+```python
+df_emp.withColumn("monthly_salary", col("salary") / 12) \
+      .select("first_name", col("monthly_salary").cast("int")) \
+      .show(5)
+```
 
 ### 49. Create `monthly_bonus`.
+```python
+df_emp.withColumn("monthly_bonus", col("bonus") / 12) \
+      .select("first_name", col("monthly_bonus").cast("int")) \
+      .show(5)
+```
 
 ### 50. Create `salary_category`:
 
@@ -298,30 +317,83 @@ df_emp.withColumn("total_compensation", df_emp.salary + df_emp.bonus).select(
 > 2000000      → Very High
 ```
 
+```python
+df_emp.selectExpr(
+    "first_name", 
+    """CASE 
+        WHEN salary >= 2000000 THEN 'Very High' 
+        WHEN salary >= 700000 AND salary < 2000000 THEN 'High'
+        WHEN salary < 700000 THEN 'Low'
+        ELSE 'Unknown' 
+    END AS salary_tier"""
+).show()
+```
 ### 51. Create `employee_type` based on employment status.
-
+```python
+df_emp.selectExpr(
+    "first_name", 
+    """CASE 
+        WHEN employment_status = 'Active' THEN 'Current Employee' 
+        WHEN employment_status = 'Inactive' THEN 'Former Employee'
+        ELSE 'Unknown' 
+    END AS employee_type"""
+).show()
+```
 ### 52. Create a column indicating whether salary is above 1 million:
 
 ```text
 Yes / No
 ```
 
+```python
+df_emp.selectExpr(
+    "first_name", 
+    """CASE 
+        WHEN salary > 1000000 THEN 'Yes' 
+        ELSE 'No' 
+    END AS salary_above_1_million"""
+).show()
+```
 ### 53. Create `manager_status`:
 
 ```text
 Manager Assigned
 No Manager
 ```
+```python
+df_emp.selectExpr(
+    "first_name", 
+    """CASE 
+        WHEN manager_id IS NOT NULL THEN 'Manager Assigned' 
+        ELSE 'No Manager' 
+    END AS manager_status"""
+).show()
+```
 
 ### 54. Create `full_name`.
-
+```python
+df_emp.selectExpr(
+    "first_name", 
+    "last_name", 
+    "concat(first_name, ' ', last_name) as full_name"
+).show(5)
+```
 ### 55. Create `email_domain`.
+```python
+df_emp.selectExpr(
+    "email", 
+    "split(email, '@')[1] as email_domain"
+).show(5)
+```
 
 ---
 
 # 🟡 LEVEL 5 — String Operations
 
 ### 56. Convert first names to uppercase.
+```python
+df_emp.selectExpr("UPPER(first_name)").show(5)
+```
 
 ### 57. Convert last names to lowercase.
 
