@@ -1,8 +1,4 @@
 # PySpark from scratch
-<!-- 
-**DataFrame basics → Select → Filter → Computed columns → String → Date → NULL → Sort → Aggregate → Join → Window → Data Quality → Delta → Advanced Spark**
-
-Below is a **large practice-only question bank**. No solutions, so you can solve them yourself. -->
 
 ## 🟢 LEVEL 1 — DataFrame Basics
 
@@ -945,65 +941,35 @@ Invalid
 
 # 🔥 LEVEL 21 — Real Interview Scenarios
 
-### 276.
+### 276. You receive 10 million employee records every day. Find duplicate records efficiently.
 
-You receive 10 million employee records every day. Find duplicate records efficiently.
+### 277. Your employee DataFrame contains 5 million rows and department contains only 20 rows. How would you optimize the join?
 
-### 277.
+### 278. A PySpark job that normally takes 10 minutes suddenly takes 45 minutes. What would you investigate?
 
-Your employee DataFrame contains 5 million rows and department contains only 20 rows. How would you optimize the join?
+### 279. Your DataFrame has 2 billion records. How would you avoid collecting data to the driver?
 
-### 278.
+### 280. One department contains 80% of all records. How would you handle data skew?
 
-A PySpark job that normally takes 10 minutes suddenly takes 45 minutes. What would you investigate?
+### 281. You need to calculate the top 3 salaries per department.
 
-### 279.
+### 282. You need the second-highest salary per department, including duplicate salaries.
 
-Your DataFrame has 2 billion records. How would you avoid collecting data to the driver?
+### 283. You receive employee updates daily. Existing employees should be updated and new employees inserted.
 
-### 280.
+### 284. You need complete employee salary history. Implement SCD Type 2.
 
-One department contains 80% of all records. How would you handle data skew?
+### 285. An employee's salary changes from ₹10 lakh to ₹12 lakh. Store both versions.
 
-### 281.
+### 286.  Your source contains NULL values. Define a data-quality framework.
 
-You need to calculate the top 3 salaries per department.
+### 287. Your source schema changes by adding a new column. How will your Delta pipeline handle it?
 
-### 282.
+### 288. Your source sends the same file twice. How will you make your pipeline idempotent?
 
-You need the second-highest salary per department, including duplicate salaries.
+### 289. A file contains 1 million good records and 10,000 bad records. How will you separate them?
 
-### 283.
-
-You receive employee updates daily. Existing employees should be updated and new employees inserted.
-
-### 284.
-
-You need complete employee salary history. Implement SCD Type 2.
-
-### 285.
-
-An employee's salary changes from ₹10 lakh to ₹12 lakh. Store both versions.
-
-### 286.
-
-Your source contains NULL values. Define a data-quality framework.
-
-### 287.
-
-Your source schema changes by adding a new column. How will your Delta pipeline handle it?
-
-### 288.
-
-Your source sends the same file twice. How will you make your pipeline idempotent?
-
-### 289.
-
-A file contains 1 million good records and 10,000 bad records. How will you separate them?
-
-### 290.
-
-Your pipeline fails halfway through processing. How will you restart it safely?
+### 290. Your pipeline fails halfway through processing. How will you restart it safely?
 
 ---
 
