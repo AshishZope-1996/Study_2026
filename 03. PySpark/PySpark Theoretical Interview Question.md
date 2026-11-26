@@ -1,11 +1,5 @@
 # PySpark Theoretical Interview Questions
 
-## Basic → Intermediate → Advanced → Production
-
-
-
-## 1. PySpark Fundamentals
-
 ### 1. What is PySpark?
 > - PySpark is the Python API for Apache Spark, an open-source distributed computing framework designed for big data processing and analytics. 
 > 
